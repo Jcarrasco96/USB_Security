@@ -1,0 +1,11 @@
+﻿ARCHIVOS DE PROTECCION ANTIVIRUS
+
+Estos archivos dentro de la carpeta autorun.inf fueron creados a modo de protección por el antivirus USB Security.
+
+La mayoría de los virus que se propagan por los dispositivos USB utilizan un archivo con el nombre AUTORUN.INF para ejecutarse de manera automática e infectar el sistema operativo.
+
+USB Security crea esta carpeta para proteger sus dispositivos y evitar futuros contagios.
+
+Puede contactarnos en:
+ - jcarrasco96@nauta.cu
+ - jcarrasco96joker@gmail.com

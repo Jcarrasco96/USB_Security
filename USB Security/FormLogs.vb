@@ -4,20 +4,20 @@ Imports Microsoft.VisualBasic.FileIO
 Public Class FormLogs
 
     Private Sub MysticClose1_Click(sender As Object, e As EventArgs) Handles MysticClose1.Click
-        Me.Dispose()
+        Dispose()
     End Sub
 
     Private Sub FormLogs_Load(sender As Object, e As EventArgs) Handles Me.Load
-        loadMalware()
-        loadEngine()
+        LoadMalware()
+        LoadEngine()
     End Sub
 
     Private Sub MysticButton3_Click(sender As Object, e As EventArgs) Handles MysticButton3.Click
         Dim item As Integer = ThirteenTabControl1.SelectedIndex
         If item = 0 Then
-            loadMalware()
+            LoadMalware()
         Else
-            loadEngine()
+            LoadEngine()
         End If
     End Sub
 
@@ -25,14 +25,14 @@ Public Class FormLogs
         Dim item As Integer = ThirteenTabControl1.SelectedIndex
         If item = 0 Then
             If My.Computer.FileSystem.FileExists(DirProject & "log_malware.log") Then My.Computer.FileSystem.DeleteFile(DirProject & "log_malware.log", UIOption.OnlyErrorDialogs, RecycleOption.DeletePermanently)
-            loadMalware()
+            LoadMalware()
         Else
             If My.Computer.FileSystem.FileExists(DirProject & "log_func.log") Then My.Computer.FileSystem.DeleteFile(DirProject & "log_func.log", UIOption.OnlyErrorDialogs, RecycleOption.DeletePermanently)
-            loadEngine()
+            LoadEngine()
         End If
     End Sub
 
-    Public Sub loadEngine()
+    Public Sub LoadEngine()
         Dim filename As String = DirProject & "log_func.log"
 
         listViewFuncionamiento.Items.Clear()
@@ -63,7 +63,7 @@ Public Class FormLogs
         End If
     End Sub
 
-    Public Sub loadMalware()
+    Public Sub LoadMalware()
         Dim filename As String = DirProject & "log_malware.log"
 
         listViewMalwares.Items.Clear()
@@ -99,6 +99,7 @@ Public Class FormLogs
     End Sub
 
     Private Sub MysticButton2_Click(sender As Object, e As EventArgs) Handles MysticButton2.Click
-
+        ' TODO terminar
     End Sub
+
 End Class

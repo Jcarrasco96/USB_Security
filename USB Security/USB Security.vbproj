@@ -12,6 +12,7 @@
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publicar\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -21,12 +22,12 @@
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
+    <MapFileExtensions>false</MapFileExtensions>
+    <ApplicationRevision>3</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>false</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -39,7 +40,7 @@
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <DefineDebug>false</DefineDebug>
     <DefineTrace>true</DefineTrace>
@@ -66,10 +67,30 @@
   <PropertyGroup>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>1D21810BB87E507E3E1A3B91A4E3C6C45F04C2BE</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>USB Security_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
     <Reference Include="vblibusb, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\bin\vblibusb.dll</HintPath>
@@ -86,10 +107,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="Device.vb" />
+    <Compile Include="FastScanClass.vb" />
     <Compile Include="FormAbout.Designer.vb">
       <DependentUpon>FormAbout.vb</DependentUpon>
     </Compile>
     <Compile Include="FormAbout.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFastScan.Designer.vb">
+      <DependentUpon>FormFastScan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFastScan.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormLogs.Designer.vb">
@@ -116,6 +145,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Quarantine.vb" />
+    <Compile Include="StyleProtection.vb" />
     <Compile Include="Theme.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -130,6 +161,7 @@
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="My Project\Settings.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -141,6 +173,9 @@
   <ItemGroup>
     <EmbeddedResource Include="FormAbout.resx">
       <DependentUpon>FormAbout.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFastScan.resx">
+      <DependentUpon>FormFastScan.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormLogs.resx">
       <DependentUpon>FormLogs.vb</DependentUpon>
@@ -162,6 +197,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
@@ -188,6 +224,30 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\8-3.fw.png" />
+    <None Include="Resources\8-2.fw.png" />
+    <None Include="Resources\8-1.fw.png" />
+    <None Include="Resources\7-3.fw.png" />
+    <None Include="Resources\7-2.fw.png" />
+    <None Include="Resources\7-1.fw.png" />
+    <None Include="Resources\6-3.fw.png" />
+    <None Include="Resources\6-2.fw.png" />
+    <None Include="Resources\6-1.fw.png" />
+    <None Include="Resources\5-3.fw.png" />
+    <None Include="Resources\5-2.fw.png" />
+    <None Include="Resources\5-1.fw.png" />
+    <None Include="Resources\4-3.fw.png" />
+    <None Include="Resources\4-2.fw.png" />
+    <None Include="Resources\4-1.fw.png" />
+    <None Include="Resources\3-3.fw.png" />
+    <None Include="Resources\3-2.fw.png" />
+    <None Include="Resources\3-1.fw.png" />
+    <None Include="Resources\2-3.fw.png" />
+    <None Include="Resources\2-2.fw.png" />
+    <None Include="Resources\2-1.fw.png" />
+    <None Include="Resources\1-3.fw.png" />
+    <None Include="Resources\1-2.fw.png" />
+    <None Include="Resources\1-1.fw.png" />
     <None Include="Resources\ic_update.ico" />
     <None Include="Resources\ic_update.png" />
     <None Include="Resources\ic_logs.png" />
@@ -205,8 +265,20 @@
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>true</Install>
+      <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="icon.ico">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

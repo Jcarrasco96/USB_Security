@@ -1,42 +1,31 @@
-﻿Imports vblibusb.LogicUSB
+﻿Imports System.IO
+Imports Microsoft.VisualBasic.FileIO
 Imports vblibusb.Encrypter
-Imports System.Security.Cryptography
-Imports System.IO
+Imports vblibusb.LogicUSB
 
 Module ModuleMain
 
-    Private Const LDebug As Boolean = True
+    Private Const LDebug As Boolean = False
     Dim password As String
 
     Sub Main()
         Console.Title = "Update for USB Security"
-        Console.SetWindowSize(75, 20)
+        Console.SetWindowSize(75, 25)
         WriteGun(ConsoleColor.Blue)
         Console.Write("              Insert your password here and press Enter: ")
         password = Console.ReadLine()
 
-        If password.Equals("8h7rvb1a", StringComparison.OrdinalIgnoreCase) Or LDebug Then
+        If password.Equals("jcarrasco96", StringComparison.OrdinalIgnoreCase) Or LDebug Then
             Console.Clear()
             Console.ForegroundColor = ConsoleColor.DarkBlue
-            ' Crear carpeta necesaria, si no existe
-            If Not My.Computer.FileSystem.GetDirectoryInfo(DirCache & "\dat").Exists Then My.Computer.FileSystem.CreateDirectory(DirCache & "\dat")
-            ' Copiar la base de datos (descomprimida)
-            'My.Computer.FileSystem.WriteAllBytes(DirCache & "dat\config.cache", My.Resources.config, False)
-            'My.Computer.FileSystem.WriteAllBytes(DirCache & "dat\secur001.cache", My.Resources.secur001, False)
-            'My.Computer.FileSystem.WriteAllBytes(DirCache & "dat\secur002.cache", My.Resources.secur002, False)
-            'My.Computer.FileSystem.WriteAllBytes(DirCache & "dat\secur003.cache", My.Resources.secur003, False)
-            'My.Computer.FileSystem.WriteAllBytes(DirCache & "dat\secur004.cache", My.Resources.secur004, False)
-            'My.Computer.FileSystem.WriteAllBytes(DirCache & "dat\secur006.cache", My.Resources.secur006, False)
-            'My.Computer.FileSystem.WriteAllBytes(DirCache & "dat\secur007.cache", My.Resources.secur007, False)
-            'My.Computer.FileSystem.WriteAllBytes(DirCache & "dat\security00.cache", My.Resources.security00, False)
             ' Encriptar la base de datos
             EncryptFile("data\config.cache", DirCache & "dat\config.sec")         ' config
             EncryptFile("data\secur001.cache", DirCache & "dat\secur001.sec")     ' files
             EncryptFile("data\secur002.cache", DirCache & "dat\secur002.sec")     ' folders
             EncryptFile("data\secur003.cache", DirCache & "dat\secur003.sec")     ' extensions
             EncryptFile("data\secur004.cache", DirCache & "dat\secur004.sec")     ' sizes
-            EncryptFile("data\secur006.cache", DirCache & "dat\secur006.sec")     ' 
-            EncryptFile("data\secur007.cache", DirCache & "dat\secur007.sec")     ' 
+            EncryptFile("data\secur006.cache", DirCache & "dat\secur006.sec")     ' firmicon
+            EncryptFile("data\secur007.cache", DirCache & "dat\secur007.sec")     ' location
             EncryptFile("data\security00.cache", DirCache & "dat\security00.sec") ' MD5
             EncryptFile("data\security01.cache", DirCache & "dat\security01.sec") ' SHA256
             ' Obtener el nombre de la base de datos
@@ -50,30 +39,129 @@ Module ModuleMain
             WriteGun(ConsoleColor.Green)
             Console.Write("                    All is OK! Press Enter to Exit ")
             Console.ReadLine()
+        Else
+            Console.Clear()
+            WriteGun(ConsoleColor.Red)
+            Console.Write("                    Working... ")
+
+            'MakeBases()
+            MakeBasesFinal()
+            MakeSizes()
+
+            Console.Clear()
+            WriteGun(ConsoleColor.Green)
+            Console.Write("                    All is OK! Press Enter to Exit ")
+            Console.ReadLine()
         End If
 
     End Sub
 
     Private Sub WriteGun(c As ConsoleColor)
         Console.ForegroundColor = c
-        Console.WriteLine("                     _")
-        Console.WriteLine("             __    _| '-----------._______________________________^_.")
-        Console.WriteLine("            `-.`\,' .============.|---------------------------------:")
-        Console.WriteLine("           __.'    || (____| - - -|---------------------------------:")
-        Console.WriteLine("          /     ,_ ||  ____| - - -|---------------------------------:")
-        Console.WriteLine("         /     / / || (____| = = =|___________:")
-        Console.WriteLine("         |    (_/   '======'_-- --/")
-        Console.WriteLine("        /                     == /")
-        Console.WriteLine("       |              .---.  ___/")
-        Console.WriteLine("      /  ::.    .--. /\ /  |(")
-        Console.WriteLine("      | .::::. /    \\ \(  //")
-        Console.WriteLine("     / .:::::: |     '-----'         ________________________________")
-        Console.WriteLine("    ; :::::::: |                                                     ")
-        Console.WriteLine("    | :::::::: |                                Update for           ")
-        Console.WriteLine("    | :::::::: |                            USB Security v1.1        ")
-        Console.WriteLine("    /.:::::::: |                     ________________________________")
-        Console.WriteLine("   '-----------'                                                     ")
+        Console.WriteLine("")
+        Console.WriteLine("                                 -+%@@@@#+:                                ")
+        Console.WriteLine("                              +%@@@@@@@@@@@@%=                             ")
+        Console.WriteLine("                           #@@@@%+:.    .-+@@@@@*                          ")
+        Console.WriteLine("                         #@@@#:              :%@@@+                        ")
+        Console.WriteLine("                        @@@%                    %@@@                       ")
+        Console.WriteLine("                       @@@=                  -.  *@@@                      ")
+        Console.WriteLine("                      *@@+                 =@@@.  #@@=                     ")
+        Console.WriteLine("                     =@@@                 #@@@-    @@%                     ")
+        Console.WriteLine("                     @%@*     ==         @@@%      %@%                     ")
+        Console.WriteLine("                     @@@*    +@@@*     -@@@+       %@%                     ")
+        Console.WriteLine("                     =@@@     :%@@@%. *@@@:        @@%                     ")
+        Console.WriteLine("                      *@@*       *@@@@@@@         %@@-                     ")
+        Console.WriteLine("                       @@@+        =@@@*         #@@@                      ")
+        Console.WriteLine("                        @@@%.        .         :@@@%                       ")
+        Console.WriteLine("                         +@@@@-              =@@@@=                        ")
+        Console.WriteLine("                           +@@@@@*-.. ..:-#@@@@@+              Update for  ")
+        Console.WriteLine("                              :*%@@@@@@@@@@%+:           USB Security 1.1  ")
+        Console.WriteLine("")
         Console.WriteLine("")
     End Sub
+
+    Private Sub MakeBases()
+        Dim path = "E:\updateUSBAV\"
+        Dim chars() = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"}
+        Dim dicHash As New SortedDictionary(Of String, String)
+
+        For Each letter As Char In chars
+            Dim fileMD5 As String = path & "deff" & letter & ".dat.txt"
+            Dim fileType As String = path & "defn" & letter & ".dat.txt"
+
+            Dim arrayFileMD5 As ArrayList = FileAsArray(fileMD5)
+            Dim arrayFileType As ArrayList = FileAsArray(fileType)
+
+            If arrayFileMD5.Count = arrayFileType.Count Then
+                For i = 0 To arrayFileMD5.Count - 1
+                    dicHash.Add(arrayFileMD5(i), arrayFileType(i))
+                Next
+            Else
+                MsgBox("ERROR EN EL ARCHIVO DEF(FN)" & letter)
+            End If
+        Next
+
+        For Each i As KeyValuePair(Of String, String) In dicHash
+            My.Computer.FileSystem.WriteAllText(path & "md5-type.txt", i.Key & "*" & i.Value & vbCrLf, True)
+        Next
+    End Sub
+
+    Private Sub MakeBasesFinal()
+        Dim path = "E:\updateUSBAV\"
+        Dim dictMD5Type = FileAsDict(path & "md5-type.txt") ' 10775
+
+        For Each i As KeyValuePair(Of String, String) In dictMD5Type
+            My.Computer.FileSystem.WriteAllText(path & "md5-type-ok.txt", i.Key & "*" & i.Value & vbCrLf, True)
+        Next
+    End Sub
+
+    Private Sub MakeSizes()
+        Dim path = "E:\updateUSBAV\"
+        Dim arrSizes = FileAsArray(path & "def05.dat.txt") ' 4903
+        Dim arrSizesOk As New List(Of UInteger)
+
+        For Each i In arrSizes
+            If Not arrSizesOk.Contains(i) Then
+                arrSizesOk.Add(i)
+            End If
+        Next
+
+        arrSizesOk.Sort()
+
+        For Each i In arrSizesOk
+            My.Computer.FileSystem.WriteAllText(path & "sizes.txt", i & vbCrLf, True)
+        Next
+
+        MsgBox(arrSizesOk.Count)
+
+    End Sub
+
+    Private Function FileAsArray(filename As String) As ArrayList
+        Dim array As New ArrayList
+        Dim parser As New TextFieldParser(filename)
+
+        While Not parser.EndOfData
+            Dim line As String = parser.ReadLine()
+            array.Add(line)
+        End While
+
+        Return array
+    End Function
+
+    Private Function FileAsDict(filename As String) As SortedDictionary(Of String, String)
+        Dim dict As New SortedDictionary(Of String, String)
+        Dim parser As New TextFieldParser(filename)
+        parser.SetDelimiters("*")
+
+        While Not parser.EndOfData
+            Dim line As String() = parser.ReadFields()
+
+            If line.Length = 2 And Not dict.ContainsKey(line(0)) Then
+                dict.Add(line(0), line(1))
+            End If
+        End While
+
+        Return dict
+    End Function
 
 End Module

@@ -31,7 +31,6 @@ Partial Class FormSettings
         Me.checkFindNewsUpdates = New USB_Security.MysticCheckBox()
         Me.checkCopyLastUpdate = New USB_Security.MysticCheckBox()
         Me.checkShowFFHidden = New USB_Security.MysticCheckBox()
-        Me.checkDisableExecAutom = New USB_Security.MysticCheckBox()
         Me.checkCreateProtHDD = New USB_Security.MysticCheckBox()
         Me.comboDetectMalware = New USB_Security.ThirteenComboBox()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -99,17 +98,15 @@ Partial Class FormSettings
         '
         Me.MysticClose1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.MysticClose1.BackColor = System.Drawing.Color.Transparent
-        Me.MysticClose1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.MysticClose1.Location = New System.Drawing.Point(591, 13)
+        Me.MysticClose1.Cursor = System.Windows.Forms.Cursors.Default
+        Me.MysticClose1.Location = New System.Drawing.Point(585, 6)
         Me.MysticClose1.Name = "MysticClose1"
-        Me.MysticClose1.Size = New System.Drawing.Size(12, 12)
+        Me.MysticClose1.Size = New System.Drawing.Size(24, 24)
         Me.MysticClose1.TabIndex = 1
         Me.MysticClose1.Text = "MysticClose1"
         '
         'ThirteenTabControl1
         '
-        Me.ThirteenTabControl1.AccentColor = System.Drawing.Color.DodgerBlue
-        Me.ThirteenTabControl1.ColorScheme = USB_Security.ThirteenTabControl.ColorSchemes.Dark
         Me.ThirteenTabControl1.Controls.Add(Me.tabGeneral)
         Me.ThirteenTabControl1.Controls.Add(Me.tabRegistry)
         Me.ThirteenTabControl1.Controls.Add(Me.tabNotify)
@@ -126,7 +123,6 @@ Partial Class FormSettings
         Me.tabGeneral.Controls.Add(Me.checkFindNewsUpdates)
         Me.tabGeneral.Controls.Add(Me.checkCopyLastUpdate)
         Me.tabGeneral.Controls.Add(Me.checkShowFFHidden)
-        Me.tabGeneral.Controls.Add(Me.checkDisableExecAutom)
         Me.tabGeneral.Controls.Add(Me.checkCreateProtHDD)
         Me.tabGeneral.Controls.Add(Me.comboDetectMalware)
         Me.tabGeneral.Controls.Add(Me.Label6)
@@ -145,7 +141,7 @@ Partial Class FormSettings
         'checkFindNewsUpdates
         '
         Me.checkFindNewsUpdates.Checked = False
-        Me.checkFindNewsUpdates.Location = New System.Drawing.Point(15, 169)
+        Me.checkFindNewsUpdates.Location = New System.Drawing.Point(15, 147)
         Me.checkFindNewsUpdates.Name = "checkFindNewsUpdates"
         Me.checkFindNewsUpdates.Size = New System.Drawing.Size(548, 16)
         Me.checkFindNewsUpdates.TabIndex = 21
@@ -154,30 +150,21 @@ Partial Class FormSettings
         'checkCopyLastUpdate
         '
         Me.checkCopyLastUpdate.Checked = False
-        Me.checkCopyLastUpdate.Location = New System.Drawing.Point(15, 147)
+        Me.checkCopyLastUpdate.Location = New System.Drawing.Point(15, 125)
         Me.checkCopyLastUpdate.Name = "checkCopyLastUpdate"
         Me.checkCopyLastUpdate.Size = New System.Drawing.Size(548, 16)
         Me.checkCopyLastUpdate.TabIndex = 20
-        Me.checkCopyLastUpdate.Text = "Copiar la última actualización a todos los dispositivos externos que se conecten " & _
+        Me.checkCopyLastUpdate.Text = "Copiar la última actualización a todos los dispositivos externos que se conecten " &
     "a esta PC"
         '
         'checkShowFFHidden
         '
         Me.checkShowFFHidden.Checked = False
-        Me.checkShowFFHidden.Location = New System.Drawing.Point(15, 125)
+        Me.checkShowFFHidden.Location = New System.Drawing.Point(15, 103)
         Me.checkShowFFHidden.Name = "checkShowFFHidden"
         Me.checkShowFFHidden.Size = New System.Drawing.Size(548, 16)
         Me.checkShowFFHidden.TabIndex = 17
         Me.checkShowFFHidden.Text = "Mostrar archivos y carpetas ocultas en los dispositivos"
-        '
-        'checkDisableExecAutom
-        '
-        Me.checkDisableExecAutom.Checked = False
-        Me.checkDisableExecAutom.Location = New System.Drawing.Point(15, 103)
-        Me.checkDisableExecAutom.Name = "checkDisableExecAutom"
-        Me.checkDisableExecAutom.Size = New System.Drawing.Size(548, 16)
-        Me.checkDisableExecAutom.TabIndex = 16
-        Me.checkDisableExecAutom.Text = "Deshabilitar la autoejecución de unidades en este equipo (recomendado)"
         '
         'checkCreateProtHDD
         '
@@ -192,7 +179,6 @@ Partial Class FormSettings
         '
         Me.comboDetectMalware.AccentColor = System.Drawing.Color.DodgerBlue
         Me.comboDetectMalware.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
-        Me.comboDetectMalware.ColorScheme = USB_Security.ThirteenComboBox.ColorSchemes.Dark
         Me.comboDetectMalware.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
         Me.comboDetectMalware.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboDetectMalware.Font = New System.Drawing.Font("Segoe UI Semilight", 9.75!)
@@ -236,7 +222,6 @@ Partial Class FormSettings
         '
         Me.comboDetectFilesSuspect.AccentColor = System.Drawing.Color.DodgerBlue
         Me.comboDetectFilesSuspect.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
-        Me.comboDetectFilesSuspect.ColorScheme = USB_Security.ThirteenComboBox.ColorSchemes.Dark
         Me.comboDetectFilesSuspect.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
         Me.comboDetectFilesSuspect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboDetectFilesSuspect.Font = New System.Drawing.Font("Segoe UI Semilight", 9.75!)
@@ -471,7 +456,6 @@ Partial Class FormSettings
     Friend WithEvents comboDetectMalware As USB_Security.ThirteenComboBox
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents checkShowFFHidden As USB_Security.MysticCheckBox
-    Friend WithEvents checkDisableExecAutom As USB_Security.MysticCheckBox
     Friend WithEvents checkCreateProtHDD As USB_Security.MysticCheckBox
     Friend WithEvents checkFindNewsUpdates As USB_Security.MysticCheckBox
     Friend WithEvents checkCopyLastUpdate As USB_Security.MysticCheckBox

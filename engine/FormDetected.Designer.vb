@@ -22,6 +22,7 @@ Partial Class FormDetected
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormDetected))
         Me.MysticTheme1 = New engine.MysticTheme()
         Me.labelMalware = New System.Windows.Forms.Label()
         Me.labelPath = New System.Windows.Forms.Label()
@@ -44,6 +45,7 @@ Partial Class FormDetected
         Me.MysticTheme1.Controls.Add(Me.MysticClose1)
         Me.MysticTheme1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.MysticTheme1.Location = New System.Drawing.Point(0, 0)
+        Me.MysticTheme1.Movible = True
         Me.MysticTheme1.Name = "MysticTheme1"
         Me.MysticTheme1.Size = New System.Drawing.Size(484, 160)
         Me.MysticTheme1.TabIndex = 0
@@ -118,9 +120,10 @@ Partial Class FormDetected
         '
         Me.MysticClose1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.MysticClose1.BackColor = System.Drawing.Color.Transparent
-        Me.MysticClose1.Location = New System.Drawing.Point(460, 12)
+        Me.MysticClose1.Cursor = System.Windows.Forms.Cursors.Default
+        Me.MysticClose1.Location = New System.Drawing.Point(454, 6)
         Me.MysticClose1.Name = "MysticClose1"
-        Me.MysticClose1.Size = New System.Drawing.Size(12, 12)
+        Me.MysticClose1.Size = New System.Drawing.Size(24, 24)
         Me.MysticClose1.TabIndex = 0
         Me.MysticClose1.Text = "MysticClose1"
         '
@@ -131,9 +134,10 @@ Partial Class FormDetected
         Me.ClientSize = New System.Drawing.Size(484, 160)
         Me.Controls.Add(Me.MysticTheme1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "FormDetected"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "FormDetected"
+        Me.ShowInTaskbar = False
+        Me.Text = "Amenaza detectada"
         Me.TransparencyKey = System.Drawing.Color.Fuchsia
         Me.MysticTheme1.ResumeLayout(False)
         Me.ResumeLayout(False)

@@ -48,13 +48,13 @@ Partial Class FormAbout
         Me.labelTitle.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.labelTitle.BackColor = System.Drawing.Color.Transparent
-        Me.labelTitle.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.labelTitle.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.labelTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(7, Byte), Integer), CType(CType(164, Byte), Integer), CType(CType(253, Byte), Integer))
         Me.labelTitle.Location = New System.Drawing.Point(118, 46)
         Me.labelTitle.Name = "labelTitle"
         Me.labelTitle.Size = New System.Drawing.Size(320, 100)
         Me.labelTitle.TabIndex = 2
-        Me.labelTitle.Text = "USB Security 1.0.0" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Copyright (c) 2020 Jcarrasco96"
+        Me.labelTitle.Text = "USB Security 1.0.0" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Copyright (c) 2022 Jcarrasco96"
         Me.labelTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'PictureBox1
@@ -72,10 +72,10 @@ Partial Class FormAbout
         '
         Me.MysticClose1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.MysticClose1.BackColor = System.Drawing.Color.Transparent
-        Me.MysticClose1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.MysticClose1.Location = New System.Drawing.Point(426, 13)
+        Me.MysticClose1.Cursor = System.Windows.Forms.Cursors.Default
+        Me.MysticClose1.Location = New System.Drawing.Point(420, 6)
         Me.MysticClose1.Name = "MysticClose1"
-        Me.MysticClose1.Size = New System.Drawing.Size(12, 12)
+        Me.MysticClose1.Size = New System.Drawing.Size(24, 24)
         Me.MysticClose1.TabIndex = 0
         '
         'FormAbout

@@ -5,7 +5,6 @@
     Public checkOpenDevice As Boolean = True
     Public checkCreateProtUSB As Boolean = True
     Public checkCreateProtHDD As Boolean = False
-    Public checkDisableExecAutom As Boolean = True
     Public checkShowFFHidden As Boolean = True
     Public checkCopyLastUpdate As Boolean = False
     Public checkFindNewsUpdates As Boolean = False
@@ -26,55 +25,53 @@
     Public checkReprodSounds As Boolean = True
 
     Public Sub New()
-        checkStartSystem = LogicUSB.ValueOfFile("general", "checkStartSystem", "config.ini")
-        checkOpenDevice = LogicUSB.ValueOfFile("general", "checkOpenDevice", "config.ini")
-        checkCreateProtUSB = LogicUSB.ValueOfFile("general", "checkCreateProtUSB", "config.ini")
-        checkCreateProtHDD = LogicUSB.ValueOfFile("general", "checkCreateProtHDD", "config.ini")
-        checkDisableExecAutom = LogicUSB.ValueOfFile("general", "checkDisableExecAutom", "config.ini")
-        checkShowFFHidden = LogicUSB.ValueOfFile("general", "checkShowFFHidden", "config.ini")
-        checkCopyLastUpdate = LogicUSB.ValueOfFile("general", "checkCopyLastUpdate", "config.ini")
-        checkFindNewsUpdates = LogicUSB.ValueOfFile("general", "checkFindNewsUpdates", "config.ini")
-        comboDetectMalware = LogicUSB.ValueOfFile("general", "comboDetectMalware", "config.ini")
-        comboDetectFilesSuspect = LogicUSB.ValueOfFile("general", "comboDetectFilesSuspect", "config.ini")
+        checkStartSystem = ValueOfFile("general", "checkStartSystem", "config.ini")
+        checkOpenDevice = ValueOfFile("general", "checkOpenDevice", "config.ini")
+        checkCreateProtUSB = ValueOfFile("general", "checkCreateProtUSB", "config.ini")
+        checkCreateProtHDD = ValueOfFile("general", "checkCreateProtHDD", "config.ini")
+        checkShowFFHidden = ValueOfFile("general", "checkShowFFHidden", "config.ini")
+        checkCopyLastUpdate = ValueOfFile("general", "checkCopyLastUpdate", "config.ini")
+        checkFindNewsUpdates = ValueOfFile("general", "checkFindNewsUpdates", "config.ini")
+        comboDetectMalware = ValueOfFile("general", "comboDetectMalware", "config.ini")
+        comboDetectFilesSuspect = ValueOfFile("general", "comboDetectFilesSuspect", "config.ini")
 
-        checkAmenazasDetect = LogicUSB.ValueOfFile("registro", "checkAmenazasDetect", "config.ini")
-        checkDisposConect = LogicUSB.ValueOfFile("registro", "checkDisposConect", "config.ini")
-        checkExplorePC = LogicUSB.ValueOfFile("registro", "checkExplorePC", "config.ini")
-        checkSucesos = LogicUSB.ValueOfFile("registro", "checkSucesos", "config.ini")
-        numRegSizeQuar = LogicUSB.ValueOfFile("registro", "numRegSizeQuar", "config.ini")
+        checkAmenazasDetect = ValueOfFile("registro", "checkAmenazasDetect", "config.ini")
+        checkDisposConect = ValueOfFile("registro", "checkDisposConect", "config.ini")
+        checkExplorePC = ValueOfFile("registro", "checkExplorePC", "config.ini")
+        checkSucesos = ValueOfFile("registro", "checkSucesos", "config.ini")
+        numRegSizeQuar = ValueOfFile("registro", "numRegSizeQuar", "config.ini")
 
-        checkAlertMess = LogicUSB.ValueOfFile("notificacion", "checkAlertMess", "config.ini")
-        checkNoUpdated = LogicUSB.ValueOfFile("notificacion", "checkNoUpdated", "config.ini")
-        checkUpdatedSuccess = LogicUSB.ValueOfFile("notificacion", "checkUpdatedSuccess", "config.ini")
-        checkFilesMoveToQuar = LogicUSB.ValueOfFile("notificacion", "checkFilesMoveToQuar", "config.ini")
-        checkResultadoAna = LogicUSB.ValueOfFile("notificacion", "checkResultadoAna", "config.ini")
-        checkReprodSounds = LogicUSB.ValueOfFile("notificacion", "checkReprodSounds", "config.ini")
+        checkAlertMess = ValueOfFile("notificacion", "checkAlertMess", "config.ini")
+        checkNoUpdated = ValueOfFile("notificacion", "checkNoUpdated", "config.ini")
+        checkUpdatedSuccess = ValueOfFile("notificacion", "checkUpdatedSuccess", "config.ini")
+        checkFilesMoveToQuar = ValueOfFile("notificacion", "checkFilesMoveToQuar", "config.ini")
+        checkResultadoAna = ValueOfFile("notificacion", "checkResultadoAna", "config.ini")
+        checkReprodSounds = ValueOfFile("notificacion", "checkReprodSounds", "config.ini")
     End Sub
 
     Public Sub saveSettings()
-        LogicUSB.SetValueOfFile("general", "checkStartSystem", checkStartSystem, LogicUSB.DirExecPath & "config.ini")
-        LogicUSB.SetValueOfFile("general", "checkOpenDevice", checkOpenDevice, LogicUSB.DirExecPath & "config.ini")
-        LogicUSB.SetValueOfFile("general", "checkCreateProtUSB", checkCreateProtUSB, LogicUSB.DirExecPath & "config.ini")
-        LogicUSB.SetValueOfFile("general", "checkCreateProtHDD", checkCreateProtHDD, LogicUSB.DirExecPath & "config.ini")
-        LogicUSB.SetValueOfFile("general", "checkDisableExecAutom", checkDisableExecAutom, LogicUSB.DirExecPath & "config.ini")
-        LogicUSB.SetValueOfFile("general", "checkShowFFHidden", checkShowFFHidden, LogicUSB.DirExecPath & "config.ini")
-        LogicUSB.SetValueOfFile("general", "checkCopyLastUpdate", checkCopyLastUpdate, LogicUSB.DirExecPath & "config.ini")
-        LogicUSB.SetValueOfFile("general", "checkFindNewsUpdates", checkFindNewsUpdates, LogicUSB.DirExecPath & "config.ini")
-        LogicUSB.SetValueOfFile("general", "comboDetectMalware", comboDetectMalware, LogicUSB.DirExecPath & "config.ini")
-        LogicUSB.SetValueOfFile("general", "comboDetectFilesSuspect", comboDetectFilesSuspect, LogicUSB.DirExecPath & "config.ini")
+        SetValueOfFile("general", "checkStartSystem", checkStartSystem, DirProject & "config.ini")
+        SetValueOfFile("general", "checkOpenDevice", checkOpenDevice, DirProject & "config.ini")
+        SetValueOfFile("general", "checkCreateProtUSB", checkCreateProtUSB, DirProject & "config.ini")
+        SetValueOfFile("general", "checkCreateProtHDD", checkCreateProtHDD, DirProject & "config.ini")
+        SetValueOfFile("general", "checkShowFFHidden", checkShowFFHidden, DirProject & "config.ini")
+        SetValueOfFile("general", "checkCopyLastUpdate", checkCopyLastUpdate, DirProject & "config.ini")
+        SetValueOfFile("general", "checkFindNewsUpdates", checkFindNewsUpdates, DirProject & "config.ini")
+        SetValueOfFile("general", "comboDetectMalware", comboDetectMalware, DirProject & "config.ini")
+        SetValueOfFile("general", "comboDetectFilesSuspect", comboDetectFilesSuspect, DirProject & "config.ini")
 
-        LogicUSB.SetValueOfFile("registro", "checkAmenazasDetect", checkAmenazasDetect, LogicUSB.DirExecPath & "config.ini")
-        LogicUSB.SetValueOfFile("registro", "checkDisposConect", checkDisposConect, LogicUSB.DirExecPath & "config.ini")
-        LogicUSB.SetValueOfFile("registro", "checkExplorePC", checkExplorePC, LogicUSB.DirExecPath & "config.ini")
-        LogicUSB.SetValueOfFile("registro", "checkSucesos", checkSucesos, LogicUSB.DirExecPath & "config.ini")
-        LogicUSB.SetValueOfFile("registro", "numRegSizeQuar", numRegSizeQuar, LogicUSB.DirExecPath & "config.ini")
+        SetValueOfFile("registro", "checkAmenazasDetect", checkAmenazasDetect, DirProject & "config.ini")
+        SetValueOfFile("registro", "checkDisposConect", checkDisposConect, DirProject & "config.ini")
+        SetValueOfFile("registro", "checkExplorePC", checkExplorePC, DirProject & "config.ini")
+        SetValueOfFile("registro", "checkSucesos", checkSucesos, DirProject & "config.ini")
+        SetValueOfFile("registro", "numRegSizeQuar", numRegSizeQuar, DirProject & "config.ini")
 
-        LogicUSB.SetValueOfFile("notificacion", "checkAlertMess", checkAlertMess, LogicUSB.DirExecPath & "config.ini")
-        LogicUSB.SetValueOfFile("notificacion", "checkNoUpdated", checkNoUpdated, LogicUSB.DirExecPath & "config.ini")
-        LogicUSB.SetValueOfFile("notificacion", "checkUpdatedSuccess", checkUpdatedSuccess, LogicUSB.DirExecPath & "config.ini")
-        LogicUSB.SetValueOfFile("notificacion", "checkFilesMoveToQuar", checkFilesMoveToQuar, LogicUSB.DirExecPath & "config.ini")
-        LogicUSB.SetValueOfFile("notificacion", "checkResultadoAna", checkResultadoAna, LogicUSB.DirExecPath & "config.ini")
-        LogicUSB.SetValueOfFile("notificacion", "checkReprodSounds", checkReprodSounds, LogicUSB.DirExecPath & "config.ini")
+        SetValueOfFile("notificacion", "checkAlertMess", checkAlertMess, DirProject & "config.ini")
+        SetValueOfFile("notificacion", "checkNoUpdated", checkNoUpdated, DirProject & "config.ini")
+        SetValueOfFile("notificacion", "checkUpdatedSuccess", checkUpdatedSuccess, DirProject & "config.ini")
+        SetValueOfFile("notificacion", "checkFilesMoveToQuar", checkFilesMoveToQuar, DirProject & "config.ini")
+        SetValueOfFile("notificacion", "checkResultadoAna", checkResultadoAna, DirProject & "config.ini")
+        SetValueOfFile("notificacion", "checkReprodSounds", checkReprodSounds, DirProject & "config.ini")
     End Sub
 
 End Class

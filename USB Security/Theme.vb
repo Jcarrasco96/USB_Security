@@ -1,7 +1,5 @@
-﻿Imports System.Drawing
-Imports System.Drawing.Drawing2D
+﻿Imports System.Drawing.Drawing2D
 Imports System.ComponentModel
-Imports System.Drawing.Text
 
 Enum MouseState
     None = 0
@@ -9,21 +7,19 @@ Enum MouseState
     Down = 2
 End Enum
 
-Class MysticTheme
-    Inherits ContainerControl
+Class MysticTheme : Inherits ContainerControl
 
 #Region " Declarations "
     Private _Down As Boolean = False
-    Private _Header As Integer = 36
+    Private ReadOnly _Header As Integer = 36
     Private _Point As Point
     Public Property Movible As Boolean = False
 #End Region
 
 #Region " Mouse States "
-
     Protected Overrides Sub OnMouseUp(e As MouseEventArgs)
         MyBase.OnMouseUp(e)
-        If Movible then _Down = False
+        If Movible Then _Down = False
     End Sub
 
     Protected Overrides Sub OnMouseDown(e As MouseEventArgs)
@@ -44,7 +40,6 @@ Class MysticTheme
             End If
         End If
     End Sub
-
 #End Region
 
     Protected Overrides Sub OnCreateControl()
@@ -59,7 +54,7 @@ Class MysticTheme
         MyBase.OnPaint(e)
         Dim G = e.Graphics
         G.Clear(Color.FromArgb(44, 51, 62))
-        G.FillRectangle(New LinearGradientBrush(New Point(0, 0), New Point(0, _Header), Color.FromArgb(29, 36, 44), Color.FromArgb(22, 29, 35)), New Rectangle(0, 0, Width, _Header))
+        G.FillRectangle(New SolidBrush(Color.FromArgb(29, 36, 44)), New Rectangle(0, 0, Width, _Header))
 
         G.FillRectangle(Brushes.Fuchsia, New Rectangle(0, 0, 1, 1))
         G.FillRectangle(Brushes.Fuchsia, New Rectangle(1, 0, 1, 1))
@@ -68,21 +63,64 @@ Class MysticTheme
         G.FillRectangle(Brushes.Fuchsia, New Rectangle(Width - 1, 1, 1, 1))
         G.FillRectangle(Brushes.Fuchsia, New Rectangle(Width - 2, 0, 1, 1))
 
-        Dim _StringF As New StringFormat
-        _StringF.Alignment = StringAlignment.Near
-        _StringF.LineAlignment = StringAlignment.Center
-        G.DrawString(Text, New Font("Segoe UI", 11), New SolidBrush(Color.FromArgb(33, 189, 255)), New RectangleF(10, 0, Width, _Header), _StringF)
+        Dim _StringF As New StringFormat With {
+            .Alignment = StringAlignment.Near,
+            .LineAlignment = StringAlignment.Center
+        }
+        G.DrawString(Text, New Font("Segoe UI", 12), New SolidBrush(Color.FromArgb(33, 189, 255)), New RectangleF(5, 0, Width, _Header), _StringF)
+    End Sub
 
+End Class
+
+Class MysticButton : Inherits MyControl
+
+    Sub New()
+        Size = New Size(85, 85)
+    End Sub
+
+    Protected Overrides Sub OnPaint(e As PaintEventArgs)
+        MyBase.OnPaint(e)
+        Dim G = e.Graphics
+        G.Clear(Color.FromArgb(66, 219, 183))
+        G.FillRectangle(New SolidBrush(Color.FromArgb(8, 161, 248)), New Rectangle(0, 0, Width, Height))
+
+        Select Case _State
+            Case MouseState.Over
+                G.FillRectangle(New SolidBrush(Color.FromArgb(40, Color.DarkBlue)), New Rectangle(0, 0, Width, Height))
+            Case MouseState.Down
+                G.FillRectangle(New SolidBrush(Color.FromArgb(80, Color.DarkBlue)), New Rectangle(0, 0, Width, Height))
+        End Select
+
+        G.FillRectangle(New SolidBrush(Color.FromArgb(44, 51, 62)), New Rectangle(0, 0, 1, 1))
+        G.FillRectangle(New SolidBrush(Color.FromArgb(44, 51, 62)), New Rectangle(1, 0, 1, 1))
+        G.FillRectangle(New SolidBrush(Color.FromArgb(44, 51, 62)), New Rectangle(0, 1, 1, 1))
+        G.FillRectangle(New SolidBrush(Color.FromArgb(44, 51, 62)), New Rectangle(Width - 1, 0, 1, 1))
+        G.FillRectangle(New SolidBrush(Color.FromArgb(44, 51, 62)), New Rectangle(Width - 1, 1, 1, 1))
+        G.FillRectangle(New SolidBrush(Color.FromArgb(44, 51, 62)), New Rectangle(Width - 2, 0, 1, 1))
+        G.FillRectangle(New SolidBrush(Color.FromArgb(44, 51, 62)), New Rectangle(0, Height - 1, 1, 1))
+        G.FillRectangle(New SolidBrush(Color.FromArgb(44, 51, 62)), New Rectangle(1, Height - 1, 1, 1))
+        G.FillRectangle(New SolidBrush(Color.FromArgb(44, 51, 62)), New Rectangle(0, Height - 2, 1, 1))
+        G.FillRectangle(New SolidBrush(Color.FromArgb(44, 51, 62)), New Rectangle(Width - 1, Height - 1, 1, 1))
+        G.FillRectangle(New SolidBrush(Color.FromArgb(44, 51, 62)), New Rectangle(Width - 1, Height - 2, 1, 1))
+        G.FillRectangle(New SolidBrush(Color.FromArgb(44, 51, 62)), New Rectangle(Width - 2, Height - 1, 1, 1))
+
+        If Text = vbNullString Then
+            G.DrawImage(BackgroundImage, New Rectangle(2, 2, Width - 4, Height - 4))
+        Else
+            Dim _StringF As New StringFormat With {
+                .Alignment = StringAlignment.Center,
+                .LineAlignment = StringAlignment.Center
+            }
+            G.DrawString(Text, New Font("Segoe UI", 9, FontStyle.Bold), Brushes.White, New RectangleF(0, 0, Width - 1, Height - 1), _StringF)
+        End If
     End Sub
 
 End Class
 
 <DefaultEvent("CheckedChanged")>
-Class MysticRadioButton
-    Inherits Control
+Class MysticRadioButton : Inherits MyControl
 
 #Region " Variables "
-    Private _State As MouseState = MouseState.None
     Private _Checked As Boolean
 #End Region
 
@@ -98,7 +136,7 @@ Class MysticRadioButton
             Invalidate()
         End Set
     End Property
-    Event CheckedChanged(ByVal sender As Object)
+    Event CheckedChanged(sender As Object)
     Protected Overrides Sub OnClick(e As EventArgs)
         If Not _Checked Then Checked = True
         MyBase.OnClick(e)
@@ -117,37 +155,19 @@ Class MysticRadioButton
         InvalidateControls()
     End Sub
 
-
     Protected Overrides Sub OnResize(e As EventArgs)
         MyBase.OnResize(e)
         Height = 16
     End Sub
+#End Region
 
 #Region " Mouse States "
-
     Protected Overrides Sub OnMouseDown(e As MouseEventArgs)
         MyBase.OnMouseDown(e)
         _State = MouseState.Down
         If Not _Checked Then Checked = True
         Invalidate()
     End Sub
-    Protected Overrides Sub OnMouseUp(e As MouseEventArgs)
-        MyBase.OnMouseUp(e)
-        _State = MouseState.Over
-        Invalidate()
-    End Sub
-    Protected Overrides Sub OnMouseEnter(e As EventArgs)
-        MyBase.OnMouseEnter(e)
-        _State = MouseState.Over
-        Invalidate()
-    End Sub
-    Protected Overrides Sub OnMouseLeave(e As EventArgs)
-        MyBase.OnMouseLeave(e)
-        _State = MouseState.None
-        Invalidate()
-    End Sub
-
-#End Region
 #End Region
 
     Protected Overrides Sub OnPaint(e As PaintEventArgs)
@@ -155,19 +175,19 @@ Class MysticRadioButton
         Dim G = e.Graphics
         G.SmoothingMode = 2
         G.TextRenderingHint = 5
-        G.Clear(BackColor)
-        G.FillEllipse(New SolidBrush(Color.FromArgb(26, 29, 33)), New Rectangle(0, 0, 15, 15))
+        G.Clear(Color.FromArgb(44, 51, 62))
+        G.FillEllipse(New SolidBrush(Color.FromArgb(36, 39, 46)), New Rectangle(0, 0, 15, 15))
         G.DrawEllipse(New Pen(Color.FromArgb(26, 29, 33)), New Rectangle(0, 0, 15, 15))
         If Checked Then
-            G.FillEllipse(New LinearGradientBrush(New Point(3, 3), New Point(3, 12), Color.FromArgb(33, 189, 255), Color.FromArgb(33, 189, 255)), New Rectangle(3, 3, 9, 9))
-            G.FillEllipse(New LinearGradientBrush(New Point(4, 4), New Point(4, 11), Color.FromArgb(33, 189, 255), Color.FromArgb(21, 30, 73)), New Rectangle(4, 4, 7, 7))
+            G.FillEllipse(New LinearGradientBrush(New Point(3, 3), New Point(3, 12), Color.FromArgb(123, 255, 201), Color.FromArgb(41, 131, 113)), New Rectangle(3, 3, 9, 9))
+            G.FillEllipse(New LinearGradientBrush(New Point(4, 4), New Point(4, 11), Color.FromArgb(9, 204, 157), Color.FromArgb(41, 131, 113)), New Rectangle(4, 4, 7, 7))
             G.DrawString(Text, New Font("Segoe UI", 9, FontStyle.Bold), Brushes.White, New Point(18, -1))
         Else
             Select Case _State
                 Case MouseState.None
                     G.DrawString(Text, New Font("Segoe UI", 9, FontStyle.Bold), New SolidBrush(Color.FromArgb(121, 131, 141)), New Point(18, -1))
                 Case MouseState.Over
-                    G.DrawEllipse(New Pen(Color.FromArgb(33, 189, 255), 2), New Rectangle(1, 1, 13, 13))
+                    G.DrawEllipse(New Pen(Color.FromArgb(0, 205, 155), 2), New Rectangle(1, 1, 13, 13))
                     G.DrawString(Text, New Font("Segoe UI", 9, FontStyle.Bold), Brushes.White, New Point(18, -1))
                 Case MouseState.Down
                     G.DrawString(Text, New Font("Segoe UI", 9, FontStyle.Bold), Brushes.White, New Point(18, -1))
@@ -177,299 +197,164 @@ Class MysticRadioButton
 End Class
 
 <DefaultEvent("CheckedChanged")>
-Class MysticCheckBox
-    Inherits Control
+Class MysticCheckBox : Inherits MyControl
 
 #Region " Variables "
-    Private _State As MouseState = MouseState.None
     Private _Checked As Boolean
 #End Region
 
 #Region " Properties "
-    Protected Overrides Sub OnTextChanged(ByVal e As System.EventArgs)
-        MyBase.OnTextChanged(e)
-        Invalidate()
-    End Sub
-
     Property Checked() As Boolean
         Get
             Return _Checked
         End Get
-        Set(ByVal value As Boolean)
+        Set(value As Boolean)
             _Checked = value
             Invalidate()
         End Set
     End Property
-
-    Event CheckedChanged(ByVal sender As Object)
-    Protected Overrides Sub OnClick(ByVal e As System.EventArgs)
+    Event CheckedChanged(sender As Object)
+    Protected Overrides Sub OnClick(e As EventArgs)
         _Checked = Not _Checked
         RaiseEvent CheckedChanged(Me)
         MyBase.OnClick(e)
     End Sub
-
     Protected Overrides Sub OnResize(e As EventArgs)
         MyBase.OnResize(e)
         Height = 16
     End Sub
 #End Region
 
-#Region " Mouse States "
-    Protected Overrides Sub OnMouseDown(e As MouseEventArgs)
-        MyBase.OnMouseDown(e)
-        _State = MouseState.Down
-        Invalidate()
-    End Sub
-    Protected Overrides Sub OnMouseUp(e As MouseEventArgs)
-        MyBase.OnMouseUp(e)
-        _State = MouseState.Over
-        Invalidate()
-    End Sub
-    Protected Overrides Sub OnMouseEnter(e As EventArgs)
-        MyBase.OnMouseEnter(e)
-        _State = MouseState.Over
-        Invalidate()
-    End Sub
-    Protected Overrides Sub OnMouseLeave(e As EventArgs)
-        MyBase.OnMouseLeave(e)
-        _State = MouseState.None
-        Invalidate()
-    End Sub
-#End Region
-
     Protected Overrides Sub OnPaint(e As PaintEventArgs)
         MyBase.OnPaint(e)
         Dim G = e.Graphics
-        G.Clear(BackColor)
+        G.Clear(Color.FromArgb(35, 35, 35))
         G.DrawLine(New Pen(Color.FromArgb(26, 29, 33)), New Point(0, 0), New Point(0, 14))
         G.DrawLine(New Pen(Color.FromArgb(26, 29, 33)), New Point(0, 0), New Point(14, 0))
-        G.FillRectangle(New SolidBrush(Color.FromArgb(26, 29, 33)), 1, 1, 12, 12)
+
         If Checked Then
             G.FillRectangle(New LinearGradientBrush(New Point(3, 3), New Point(3, 13), Color.FromArgb(33, 189, 255), Color.FromArgb(33, 189, 255)), New Rectangle(3, 3, 9, 9))
             G.FillRectangle(New LinearGradientBrush(New Point(4, 4), New Point(4, 11), Color.FromArgb(33, 189, 255), Color.FromArgb(21, 30, 73)), New Rectangle(4, 4, 7, 7))
-            G.DrawString(Text, New Font("Segoe UI", 9, FontStyle.Bold), Brushes.White, New Point(18, -1))
-        Else
-            Select Case _State
-                Case MouseState.None
-                    G.DrawString(Text, New Font("Segoe UI", 9, FontStyle.Bold), New SolidBrush(Color.FromArgb(121, 131, 141)), New Point(18, -1))
-                Case MouseState.Over
-                    G.DrawRectangle(New Pen(Color.FromArgb(33, 189, 255), 2), New Rectangle(1, 1, 13, 13))
-                    G.DrawString(Text, New Font("Segoe UI", 9, FontStyle.Bold), Brushes.White, New Point(18, -1))
-                Case MouseState.Down
-                    G.DrawString(Text, New Font("Segoe UI", 9, FontStyle.Bold), Brushes.White, New Point(18, -1))
-            End Select
+            'G.DrawString(Text, New Font("Segoe UI", 9, FontStyle.Bold), Brushes.White, New Point(18, -1))
         End If
-    End Sub
-End Class
 
-Class MysticProgressBar
-    Inherits Control
-
-#Region " Variables "
-
-    Private _Value As Integer = 0
-    Private _Maximum As Integer = 100
-
-#End Region
-
-#Region " Control "
-    <Category("Control")>
-    Public Property Maximum() As Integer
-        Get
-            Return _Maximum
-        End Get
-        Set(V As Integer)
-            Select Case V
-                Case Is < _Value
-                    _Value = V
-            End Select
-            _Maximum = V
-            Invalidate()
-        End Set
-    End Property
-
-    <Category("Control")>
-    Public Property Value() As Integer
-        Get
-            Select Case _Value
-                Case 0
-                    Return 0
-                    Invalidate()
-                Case Else
-                    Return _Value
-                    Invalidate()
-            End Select
-        End Get
-        Set(V As Integer)
-            Select Case V
-                Case Is > _Maximum
-                    V = _Maximum
-                    Invalidate()
-            End Select
-            _Value = V
-            Invalidate()
-        End Set
-    End Property
-#End Region
-
-#Region " Events "
-    Protected Overrides Sub OnResize(e As EventArgs)
-        MyBase.OnResize(e)
-        Height = 25
-    End Sub
-
-    Protected Overrides Sub CreateHandle()
-        MyBase.CreateHandle()
-        Height = 25
-    End Sub
-
-    Public Sub Increment(ByVal Amount As Integer)
-        Value += Amount
-    End Sub
-#End Region
-
-    Sub New()
-        SetStyle(ControlStyles.AllPaintingInWmPaint Or ControlStyles.UserPaint Or _
-                 ControlStyles.ResizeRedraw Or ControlStyles.OptimizedDoubleBuffer, True)
-        DoubleBuffered = True
-    End Sub
-
-    Protected Overrides Sub OnPaint(e As PaintEventArgs)
-        MyBase.OnPaint(e)
-        Dim G = e.Graphics
-        G.SmoothingMode = SmoothingMode.HighQuality
-        G.PixelOffsetMode = PixelOffsetMode.HighQuality
-        G.Clear(Color.FromArgb(32, 37, 41))
-        Dim _Progress As Integer = CInt(_Value / _Maximum * Width)
-        G.FillRectangle(New SolidBrush(Color.FromArgb(0, 163, 123)), New Rectangle(0, 0, _Progress - 1, Height))
-        For i As Integer = 0 To _Progress - 1 Step 16
-            G.DrawLine(New Pen(Color.FromArgb(0, 124, 95), 8), i, 0 - 2, i + 20, Height + 2)
-        Next
-        G.FillRectangle(New LinearGradientBrush(New Point(0, 0), New Point(0, Height), Color.FromArgb(80, Color.White), Color.FromArgb(100, Color.Black)), New Rectangle(0, 0, _Progress - 1, Height))
-        G.FillRectangle(New SolidBrush(Color.FromArgb(32, 37, 41)), New Rectangle(_Progress - 1, 0, Width - _Progress, Height))
-
-        G.FillRectangle(New SolidBrush(Color.FromArgb(44, 51, 62)), New Rectangle(0, 0, 1, 1))
-        G.FillRectangle(New SolidBrush(Color.FromArgb(44, 51, 62)), New Rectangle(Width - 1, 0, 1, 1))
-        G.FillRectangle(New SolidBrush(Color.FromArgb(44, 51, 62)), New Rectangle(0, Height - 1, 1, 1))
-        G.FillRectangle(New SolidBrush(Color.FromArgb(44, 51, 62)), New Rectangle(Width - 1, Height - 1, 1, 1))
-
-        G.InterpolationMode = CType(7, InterpolationMode)
+        Select Case _State
+            Case MouseState.None
+                G.DrawString(Text, New Font("Segoe UI", 9, FontStyle.Bold), New SolidBrush(Color.FromArgb(121, 131, 141)), New Point(18, -1))
+            Case MouseState.Over
+                G.DrawRectangle(New Pen(Color.FromArgb(33, 189, 255), 2), New Rectangle(1, 1, 13, 13))
+                G.DrawString(Text, New Font("Segoe UI", 9, FontStyle.Bold), Brushes.White, New Point(18, -1))
+            Case MouseState.Down
+                G.DrawString(Text, New Font("Segoe UI", 9, FontStyle.Bold), Brushes.White, New Point(18, -1))
+        End Select
     End Sub
 End Class
 
 <DefaultEvent("TextChanged")>
-Class MysticTextBox
-    Inherits Control
+Class MysticTextBox : Inherits Control
 
 #Region " Variables "
-
-    Private _State As MouseState = MouseState.None
-    Private WithEvents _TextBox As Windows.Forms.TextBox
-    Private _Focus As Boolean = False
+    Private WithEvents TextBox As TextBox
 #End Region
 
-#Region " Properties "
-
 #Region " TextBox Properties "
-
     Private _TextAlign As HorizontalAlignment = HorizontalAlignment.Left
-    <Category("Options")> _
+    <Category("Options")>
     Property TextAlign() As HorizontalAlignment
         Get
             Return _TextAlign
         End Get
-        Set(ByVal value As HorizontalAlignment)
+        Set(value As HorizontalAlignment)
             _TextAlign = value
-            If _TextBox IsNot Nothing Then
-                _TextBox.TextAlign = value
+            If TextBox IsNot Nothing Then
+                TextBox.TextAlign = value
             End If
         End Set
     End Property
     Private _MaxLength As Integer = 32767
-    <Category("Options")> _
+    <Category("Options")>
     Property MaxLength() As Integer
         Get
             Return _MaxLength
         End Get
-        Set(ByVal value As Integer)
+        Set(value As Integer)
             _MaxLength = value
-            If _TextBox IsNot Nothing Then
-                _TextBox.MaxLength = value
+            If TextBox IsNot Nothing Then
+                TextBox.MaxLength = value
             End If
         End Set
     End Property
     Private _ReadOnly As Boolean
-    <Category("Options")> _
+    <Category("Options")>
     Property [ReadOnly]() As Boolean
         Get
             Return _ReadOnly
         End Get
-        Set(ByVal value As Boolean)
+        Set(value As Boolean)
             _ReadOnly = value
-            If _TextBox IsNot Nothing Then
-                _TextBox.ReadOnly = value
+            If TextBox IsNot Nothing Then
+                TextBox.ReadOnly = value
             End If
         End Set
     End Property
     Private _UseSystemPasswordChar As Boolean
-    <Category("Options")> _
+    <Category("Options")>
     Property UseSystemPasswordChar() As Boolean
         Get
             Return _UseSystemPasswordChar
         End Get
-        Set(ByVal value As Boolean)
+        Set(value As Boolean)
             _UseSystemPasswordChar = value
-            If _TextBox IsNot Nothing Then
-                _TextBox.UseSystemPasswordChar = value
+            If TextBox IsNot Nothing Then
+                TextBox.UseSystemPasswordChar = value
             End If
         End Set
     End Property
     Private _Multiline As Boolean
-    <Category("Options")> _
+    <Category("Options")>
     Property Multiline() As Boolean
         Get
             Return _Multiline
         End Get
-        Set(ByVal value As Boolean)
+        Set(value As Boolean)
             _Multiline = value
-            If _TextBox IsNot Nothing Then
-                _TextBox.Multiline = value
+            If TextBox IsNot Nothing Then
+                TextBox.Multiline = value
 
                 If value Then
-                    _TextBox.Height = Height - 11
+                    TextBox.Height = Height - 11
                 Else
-                    Height = _TextBox.Height + 11
+                    Height = TextBox.Height + 11
                 End If
-
             End If
         End Set
     End Property
-    <Category("Options")> _
+    <Category("Options")>
     Overrides Property Text As String
         Get
             Return MyBase.Text
         End Get
-        Set(ByVal value As String)
+        Set(value As String)
             MyBase.Text = value
-            If _TextBox IsNot Nothing Then
-                _TextBox.Text = value
+            If TextBox IsNot Nothing Then
+                TextBox.Text = value
             End If
         End Set
     End Property
-    <Category("Options")> _
+    <Category("Options")>
     Overrides Property Font As Font
         Get
             Return MyBase.Font
         End Get
-        Set(ByVal value As Font)
+        Set(value As Font)
             MyBase.Font = value
-            If _TextBox IsNot Nothing Then
-                _TextBox.Font = value
-                _TextBox.Location = New Point(3, 5)
-                _TextBox.Width = Width - 6
+            If TextBox IsNot Nothing Then
+                TextBox.Font = value
+                TextBox.Location = New Point(3, 5)
+                TextBox.Width = Width - 6
 
                 If Not _Multiline Then
-                    Height = _TextBox.Height + 11
+                    Height = TextBox.Height + 11
                 End If
             End If
         End Set
@@ -477,174 +362,90 @@ Class MysticTextBox
 
     Protected Overrides Sub OnCreateControl()
         MyBase.OnCreateControl()
-        If Not Controls.Contains(_TextBox) Then
-            Controls.Add(_TextBox)
+        If Not Controls.Contains(TextBox) Then
+            Controls.Add(TextBox)
         End If
     End Sub
-    Private Sub OnBaseTextChanged(ByVal s As Object, ByVal e As EventArgs)
-        Text = _TextBox.Text
+    Private Sub OnBaseTextChanged(s As Object, e As EventArgs)
+        Text = TextBox.Text
     End Sub
-    Private Sub OnBaseKeyDown(ByVal s As Object, ByVal e As KeyEventArgs)
+    Private Sub OnBaseKeyDown(s As Object, e As KeyEventArgs)
         If e.Control AndAlso e.KeyCode = Keys.A Then
-            _TextBox.SelectAll()
+            TextBox.SelectAll()
             e.SuppressKeyPress = True
         End If
         If e.Control AndAlso e.KeyCode = Keys.C Then
-            _TextBox.Copy()
+            TextBox.Copy()
             e.SuppressKeyPress = True
         End If
     End Sub
-    Protected Overrides Sub OnResize(ByVal e As EventArgs)
-        _TextBox.Location = New Point(5, 5)
-        _TextBox.Width = Width - 10
+    Protected Overrides Sub OnResize(e As EventArgs)
+        TextBox.Location = New Point(5, 5)
+        TextBox.Width = Width - 10
 
         If _Multiline Then
-            _TextBox.Height = Height - 11
+            TextBox.Height = Height - 11
         Else
-            Height = _TextBox.Height + 11
+            Height = TextBox.Height + 11
         End If
 
         MyBase.OnResize(e)
     End Sub
-
-    Protected Overrides Sub OnGotFocus(e As EventArgs)
-        MyBase.OnGotFocus(e)
-        _Focus = True
-        Invalidate()
-    End Sub
-
-    Protected Overrides Sub OnLostFocus(e As EventArgs)
-        MyBase.OnLostFocus(e)
-        _Focus = False
-        Invalidate()
-    End Sub
-
-#End Region
-
-#Region " Mouse States "
-
-    Protected Overrides Sub OnMouseDown(e As MouseEventArgs)
-        MyBase.OnMouseDown(e)
-        _State = MouseState.Down
-        Invalidate()
-    End Sub
-    Protected Overrides Sub OnMouseUp(e As MouseEventArgs)
-        MyBase.OnMouseUp(e)
-        _State = MouseState.Over
-        _TextBox.Focus()
-        Invalidate()
-    End Sub
-    Protected Overrides Sub OnMouseEnter(e As EventArgs)
-        MyBase.OnMouseEnter(e)
-        _State = MouseState.Over
-        _TextBox.Focus()
-        Invalidate()
-    End Sub
-    Protected Overrides Sub OnMouseLeave(e As EventArgs)
-        MyBase.OnMouseLeave(e)
-        _State = MouseState.None
-        Invalidate()
-    End Sub
-
-#End Region
-
 #End Region
 
     Sub New()
-        SetStyle(ControlStyles.AllPaintingInWmPaint Or ControlStyles.UserPaint Or _
-                 ControlStyles.ResizeRedraw Or ControlStyles.OptimizedDoubleBuffer Or _
+        SetStyle(ControlStyles.AllPaintingInWmPaint Or ControlStyles.UserPaint Or
+                 ControlStyles.ResizeRedraw Or ControlStyles.OptimizedDoubleBuffer Or
                  ControlStyles.SupportsTransparentBackColor, True)
         DoubleBuffered = True
 
         BackColor = Color.Transparent
 
-        _TextBox = New Windows.Forms.TextBox
-        _TextBox.Font = New Font("Segoe UI", 9, FontStyle.Bold)
-        _TextBox.Text = Text
-        _TextBox.BackColor = Color.FromArgb(34, 37, 44)
-        _TextBox.ForeColor = Color.White
-        _TextBox.MaxLength = _MaxLength
-        _TextBox.Multiline = _Multiline
-        _TextBox.ReadOnly = _ReadOnly
-        _TextBox.UseSystemPasswordChar = _UseSystemPasswordChar
-        _TextBox.BorderStyle = BorderStyle.None
-        _TextBox.Location = New Point(5, 5)
-        _TextBox.Width = Width - 10
-
-        _TextBox.Cursor = Cursors.IBeam
+        TextBox = New TextBox With {
+            .Font = New Font("Segoe UI", 9, FontStyle.Bold),
+            .Text = Text,
+            .BackColor = Color.FromArgb(34, 37, 44),
+            .ForeColor = Color.White,
+            .MaxLength = _MaxLength,
+            .Multiline = _Multiline,
+            .ReadOnly = _ReadOnly,
+            .UseSystemPasswordChar = _UseSystemPasswordChar,
+            .BorderStyle = BorderStyle.None,
+            .Location = New Point(5, 5),
+            .Width = Width - 10,
+            .Cursor = Cursors.IBeam
+        }
 
         If _Multiline Then
-            _TextBox.Height = Height - 11
+            TextBox.Height = Height - 11
         Else
-            Height = _TextBox.Height + 11
+            Height = TextBox.Height + 11
         End If
 
-        AddHandler _TextBox.TextChanged, AddressOf OnBaseTextChanged
-        AddHandler _TextBox.KeyDown, AddressOf OnBaseKeyDown
+        AddHandler TextBox.TextChanged, AddressOf OnBaseTextChanged
+        AddHandler TextBox.KeyDown, AddressOf OnBaseKeyDown
     End Sub
 
     Protected Overrides Sub OnPaint(e As PaintEventArgs)
         MyBase.OnPaint(e)
         Dim G = e.Graphics
         G.Clear(Color.FromArgb(34, 37, 44))
-
         G.DrawRectangle(New Pen(Color.FromArgb(33, 189, 255), 2), New Rectangle(1, 1, Width - 2, Height - 2))
-
-        G.FillRectangle(New SolidBrush(Color.FromArgb(44, 51, 62)), New Rectangle(0, 0, 1, 1))
-        G.FillRectangle(New SolidBrush(Color.FromArgb(44, 51, 62)), New Rectangle(Width - 1, 0, 1, 1))
-        G.FillRectangle(New SolidBrush(Color.FromArgb(44, 51, 62)), New Rectangle(0, Height - 1, 1, 1))
-        G.FillRectangle(New SolidBrush(Color.FromArgb(44, 51, 62)), New Rectangle(Width - 1, Height - 1, 1, 1))
     End Sub
 
 End Class
 
-Class MysticClose
-    Inherits Control
-
-#Region " Declarations "
-    Private _State As MouseState
-#End Region
-
-#Region " Mouse States "
-    Protected Overrides Sub OnMouseEnter(e As EventArgs)
-        MyBase.OnMouseEnter(e)
-        _State = MouseState.Over
-        Invalidate()
-    End Sub
-
-    Protected Overrides Sub OnMouseLeave(e As EventArgs)
-        MyBase.OnMouseLeave(e)
-        _State = MouseState.None
-        Invalidate()
-    End Sub
-
-    Protected Overrides Sub OnMouseDown(e As MouseEventArgs)
-        MyBase.OnMouseDown(e)
-        _State = MouseState.Down
-        Invalidate()
-    End Sub
-
-    Protected Overrides Sub OnMouseUp(e As MouseEventArgs)
-        MyBase.OnMouseUp(e)
-        _State = MouseState.Over
-        Invalidate()
-    End Sub
-
-    Protected Overrides Sub OnClick(e As EventArgs)
-        MyBase.OnClick(e)
-        'Environment.Exit(0)
-    End Sub
-#End Region
+Class MysticClose : Inherits MyControl
 
     Protected Overrides Sub OnResize(e As EventArgs)
         MyBase.OnResize(e)
-        Size = New Size(12, 12)
+        Size = New Size(24, 24)
     End Sub
 
     Sub New()
         SetStyle(ControlStyles.AllPaintingInWmPaint Or ControlStyles.UserPaint Or ControlStyles.ResizeRedraw Or ControlStyles.OptimizedDoubleBuffer Or ControlStyles.SupportsTransparentBackColor, True)
         DoubleBuffered = True
-        Size = New Size(12, 12)
+        Size = New Size(24, 24)
     End Sub
 
     Protected Overrides Sub OnPaint(e As PaintEventArgs)
@@ -652,141 +453,60 @@ Class MysticClose
         Dim G = e.Graphics
         BackColor = Color.Transparent
 
-        Dim _StringF As New StringFormat
-        _StringF.Alignment = StringAlignment.Center
-        _StringF.LineAlignment = StringAlignment.Center
+        Dim _StringF As New StringFormat With {
+            .Alignment = StringAlignment.Center,
+            .LineAlignment = StringAlignment.Center
+        }
 
-        G.DrawString("r", New Font("Marlett", 11), New LinearGradientBrush(New Point(0, 0), New Point(0, Height), Color.FromArgb(33, 189, 255), Color.FromArgb(33, 189, 255)), New RectangleF(0, 0, Width, Height), _StringF)
+        G.DrawLine(New Pen(New SolidBrush(Color.FromArgb(8, 161, 248)), 2), 5, 5, Width - 5, Height - 5)
+        G.DrawLine(New Pen(New SolidBrush(Color.FromArgb(8, 161, 248)), 2), 5, Height - 5, Width - 5, 5)
 
         Select Case _State
+            Case MouseState.Over
+                G.DrawLine(New Pen(New SolidBrush(Color.FromArgb(40, Color.DarkBlue)), 2), 5, 5, Width - 5, Height - 5)
+                G.DrawLine(New Pen(New SolidBrush(Color.FromArgb(40, Color.DarkBlue)), 2), 5, Height - 5, Width - 5, 5)
             Case MouseState.Down
-                G.DrawString("r", New Font("Marlett", 11), New SolidBrush(Color.FromArgb(40, Color.Black)), New RectangleF(0, 0, Width, Height), _StringF)
+                G.DrawLine(New Pen(New SolidBrush(Color.FromArgb(80, Color.DarkBlue)), 2), 5, 5, Width - 5, Height - 5)
+                G.DrawLine(New Pen(New SolidBrush(Color.FromArgb(80, Color.DarkBlue)), 2), 5, Height - 5, Width - 5, 5)
         End Select
 
     End Sub
 
 End Class
 
-Class MysticButton
-    Inherits Control
-
-#Region " Declarations "
-    Private _State As MouseState = MouseState.None
-#End Region
-
-#Region " Mouse States "
-
-    Protected Overrides Sub OnMouseEnter(e As EventArgs)
-        MyBase.OnMouseEnter(e)
-        _State = MouseState.Over
-        Invalidate()
-    End Sub
-
-    Protected Overrides Sub OnMouseLeave(e As EventArgs)
-        MyBase.OnMouseLeave(e)
-        _State = MouseState.None
-        Invalidate()
-    End Sub
-
-    Protected Overrides Sub OnMouseUp(e As MouseEventArgs)
-        MyBase.OnMouseUp(e)
-        _State = MouseState.Over
-        Invalidate()
-    End Sub
-
-    Protected Overrides Sub OnMouseDown(e As MouseEventArgs)
-        MyBase.OnMouseDown(e)
-        _State = MouseState.Down
-        Invalidate()
-    End Sub
-
-#End Region
+Class ProgressB : Inherits ProgressBar
 
     Sub New()
-        Size = New Size(85, 30)
+        SetStyle(ControlStyles.AllPaintingInWmPaint Or ControlStyles.UserPaint Or ControlStyles.ResizeRedraw Or ControlStyles.OptimizedDoubleBuffer, True)
+        DoubleBuffered = True
     End Sub
 
     Protected Overrides Sub OnPaint(e As PaintEventArgs)
-        MyBase.OnPaint(e)
         Dim G = e.Graphics
-        G.Clear(Color.FromArgb(66, 219, 183))
-        G.FillRectangle(New LinearGradientBrush(New Point(0, 0), New Point(0, Height), Color.FromArgb(33, 189, 255), Color.FromArgb(21, 30, 73)), New Rectangle(0, 0, Width, Height))
+        G.SmoothingMode = SmoothingMode.HighQuality
+        G.PixelOffsetMode = PixelOffsetMode.HighQuality
+        G.Clear(Color.FromArgb(32, 37, 41))
+        Dim _Progress As Integer = 0
 
-        Select Case _State
-            Case MouseState.Over
-                G.FillRectangle(New SolidBrush(Color.FromArgb(20, Color.White)), New Rectangle(0, 0, Width, Height))
-            Case MouseState.Down
-                G.FillRectangle(New SolidBrush(Color.FromArgb(20, Color.Black)), New Rectangle(0, 0, Width, Height))
-        End Select
+        Try
+            _Progress = CInt(Value / Maximum * Width)
+        Catch ex As Exception
 
-        G.FillRectangle(New SolidBrush(Color.FromArgb(44, 51, 62)), New Rectangle(0, 0, 1, 1))
-        G.FillRectangle(New SolidBrush(Color.FromArgb(44, 51, 62)), New Rectangle(1, 0, 1, 1))
-        G.FillRectangle(New SolidBrush(Color.FromArgb(44, 51, 62)), New Rectangle(0, 1, 1, 1))
-        G.FillRectangle(New SolidBrush(Color.FromArgb(44, 51, 62)), New Rectangle(Width - 1, 0, 1, 1))
-        G.FillRectangle(New SolidBrush(Color.FromArgb(44, 51, 62)), New Rectangle(Width - 1, 1, 1, 1))
-        G.FillRectangle(New SolidBrush(Color.FromArgb(44, 51, 62)), New Rectangle(Width - 2, 0, 1, 1))
-        G.FillRectangle(New SolidBrush(Color.FromArgb(44, 51, 62)), New Rectangle(0, Height - 1, 1, 1))
-        G.FillRectangle(New SolidBrush(Color.FromArgb(44, 51, 62)), New Rectangle(1, Height - 1, 1, 1))
-        G.FillRectangle(New SolidBrush(Color.FromArgb(44, 51, 62)), New Rectangle(0, Height - 2, 1, 1))
-        G.FillRectangle(New SolidBrush(Color.FromArgb(44, 51, 62)), New Rectangle(Width - 1, Height - 1, 1, 1))
-        G.FillRectangle(New SolidBrush(Color.FromArgb(44, 51, 62)), New Rectangle(Width - 1, Height - 2, 1, 1))
-        G.FillRectangle(New SolidBrush(Color.FromArgb(44, 51, 62)), New Rectangle(Width - 2, Height - 1, 1, 1))
+        End Try
 
-        If Text = vbNullString Then
-            G.DrawImage(BackgroundImage, New Point(0, 0))
-        Else
-            Dim _StringF As New StringFormat
-            _StringF.Alignment = StringAlignment.Center
-            _StringF.LineAlignment = StringAlignment.Center
-            G.DrawString(Text, New Font("Segoe UI", 9, FontStyle.Bold), Brushes.White, New RectangleF(0, 0, Width - 1, Height - 1), _StringF)
-        End If
+        G.FillRectangle(New SolidBrush(Color.FromArgb(33, 189, 255)), New Rectangle(0, 0, _Progress - 1, Height))
+        G.FillRectangle(New SolidBrush(Color.FromArgb(32, 37, 41)), New Rectangle(_Progress - 1, 0, Width - _Progress, Height))
 
+        G.InterpolationMode = InterpolationMode.HighQualityBicubic
     End Sub
 
 End Class
 
 Public Class ThirteenTabControl : Inherits TabControl
-    Private _AccentColor As Color
-    Public Property AccentColor() As Color
-        Get
-            Return _AccentColor
-        End Get
-        Set(ByVal value As Color)
-            _AccentColor = value
-            Invalidate()
-        End Set
-    End Property
 
-    Private MainColor As Color
-    Private ClearColor As Color
-    Enum ColorSchemes
-        Light
-        Dark
-    End Enum
-    Event ColorSchemeChanged()
-    Private _ColorScheme As ColorSchemes
-    Public Property ColorScheme() As ColorSchemes
-        Get
-            Return _ColorScheme
-        End Get
-        Set(ByVal value As ColorSchemes)
-            _ColorScheme = value
-            RaiseEvent ColorSchemeChanged()
-        End Set
-    End Property
-    Protected Sub OnColorSchemeChanged() Handles Me.ColorSchemeChanged
-        Invalidate()
-        Select Case ColorScheme
-            Case ColorSchemes.Dark
-                ClearColor = Color.FromArgb(44, 51, 62)
-                MainColor = Color.FromArgb(35, 35, 35)
-                ForeColor = Color.White
-            Case ColorSchemes.Light
-                ClearColor = Color.White
-                MainColor = Color.FromArgb(200, 200, 200)
-                ForeColor = Color.Black
-        End Select
-    End Sub
+    Private ReadOnly AccentColor As Color = Color.FromArgb(33, 189, 255)
+    Private ReadOnly MainColor As Color = Color.FromArgb(35, 35, 35)
+
     Sub New()
         MyBase.New()
         SetStyle(ControlStyles.AllPaintingInWmPaint, True)
@@ -796,8 +516,7 @@ Public Class ThirteenTabControl : Inherits TabControl
         DoubleBuffered = True
 
         BackColor = Color.FromArgb(250, 50, 50)
-        ForeColor = Color.White
-        AccentColor = Color.FromArgb(33, 189, 255)
+        ForeColor = Color.Black
     End Sub
 
     Protected Overrides Sub OnPaint(e As PaintEventArgs)
@@ -806,18 +525,19 @@ Public Class ThirteenTabControl : Inherits TabControl
         MyBase.OnPaint(e)
 
         Try : SelectedTab.BackColor = MainColor : Catch : End Try
-        G.Clear(ClearColor)
+        G.Clear(Color.FromArgb(44, 51, 62))
 
-        Dim sf As New StringFormat
-        sf.LineAlignment = StringAlignment.Center
-        sf.Alignment = StringAlignment.Center
+        Dim sf As New StringFormat With {
+            .LineAlignment = StringAlignment.Center,
+            .Alignment = StringAlignment.Center
+        }
 
         For i As Integer = 0 To TabPages.Count - 1
-            'If Not i = SelectedIndex Then
-            Dim TabRect As New Rectangle(GetTabRect(i).X, GetTabRect(i).Y + 3, GetTabRect(i).Width + 2, GetTabRect(i).Height)
-            G.FillRectangle(New SolidBrush(MainColor), TabRect)
-            G.DrawString(TabPages(i).Text, New Font("Segoe UI", 9.75F), New SolidBrush(ForeColor), TabRect, sf)
-            'End If
+            If Not i = SelectedIndex Then
+                Dim TabRect As New Rectangle(GetTabRect(i).X, GetTabRect(i).Y, GetTabRect(i).Width, GetTabRect(i).Height)
+                G.FillRectangle(New SolidBrush(MainColor), TabRect)
+                G.DrawString(TabPages(i).Text, New Font("Segoe UI", 9.75F), New SolidBrush(ForeColor), TabRect, sf)
+            End If
         Next
 
         G.FillRectangle(New SolidBrush(MainColor), 0, ItemSize.Height, Width, Height)
@@ -835,27 +555,12 @@ End Class
 
 Public Class ThirteenComboBox : Inherits ComboBox
 #Region " Control Help - Properties & Flicker Control "
-    Enum ColorSchemes
-        Light
-        Dark
-    End Enum
-    Private _ColorScheme As ColorSchemes
-    Public Property ColorScheme() As ColorSchemes
-        Get
-            Return _ColorScheme
-        End Get
-        Set(ByVal value As ColorSchemes)
-            _ColorScheme = value
-            Invalidate()
-        End Set
-    End Property
-
     Private _AccentColor As Color
     Public Property AccentColor() As Color
         Get
             Return _AccentColor
         End Get
-        Set(ByVal value As Color)
+        Set(value As Color)
             _AccentColor = value
             Invalidate()
         End Set
@@ -866,42 +571,33 @@ Public Class ThirteenComboBox : Inherits ComboBox
         Get
             Return _StartIndex
         End Get
-        Set(ByVal value As Integer)
+        Set(value As Integer)
             _StartIndex = value
             Try
-                MyBase.SelectedIndex = value
+                SelectedIndex = value
             Catch
             End Try
             Invalidate()
         End Set
     End Property
-    Sub ReplaceItem(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DrawItemEventArgs) Handles Me.DrawItem
+    Sub ReplaceItem(sender As Object, e As DrawItemEventArgs) Handles Me.DrawItem
         e.DrawBackground()
         Try
             If (e.State And DrawItemState.Selected) = DrawItemState.Selected Then
                 e.Graphics.FillRectangle(New SolidBrush(_AccentColor), e.Bounds)
             Else
-                Select Case ColorScheme
-                    Case ColorSchemes.Dark
-                        e.Graphics.FillRectangle(New SolidBrush(Color.FromArgb(35, 35, 35)), e.Bounds)
-                    Case ColorSchemes.Light
-                        e.Graphics.FillRectangle(New SolidBrush(Color.White), e.Bounds)
-                End Select
+                e.Graphics.FillRectangle(New SolidBrush(Color.FromArgb(35, 35, 35)), e.Bounds)
             End If
-            Select Case ColorScheme
-                Case ColorSchemes.Dark
-                    e.Graphics.DrawString(MyBase.GetItemText(MyBase.Items(e.Index)), e.Font, Brushes.White, e.Bounds)
-                Case ColorSchemes.Light
-                    e.Graphics.DrawString(MyBase.GetItemText(MyBase.Items(e.Index)), e.Font, Brushes.Black, e.Bounds)
-            End Select
+            e.Graphics.DrawString(GetItemText(Items(e.Index)), e.Font, Brushes.White, e.Bounds)
         Catch
         End Try
     End Sub
-    Protected Sub DrawTriangle(ByVal Clr As Color, ByVal FirstPoint As Point, ByVal SecondPoint As Point, ByVal ThirdPoint As Point, ByVal G As Graphics)
-        Dim points As New List(Of Point)()
-        points.Add(FirstPoint)
-        points.Add(SecondPoint)
-        points.Add(ThirdPoint)
+    Protected Sub DrawTriangle(Clr As Color, FirstPoint As Point, SecondPoint As Point, ThirdPoint As Point, G As Graphics)
+        Dim points As New List(Of Point) From {
+            FirstPoint,
+            SecondPoint,
+            ThirdPoint
+        }
         G.FillPolygon(New SolidBrush(Clr), points.ToArray())
     End Sub
 
@@ -914,50 +610,68 @@ Public Class ThirteenComboBox : Inherits ComboBox
         SetStyle(ControlStyles.UserPaint, True)
         SetStyle(ControlStyles.DoubleBuffer, True)
         SetStyle(ControlStyles.SupportsTransparentBackColor, True)
-        DrawMode = Windows.Forms.DrawMode.OwnerDrawFixed
+        DrawMode = DrawMode.OwnerDrawFixed
         BackColor = Color.FromArgb(50, 50, 50)
         ForeColor = Color.White
         AccentColor = Color.DodgerBlue
-        ColorScheme = ColorSchemes.Dark
         DropDownStyle = ComboBoxStyle.DropDownList
         Font = New Font("Segoe UI Semilight", 9.75F)
         StartIndex = 0
         DoubleBuffered = True
     End Sub
 
-    Protected Overrides Sub OnPaint(ByVal e As PaintEventArgs)
+    Protected Overrides Sub OnPaint(e As PaintEventArgs)
         Dim B As New Bitmap(Width, Height)
         Dim G As Graphics = Graphics.FromImage(B)
-        Dim Curve As Integer = 2
 
         G.SmoothingMode = SmoothingMode.HighQuality
 
-        Select Case ColorScheme
-            Case ColorSchemes.Dark
-                G.Clear(Color.FromArgb(50, 50, 50))
-                G.DrawLine(New Pen(Color.White, 2), New Point(Width - 18, 10), New Point(Width - 14, 14))
-                G.DrawLine(New Pen(Color.White, 2), New Point(Width - 14, 14), New Point(Width - 10, 10))
-                G.DrawLine(New Pen(Color.White), New Point(Width - 14, 15), New Point(Width - 14, 14))
-            Case ColorSchemes.Light
-                G.Clear(Color.White)
-                G.DrawLine(New Pen(Color.FromArgb(100, 100, 100), 2), New Point(Width - 18, 10), New Point(Width - 14, 14))
-                G.DrawLine(New Pen(Color.FromArgb(100, 100, 100), 2), New Point(Width - 14, 14), New Point(Width - 10, 10))
-                G.DrawLine(New Pen(Color.FromArgb(100, 100, 100)), New Point(Width - 14, 15), New Point(Width - 14, 14))
-        End Select
+        G.Clear(Color.FromArgb(50, 50, 50))
+        G.DrawLine(New Pen(Color.White, 2), New Point(Width - 18, 10), New Point(Width - 14, 14))
+        G.DrawLine(New Pen(Color.White, 2), New Point(Width - 14, 14), New Point(Width - 10, 10))
+        G.DrawLine(New Pen(Color.White), New Point(Width - 14, 15), New Point(Width - 14, 14))
         G.DrawRectangle(New Pen(Color.FromArgb(100, 100, 100)), New Rectangle(0, 0, Width - 1, Height - 1))
 
-
         Try
-            Select Case ColorScheme
-                Case ColorSchemes.Dark
-                    G.DrawString(Text, Font, Brushes.White, New Rectangle(7, 0, Width - 1, Height - 1), New StringFormat With {.LineAlignment = StringAlignment.Center, .Alignment = StringAlignment.Near})
-                Case ColorSchemes.Light
-                    G.DrawString(Text, Font, Brushes.Black, New Rectangle(7, 0, Width - 1, Height - 1), New StringFormat With {.LineAlignment = StringAlignment.Center, .Alignment = StringAlignment.Near})
-            End Select
+            G.DrawString(Text, Font, Brushes.White, New Rectangle(7, 0, Width - 1, Height - 1), New StringFormat With {.LineAlignment = StringAlignment.Center, .Alignment = StringAlignment.Near})
         Catch
         End Try
 
         e.Graphics.DrawImage(B.Clone(), 0, 0)
         G.Dispose() : B.Dispose()
     End Sub
+End Class
+
+Public Class MyControl : Inherits Control
+
+#Region " Declarations "
+    Friend _State As MouseState = MouseState.None
+#End Region
+
+#Region " Mouse States "
+    Protected Overrides Sub OnMouseEnter(e As EventArgs)
+        MyBase.OnMouseEnter(e)
+        _State = MouseState.Over
+        Invalidate()
+    End Sub
+
+    Protected Overrides Sub OnMouseLeave(e As EventArgs)
+        MyBase.OnMouseLeave(e)
+        _State = MouseState.None
+        Invalidate()
+    End Sub
+
+    Protected Overrides Sub OnMouseDown(e As MouseEventArgs)
+        MyBase.OnMouseDown(e)
+        _State = MouseState.Down
+        Invalidate()
+    End Sub
+
+    Protected Overrides Sub OnMouseUp(e As MouseEventArgs)
+        MyBase.OnMouseUp(e)
+        _State = MouseState.Over
+        Invalidate()
+    End Sub
+#End Region
+
 End Class

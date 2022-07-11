@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormMain
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,8 +20,9 @@ Partial Class FormMain
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMain))
         Me.FileScanner = New System.ComponentModel.BackgroundWorker()
         Me.MysticTheme1 = New engine.MysticTheme()
         Me.labelDetect = New System.Windows.Forms.Label()
@@ -53,6 +54,7 @@ Partial Class FormMain
         Me.MysticTheme1.Controls.Add(Me.labelName)
         Me.MysticTheme1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.MysticTheme1.Location = New System.Drawing.Point(0, 0)
+        Me.MysticTheme1.Movible = True
         Me.MysticTheme1.Name = "MysticTheme1"
         Me.MysticTheme1.Size = New System.Drawing.Size(375, 150)
         Me.MysticTheme1.TabIndex = 0
@@ -74,10 +76,10 @@ Partial Class FormMain
         '
         Me.MysticClose1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.MysticClose1.BackColor = System.Drawing.Color.Transparent
-        Me.MysticClose1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.MysticClose1.Location = New System.Drawing.Point(351, 13)
+        Me.MysticClose1.Cursor = System.Windows.Forms.Cursors.Default
+        Me.MysticClose1.Location = New System.Drawing.Point(345, 6)
         Me.MysticClose1.Name = "MysticClose1"
-        Me.MysticClose1.Size = New System.Drawing.Size(12, 12)
+        Me.MysticClose1.Size = New System.Drawing.Size(24, 24)
         Me.MysticClose1.TabIndex = 11
         Me.MysticClose1.Text = "MysticClose1"
         '
@@ -154,9 +156,10 @@ Partial Class FormMain
         Me.ClientSize = New System.Drawing.Size(375, 150)
         Me.Controls.Add(Me.MysticTheme1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "FormMain"
         Me.ShowInTaskbar = False
-        Me.Text = "Form1"
+        Me.Text = "Analizando..."
         Me.TransparencyKey = System.Drawing.Color.Fuchsia
         Me.MysticTheme1.ResumeLayout(False)
         CType(Me.picDrive, System.ComponentModel.ISupportInitialize).EndInit()
@@ -173,5 +176,4 @@ Partial Class FormMain
     Friend WithEvents progressTotal As engine.ProgressB
     Friend WithEvents MysticClose1 As engine.MysticClose
     Friend WithEvents labelDetect As System.Windows.Forms.Label
-
 End Class

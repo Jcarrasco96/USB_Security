@@ -37,20 +37,17 @@ Partial Class FormMain
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
         Me.mnuAbout = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuExit = New System.Windows.Forms.ToolStripMenuItem()
-        Me.FileSystemWatcher1 = New System.IO.FileSystemWatcher()
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.LoadVirusHashes = New System.ComponentModel.BackgroundWorker()
         Me.ttipButtons = New System.Windows.Forms.ToolTip(Me.components)
-        Me.MysticTheme1 = New USB_Security.MysticTheme()
         Me.btnLogs = New USB_Security.MysticButton()
         Me.btnSettings = New USB_Security.MysticButton()
         Me.btnUpdate = New USB_Security.MysticButton()
         Me.btnScan = New USB_Security.MysticButton()
+        Me.MysticTheme1 = New USB_Security.MysticTheme()
         Me.labelInfo = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.MysticClose1 = New USB_Security.MysticClose()
         Me.mnuNotify.SuspendLayout()
-        CType(Me.FileSystemWatcher1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MysticTheme1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -64,7 +61,6 @@ Partial Class FormMain
         '
         Me.mnuNotify.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuQuickScan, Me.mnuFullScan, Me.ToolStripSeparator2, Me.mnuUpdate, Me.mnuQuarantine, Me.mnuSettings, Me.ToolStripSeparator1, Me.mnuEnableProt, Me.mnuDisableProt, Me.ToolStripSeparator3, Me.mnuAbout, Me.mnuExit})
         Me.mnuNotify.Name = "mnuNotify"
-        Me.mnuNotify.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
         Me.mnuNotify.Size = New System.Drawing.Size(264, 220)
         '
         'mnuQuickScan
@@ -136,19 +132,48 @@ Partial Class FormMain
         Me.mnuExit.Size = New System.Drawing.Size(263, 22)
         Me.mnuExit.Text = "Salir"
         '
-        'FileSystemWatcher1
-        '
-        Me.FileSystemWatcher1.EnableRaisingEvents = True
-        Me.FileSystemWatcher1.IncludeSubdirectories = True
-        Me.FileSystemWatcher1.SynchronizingObject = Me
-        '
-        'Timer1
-        '
-        Me.Timer1.Enabled = True
-        Me.Timer1.Interval = 1000
-        '
         'LoadVirusHashes
         '
+        '
+        'btnLogs
+        '
+        Me.btnLogs.BackgroundImage = Global.USB_Security.My.Resources.Resources.ic_logs
+        Me.btnLogs.Cursor = System.Windows.Forms.Cursors.Default
+        Me.btnLogs.Location = New System.Drawing.Point(131, 340)
+        Me.btnLogs.Name = "btnLogs"
+        Me.btnLogs.Size = New System.Drawing.Size(48, 48)
+        Me.btnLogs.TabIndex = 10
+        Me.ttipButtons.SetToolTip(Me.btnLogs, "Informes")
+        '
+        'btnSettings
+        '
+        Me.btnSettings.BackgroundImage = Global.USB_Security.My.Resources.Resources.ic_settings
+        Me.btnSettings.Cursor = System.Windows.Forms.Cursors.Default
+        Me.btnSettings.Location = New System.Drawing.Point(190, 340)
+        Me.btnSettings.Name = "btnSettings"
+        Me.btnSettings.Size = New System.Drawing.Size(48, 48)
+        Me.btnSettings.TabIndex = 9
+        Me.ttipButtons.SetToolTip(Me.btnSettings, "Ajustes")
+        '
+        'btnUpdate
+        '
+        Me.btnUpdate.BackgroundImage = Global.USB_Security.My.Resources.Resources.ic_update
+        Me.btnUpdate.Cursor = System.Windows.Forms.Cursors.Default
+        Me.btnUpdate.Location = New System.Drawing.Point(71, 340)
+        Me.btnUpdate.Name = "btnUpdate"
+        Me.btnUpdate.Size = New System.Drawing.Size(48, 48)
+        Me.btnUpdate.TabIndex = 8
+        Me.ttipButtons.SetToolTip(Me.btnUpdate, "Actualizar")
+        '
+        'btnScan
+        '
+        Me.btnScan.BackgroundImage = Global.USB_Security.My.Resources.Resources.ic_scan
+        Me.btnScan.Cursor = System.Windows.Forms.Cursors.Default
+        Me.btnScan.Location = New System.Drawing.Point(12, 340)
+        Me.btnScan.Name = "btnScan"
+        Me.btnScan.Size = New System.Drawing.Size(48, 48)
+        Me.btnScan.TabIndex = 7
+        Me.ttipButtons.SetToolTip(Me.btnScan, "Analizar equipo (rápido)")
         '
         'MysticTheme1
         '
@@ -167,55 +192,15 @@ Partial Class FormMain
         Me.MysticTheme1.TabIndex = 0
         Me.MysticTheme1.Text = "USB Security"
         '
-        'btnLogs
-        '
-        Me.btnLogs.BackgroundImage = Global.USB_Security.My.Resources.Resources.ic_logs
-        Me.btnLogs.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnLogs.Location = New System.Drawing.Point(131, 340)
-        Me.btnLogs.Name = "btnLogs"
-        Me.btnLogs.Size = New System.Drawing.Size(48, 48)
-        Me.btnLogs.TabIndex = 10
-        Me.ttipButtons.SetToolTip(Me.btnLogs, "Informes")
-        '
-        'btnSettings
-        '
-        Me.btnSettings.BackgroundImage = Global.USB_Security.My.Resources.Resources.ic_settings
-        Me.btnSettings.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnSettings.Location = New System.Drawing.Point(190, 340)
-        Me.btnSettings.Name = "btnSettings"
-        Me.btnSettings.Size = New System.Drawing.Size(48, 48)
-        Me.btnSettings.TabIndex = 9
-        Me.ttipButtons.SetToolTip(Me.btnSettings, "Ajustes")
-        '
-        'btnUpdate
-        '
-        Me.btnUpdate.BackgroundImage = Global.USB_Security.My.Resources.Resources.ic_update
-        Me.btnUpdate.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnUpdate.Location = New System.Drawing.Point(71, 340)
-        Me.btnUpdate.Name = "btnUpdate"
-        Me.btnUpdate.Size = New System.Drawing.Size(48, 48)
-        Me.btnUpdate.TabIndex = 8
-        Me.ttipButtons.SetToolTip(Me.btnUpdate, "Actualizar")
-        '
-        'btnScan
-        '
-        Me.btnScan.BackgroundImage = Global.USB_Security.My.Resources.Resources.ic_scan
-        Me.btnScan.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnScan.Location = New System.Drawing.Point(12, 340)
-        Me.btnScan.Name = "btnScan"
-        Me.btnScan.Size = New System.Drawing.Size(48, 48)
-        Me.btnScan.TabIndex = 7
-        Me.ttipButtons.SetToolTip(Me.btnScan, "Analizar equipo (rápido)")
-        '
         'labelInfo
         '
         Me.labelInfo.BackColor = System.Drawing.Color.Transparent
         Me.labelInfo.Font = New System.Drawing.Font("Verdana", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.labelInfo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(189, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.labelInfo.Location = New System.Drawing.Point(12, 271)
+        Me.labelInfo.Location = New System.Drawing.Point(12, 260)
         Me.labelInfo.Margin = New System.Windows.Forms.Padding(3)
         Me.labelInfo.Name = "labelInfo"
-        Me.labelInfo.Size = New System.Drawing.Size(226, 52)
+        Me.labelInfo.Size = New System.Drawing.Size(226, 70)
         Me.labelInfo.TabIndex = 6
         Me.labelInfo.Text = "Cargando..."
         Me.labelInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -234,10 +219,10 @@ Partial Class FormMain
         '
         Me.MysticClose1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.MysticClose1.BackColor = System.Drawing.Color.Transparent
-        Me.MysticClose1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.MysticClose1.Location = New System.Drawing.Point(226, 12)
+        Me.MysticClose1.Cursor = System.Windows.Forms.Cursors.Default
+        Me.MysticClose1.Location = New System.Drawing.Point(220, 6)
         Me.MysticClose1.Name = "MysticClose1"
-        Me.MysticClose1.Size = New System.Drawing.Size(12, 12)
+        Me.MysticClose1.Size = New System.Drawing.Size(24, 24)
         Me.MysticClose1.TabIndex = 0
         Me.MysticClose1.Text = "MysticClose1"
         '
@@ -250,13 +235,11 @@ Partial Class FormMain
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.MaximizeBox = False
         Me.Name = "FormMain"
-        Me.Opacity = 0.98R
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
         Me.Text = "USBSecurity - Main"
         Me.TransparencyKey = System.Drawing.Color.Fuchsia
         Me.mnuNotify.ResumeLayout(False)
-        CType(Me.FileSystemWatcher1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MysticTheme1.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -273,8 +256,6 @@ Partial Class FormMain
     Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents mnuExit As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents labelInfo As System.Windows.Forms.Label
-    Friend WithEvents FileSystemWatcher1 As System.IO.FileSystemWatcher
-    Friend WithEvents Timer1 As System.Windows.Forms.Timer
     Friend WithEvents LoadVirusHashes As System.ComponentModel.BackgroundWorker
     Friend WithEvents btnLogs As USB_Security.MysticButton
     Friend WithEvents btnSettings As USB_Security.MysticButton

@@ -2,14 +2,14 @@
 
 Public Class FormQuarantine
 
-    Public arrToQuar As List(Of Virus) = New List(Of Virus)
+    Public arrToQuar As New List(Of Virus)
 
     Private Sub MysticClose1_Click(sender As Object, e As EventArgs) Handles MysticClose1.Click
-        Me.Dispose()
+        Dispose()
     End Sub
 
     Private Sub FormQuarantine_Load(sender As Object, e As EventArgs) Handles Me.Load
-        updatePosition(Me)
+        UpdatePosition(Me)
 
         ListView1.Items.Clear()
         For Each vd As Virus In arrToQuar

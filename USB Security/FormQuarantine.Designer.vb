@@ -57,10 +57,11 @@ Partial Class FormQuarantine
         Me.labelSize.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.labelSize.AutoSize = True
         Me.labelSize.BackColor = System.Drawing.Color.Transparent
+        Me.labelSize.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.labelSize.ForeColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(189, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.labelSize.Location = New System.Drawing.Point(12, 536)
+        Me.labelSize.Location = New System.Drawing.Point(12, 526)
         Me.labelSize.Name = "labelSize"
-        Me.labelSize.Size = New System.Drawing.Size(71, 13)
+        Me.labelSize.Size = New System.Drawing.Size(86, 16)
         Me.labelSize.TabIndex = 5
         Me.labelSize.Text = "0 ARCHIVOS"
         '
@@ -71,6 +72,7 @@ Partial Class FormQuarantine
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colDateTime, Me.colName, Me.colPath, Me.colMalware})
         Me.ListView1.FullRowSelect = True
+        Me.ListView1.HideSelection = False
         Me.ListView1.Location = New System.Drawing.Point(12, 47)
         Me.ListView1.Name = "ListView1"
         Me.ListView1.Size = New System.Drawing.Size(760, 461)
@@ -129,10 +131,10 @@ Partial Class FormQuarantine
         '
         Me.MysticClose1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.MysticClose1.BackColor = System.Drawing.Color.Transparent
-        Me.MysticClose1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.MysticClose1.Location = New System.Drawing.Point(760, 13)
+        Me.MysticClose1.Cursor = System.Windows.Forms.Cursors.Default
+        Me.MysticClose1.Location = New System.Drawing.Point(754, 6)
         Me.MysticClose1.Name = "MysticClose1"
-        Me.MysticClose1.Size = New System.Drawing.Size(12, 12)
+        Me.MysticClose1.Size = New System.Drawing.Size(24, 24)
         Me.MysticClose1.TabIndex = 0
         Me.MysticClose1.Text = "MysticClose1"
         '

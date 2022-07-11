@@ -175,6 +175,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon_engine.ico" />
+    <None Include="Resources\folder.png" />
     <None Include="Resources\proteccion.txt" />
     <None Include="Resources\icon.ico" />
     <None Include="Resources\system.png" />

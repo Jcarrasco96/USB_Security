@@ -10,19 +10,13 @@
     Partial Friend Class MyApplication
 
         Protected Overrides Function OnStartup(eventArgs As ApplicationServices.StartupEventArgs) As Boolean
-            copyFilesNeed()
+            CopyFilesNeed()
 
-            Try
-                Dim opts As New vblibusb.ScanOptions()
+            Dim opts As New vblibusb.ScanOptions()
 
-                'RegisterOnStartup(True);
-                'ExplorerIntegration(True)
-                'IconsAsociateUpdate()
-                'AsociateDriveIcon()
-                SetWindowsAutorun(opts.checkDisableExecAutom)
-            Catch ex As Exception
-
-            End Try
+            RegisterOnStartup(opts.checkStartSystem)
+            ExplorerIntegration(True)
+            IconsAsociateUpdate()
 
             'CleanReportLimit()
             'CleanQuarLimit()

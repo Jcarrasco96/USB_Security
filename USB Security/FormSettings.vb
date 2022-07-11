@@ -1,16 +1,16 @@
 ﻿Public Class FormSettings
 
     Private Sub MysticClose1_Click(sender As Object, e As EventArgs) Handles MysticClose1.Click
-        Me.Dispose()
+        Dispose()
     End Sub
 
-    Private Sub btnCancelar_Click(sender As Object, e As EventArgs) Handles btnCancelar.Click
-        Me.Dispose()
+    Private Sub BtnCancelar_Click(sender As Object, e As EventArgs) Handles btnCancelar.Click
+        Dispose()
     End Sub
 
-    Private Sub btnAceptar_Click(sender As Object, e As EventArgs) Handles btnAceptar.Click
+    Private Sub BtnAceptar_Click(sender As Object, e As EventArgs) Handles btnAceptar.Click
         SaveSettings()
-        Me.Dispose()
+        Dispose()
     End Sub
 
     Private Sub FormSettings_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -24,7 +24,6 @@
         checkOpenDevice.Checked = opt.checkOpenDevice
         checkCreateProtUSB.Checked = opt.checkCreateProtUSB
         checkCreateProtHDD.Checked = opt.checkCreateProtHDD
-        checkDisableExecAutom.Checked = opt.checkDisableExecAutom
         checkShowFFHidden.Checked = opt.checkShowFFHidden
         checkCopyLastUpdate.Checked = opt.checkCopyLastUpdate
         checkFindNewsUpdates.Checked = opt.checkFindNewsUpdates
@@ -46,31 +45,30 @@
     End Sub
 
     Private Sub SaveSettings()
-        Dim opt As New vblibusb.ScanOptions
+        Dim opt As New vblibusb.ScanOptions With {
+            .checkStartSystem = checkStartSystem.Checked,
+            .checkOpenDevice = checkOpenDevice.Checked,
+            .checkCreateProtUSB = checkCreateProtUSB.Checked,
+            .checkCreateProtHDD = checkCreateProtHDD.Checked,
+            .checkShowFFHidden = checkShowFFHidden.Checked,
+            .checkCopyLastUpdate = checkCopyLastUpdate.Checked,
+            .checkFindNewsUpdates = checkFindNewsUpdates.Checked,
+            .comboDetectMalware = comboDetectMalware.SelectedIndex,
+            .comboDetectFilesSuspect = comboDetectFilesSuspect.SelectedIndex,
+            .checkAmenazasDetect = checkAmenazasDetect.Checked,
+            .checkDisposConect = checkDisposConect.Checked,
+            .checkExplorePC = checkExplorePC.Checked,
+            .checkSucesos = checkSucesos.Checked,
+            .numRegSizeQuar = numRegSizeQuar.Text,
+            .checkAlertMess = checkAlertMess.Checked,
+            .checkNoUpdated = checkNoUpdated.Checked,
+            .checkUpdatedSuccess = checkUpdatedSuccess.Checked,
+            .checkFilesMoveToQuar = checkFilesMoveToQuar.Checked,
+            .checkResultadoAna = checkResultadoAna.Checked,
+            .checkReprodSounds = checkReprodSounds.Checked
+        }
 
-        opt.checkStartSystem = checkStartSystem.Checked
-        opt.checkOpenDevice = checkOpenDevice.Checked
-        opt.checkCreateProtUSB = checkCreateProtUSB.Checked
-        opt.checkCreateProtHDD = checkCreateProtHDD.Checked
-        opt.checkDisableExecAutom = checkDisableExecAutom.Checked
-        opt.checkShowFFHidden = checkShowFFHidden.Checked
-        opt.checkCopyLastUpdate = checkCopyLastUpdate.Checked
-        opt.checkFindNewsUpdates = checkFindNewsUpdates.Checked
-        opt.comboDetectMalware = comboDetectMalware.SelectedIndex
-        opt.comboDetectFilesSuspect = comboDetectFilesSuspect.SelectedIndex
-
-        opt.checkAmenazasDetect = checkAmenazasDetect.Checked
-        opt.checkDisposConect = checkDisposConect.Checked
-        opt.checkExplorePC = checkExplorePC.Checked
-        opt.checkSucesos = checkSucesos.Checked
-        opt.numRegSizeQuar = numRegSizeQuar.Text
-
-        opt.checkAlertMess = checkAlertMess.Checked
-        opt.checkNoUpdated = checkNoUpdated.Checked
-        opt.checkUpdatedSuccess = checkUpdatedSuccess.Checked
-        opt.checkFilesMoveToQuar = checkFilesMoveToQuar.Checked
-        opt.checkResultadoAna = checkResultadoAna.Checked
-        opt.checkReprodSounds = checkReprodSounds.Checked
+        RegisterOnStartup(checkStartSystem.Checked)
 
         opt.saveSettings()
     End Sub

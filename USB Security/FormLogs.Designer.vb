@@ -79,8 +79,6 @@ Partial Class FormLogs
         '
         'ThirteenTabControl1
         '
-        Me.ThirteenTabControl1.AccentColor = System.Drawing.Color.DodgerBlue
-        Me.ThirteenTabControl1.ColorScheme = USB_Security.ThirteenTabControl.ColorSchemes.Dark
         Me.ThirteenTabControl1.Controls.Add(Me.tabGeneral)
         Me.ThirteenTabControl1.Controls.Add(Me.tabRegistry)
         Me.ThirteenTabControl1.ForeColor = System.Drawing.Color.White
@@ -105,6 +103,7 @@ Partial Class FormLogs
         '
         Me.listViewMalwares.FullRowSelect = True
         Me.listViewMalwares.GridLines = True
+        Me.listViewMalwares.HideSelection = False
         Me.listViewMalwares.Location = New System.Drawing.Point(6, 6)
         Me.listViewMalwares.Name = "listViewMalwares"
         Me.listViewMalwares.Size = New System.Drawing.Size(740, 421)
@@ -126,6 +125,7 @@ Partial Class FormLogs
         '
         Me.listViewFuncionamiento.FullRowSelect = True
         Me.listViewFuncionamiento.GridLines = True
+        Me.listViewFuncionamiento.HideSelection = False
         Me.listViewFuncionamiento.Location = New System.Drawing.Point(6, 6)
         Me.listViewFuncionamiento.Name = "listViewFuncionamiento"
         Me.listViewFuncionamiento.Size = New System.Drawing.Size(740, 421)
@@ -137,10 +137,10 @@ Partial Class FormLogs
         '
         Me.MysticClose1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.MysticClose1.BackColor = System.Drawing.Color.Transparent
-        Me.MysticClose1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.MysticClose1.Location = New System.Drawing.Point(760, 13)
+        Me.MysticClose1.Cursor = System.Windows.Forms.Cursors.Default
+        Me.MysticClose1.Location = New System.Drawing.Point(754, 6)
         Me.MysticClose1.Name = "MysticClose1"
-        Me.MysticClose1.Size = New System.Drawing.Size(12, 12)
+        Me.MysticClose1.Size = New System.Drawing.Size(24, 24)
         Me.MysticClose1.TabIndex = 0
         Me.MysticClose1.Text = "MysticClose1"
         '

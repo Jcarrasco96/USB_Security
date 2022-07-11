@@ -15,10 +15,10 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyCopyright("Copyright © Jcarrasco96 2020")> 
 <Assembly: AssemblyTrademark("")> 
 
-<Assembly: ComVisible(False)>
+<Assembly: ComVisible(False)> 
 
 'El siguiente GUID sirve como identificador de typelib si este proyecto se expone a COM
-<Assembly: Guid("e8e7d9da-d893-432a-a0fe-16e0a52ea077")> 
+<Assembly: Guid("e8e7d9da-d893-432a-a0fe-16e0a52ea077")>
 
 ' La información de versión de un ensamblado consta de los cuatro valores siguientes:
 '
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' mediante el asterisco ('*'), como se muestra a continuación:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("2.1.4.0")> 
-<Assembly: AssemblyFileVersion("2.1.4.0")> 
+<Assembly: AssemblyVersion("2.2.0.0")>
+<Assembly: AssemblyFileVersion("2.2.0.0")>

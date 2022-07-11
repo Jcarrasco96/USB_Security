@@ -7,7 +7,7 @@ Imports Microsoft.VisualBasic.FileIO
 Public Module LogicUSB
 
     Public UserName As String = My.User.Name
-    Public SysDirectory As String = System.Environment.SystemDirectory
+    Public SysDirectory As String = Environment.SystemDirectory
     Public SystemDrive As String = SysDirectory.Substring(0, 3)
     Public AppData As String = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)
     Public DirExecPath As String = My.Application.Info.DirectoryPath & "\"
@@ -20,12 +20,12 @@ Public Module LogicUSB
     Public DirQuar As String = DirProject & "quarantine\"
     Public DirSound As String = DirExecPath & "sound\"
 
-    Public Declare Function GetFileIconA Lib "SecurityIcons.dll" Alias "GetFileIcon" (ByVal txt As String) As String
-    Private Declare Function GetPrivateProfileString Lib "kernel32" Alias "GetPrivateProfileStringA" (ByVal lpApplicationName As String, ByVal lpKeyName As String, ByVal lpDefault As String, ByVal lpReturnedString As String, ByVal nSize As Integer, ByVal lpFileName As String) As Integer
-    Private Declare Function WritePrivateProfileString Lib "kernel32" Alias "WritePrivateProfileStringA" (ByVal lpApplicationName As String, ByVal lpKeyName As String, ByVal lpString As String, ByVal lpFileName As String) As Integer
-    Public Declare Function sndPlaySound Lib "winmm.dll" Alias "sndPlaySoundA" (ByVal lpszSoundName As String, ByVal uFlags As Long) As Long
+    Public Declare Function GetFileIconA Lib "SecurityIcons.dll" Alias "GetFileIcon" (txt As String) As String
+    Private Declare Function GetPrivateProfileString Lib "kernel32" Alias "GetPrivateProfileStringA" (lpApplicationName As String, lpKeyName As String, lpDefault As String, lpReturnedString As String, nSize As Integer, lpFileName As String) As Integer
+    Private Declare Function WritePrivateProfileString Lib "kernel32" Alias "WritePrivateProfileStringA" (lpApplicationName As String, lpKeyName As String, lpString As String, lpFileName As String) As Integer
+    Public Declare Function sndPlaySound Lib "winmm.dll" Alias "sndPlaySoundA" (lpszSoundName As String, uFlags As Long) As Long
 
-    Public Function MD5Hash(ByVal t As String) As String
+    Public Function MD5Hash(t As String) As String
         Dim s As Byte() = Encoding.UTF8.GetBytes(t)
         Dim md5Hasher As MD5 = MD5.Create()
         Dim data As Byte() = md5Hasher.ComputeHash(s)
@@ -40,12 +40,15 @@ Public Module LogicUSB
     ' Retorna el hash MD5 de un archivo
     ' Parametro: t: Ruta hasta el archivo
     ' Retorna: getMD5FileHash: MD5, formato: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, X={0,F}
-    Public Function GetMd5(ByVal Path As String) As String
-        On Error Resume Next
+    Public Function GetMd5(Path As String) As String
+        'On Error Resume Next
         Dim Md5 As New MD5CryptoServiceProvider
         Dim sBuilder As New StringBuilder
 
         Dim F As New FileStream(Path, FileMode.Open, FileAccess.Read, FileShare.Read, 8192)
+
+        If F Is Nothing Then Return ""
+
         Md5.ComputeHash(F)
 
         For Each HashByte As Byte In Md5.Hash
@@ -59,8 +62,8 @@ Public Module LogicUSB
     ' Retorna el hash MD5 de un archivo
     ' Parametro: t: Ruta hasta el archivo
     ' Retorna: getMD5FileHash: MD5, formato: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, X={0,F}
-    Public Function GetSha256(ByVal Path As String) As String
-        On Error Resume Next
+    Public Function GetSha256(Path As String) As String
+        'On Error Resume Next
         Dim sha256 As New SHA256Managed
         Dim F As New FileStream(Path, FileMode.Open, FileAccess.Read, FileShare.Read, 8192)
         sha256.ComputeHash(F)
@@ -81,11 +84,11 @@ Public Module LogicUSB
     ' N: Numero
     ' L: Letra
     ' -: Simbolo de menos usado como separador
-    Public Function generateSerial(ByVal wSerial As String) As String
+    Public Function GenerateSerial(wSerial As String) As String
         Dim ret As String = ""
         Dim alphabet As Char() = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}
         Dim vChars As Char() = {"N", "L"}
-        Dim rnd2 As Random = New Random()
+        Dim rnd2 As New Random()
 
         For i As Integer = 0 To wSerial.Length - 1
             Dim wChar As Char = wSerial.Chars(i)
@@ -102,14 +105,14 @@ Public Module LogicUSB
                 Case "-"
                     iStr = "-"
             End Select
-            ret = ret & iStr
+            ret &= iStr
         Next
 
         Return ret
     End Function
 
     ' Verifica que un cadena te texto sea nombre de algun proceso, retorna el ID
-    Public Function isProcess(ByVal proceso As String) As Integer
+    Public Function IsProcess(proceso As String) As Integer
         Dim processList() As Process = Process.GetProcesses
 
         For Each p As Process In processList
@@ -122,27 +125,24 @@ Public Module LogicUSB
         Return -1
     End Function
 
-    Public Function LogFunc(ByVal text As String)
+    Public Sub LogFunc(text As String)
         My.Computer.FileSystem.WriteAllText(DirProject & "log_func.log", text & vbCrLf, True)
-        Return Nothing
-    End Function
+    End Sub
 
-    Public Function LogMalware(ByVal text As String)
+    Public Sub LogMalware(text As String)
         My.Computer.FileSystem.WriteAllText(DirProject & "log_malware.log", text & vbCrLf, True)
-        Return Nothing
-    End Function
+    End Sub
 
-    Public Function LogError(ByVal text As String)
+    Public Sub LogError(text As String)
         Dim d As Date = Now
         Dim mes As String = IIf(d.Month < 10, "0" & d.Month, d.Month)
         Dim dia As String = IIf(d.Day < 10, "0" & d.Day, d.Day)
         Dim fecha As String = d.Year & "-" & mes & "-" & dia
         My.Computer.FileSystem.WriteAllText(DirError & fecha & ".log", text & vbCrLf, True)
-        Return Nothing
-    End Function
+    End Sub
 
     ' Devuelve true si la fecha dat1 es mayor que la fecha dat2, false en caso contrario
-    Public Function compareDate(ByVal dat1 As String, ByVal dat2 As String) As Boolean
+    Public Function CompareDate(dat1 As String, dat2 As String) As Boolean
         Dim date1 As String() = dat1.Split("-")
         Dim date2 As String() = dat2.Split("-")
 
@@ -176,7 +176,7 @@ Public Module LogicUSB
 
     ' Retorna la direccion original (en caso que exista) de un acceso directo
     ' Ej: "C:\calc.exe.lnk" devuelve "C:\Windows\System32\calc.exe"
-    Public Function GetLnkTarget(ByVal sPath As String) As String
+    Public Function GetLnkTarget(sPath As String) As String
         Dim WSH As Object = CreateObject("WScript.Shell")
         Dim oShellLnk As Object = WSH.CreateShortcut(sPath)
         Return oShellLnk.TargetPath
@@ -184,58 +184,48 @@ Public Module LogicUSB
 
     ' Obtiene el valor (v) de un archivo .ini, formato k=v. Ej: [update] in date=2018-07-11
     ' Cuando llamamos al metodo pasandole como parametro "update", "date" y el archivo nos devuelve "2018-07-11", NO ELIMINA EL ARCHIVO AL TERMINAR
-    Public Function ValueOfFile(ByVal title As String, ByVal key As String, ByVal fn As String) As String
-        Dim ret As String = New String("", 255)
+    Public Function ValueOfFile(title As String, key As String, fn As String) As String
+        Dim ret As New String("", 255)
 
         If fn = "config.ini" Then
-            fn = DirExecPath & fn
+            fn = DirProject & fn
         End If
 
         Dim fi = My.Computer.FileSystem.GetFileInfo(fn)
-        'MsgBox(fi.FullName)
+
         If fi.Exists Then
             GetPrivateProfileString(title, key, "", ret, 255, fi.FullName)
         End If
-        'MsgBox(ret)
+
         Return ret.TrimEnd(vbNullChar)
     End Function
 
-    Public Sub SetValueOfFile(ByVal title As String, ByVal key As String, ByVal value As String, ByVal fn As String)
+    Public Sub SetValueOfFile(title As String, key As String, value As String, fn As String)
         WritePrivateProfileString(title, key, value, fn)
     End Sub
 
-    Public Function GetFileIcon(ByVal file As String) As String
-        'Try
-        '    Return GetFileIconA(file)
-        'Catch ex As Exception
-        '    Return ex.Message
-        'End Try
+    Public Function GetFileIcon(file As String) As String
         Return GetFileIconA(file)
     End Function
 
-    Public Function SerialNumber(ByVal drive As String) As String
+    Public Function SerialNumber(drive As String) As String
         If drive.Length = 1 Then
-            drive = drive & ":"
+            drive &= ":"
         ElseIf drive.Length >= 3 Then
             drive = drive.Substring(0, 2)
         End If
 
-        Shell("cmd /C vol " & drive & " > serialnumber.txt", AppWinStyle.Hide, True)
-        Dim text As String = My.Computer.FileSystem.ReadAllText("serialnumber.txt").Trim
-
-        If text.Length > 9 Then
-            text = text.Substring(text.Length - 9)
-        Else
-            text = ""
+        Dim fso As Object = CreateObject("Scripting.FileSystemObject")
+        Dim drv As Object = fso.GetDrive(drive)
+        If drv.IsReady Then
+            Return Integer.Parse(drv.SerialNumber).ToString("X2")
         End If
 
-        My.Computer.FileSystem.DeleteFile("serialnumber.txt", FileIO.UIOption.OnlyErrorDialogs, FileIO.RecycleOption.DeletePermanently)
-
-        Return text
+        Return "NONAME"
     End Function
 
     'To Get A Extension Name Sample ".txt" will become Text Document
-    Public Function GetExtension(ByVal value As String) As String
+    Public Function GetExtension(value As String) As String
         On Error GoTo Danger
         Dim RegK As RegistryKey
         Dim T1, T2 As String
@@ -251,7 +241,7 @@ Safe:
     End Function
 
     ' To Get The Shortcut Byte Of A File Sample 5Mb 10GB
-    Public Function GetBytes(ByVal value As Decimal) As String
+    Public Function GetBytes(value As Decimal) As String
         Dim V As Decimal = value
         Dim T1 As Integer = 0
         Dim BytesList As String() = {" B", " kB", " MB", " GB", " TB", " PB", " EB", " ZB", " YB"}
@@ -265,7 +255,7 @@ Safe:
         Return Math.Round(V, 2) & BytesList(T1)
     End Function
 
-    Public Function GetFolders(ByVal Path As String) As List(Of DirectoryInfo)
+    Public Function GetFolders(Path As String) As List(Of DirectoryInfo)
         'On Error Resume Next
         Dim L As New List(Of DirectoryInfo)
         Dim D As New DirectoryInfo(Path)
@@ -284,7 +274,7 @@ Safe:
     Public Function DecryptMalwares() As Dictionary(Of String, String)
         Dim DICT_MALWARE As New Dictionary(Of String, String)
 
-        Encrypter.DecryptFile(DirDef & "security00.sec", DirCache & "security00.cache")
+        DecryptFile(DirDef & "security00.sec", DirCache & "security00.cache")
 
         Dim file As New TextFieldParser(DirCache & "security00.cache")
         Dim fields As String()
@@ -307,7 +297,7 @@ Safe:
     Public Function DecryptMalwaresSha() As Dictionary(Of String, String)
         Dim DICT_MALWARE_SHA As New Dictionary(Of String, String)
 
-        Encrypter.DecryptFile(DirDef & "security01.sec", DirCache & "security01.cache")
+        DecryptFile(DirDef & "security01.sec", DirCache & "security01.cache")
 
         Dim file As New TextFieldParser(DirCache & "security01.cache")
         Dim fields As String()

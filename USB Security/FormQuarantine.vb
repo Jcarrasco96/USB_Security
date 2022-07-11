@@ -1,29 +1,8 @@
 ﻿Imports System.IO
 Imports vblibusb.Encrypter
-Imports vblibusb.Constants
 Imports vblibusb.LogicUSB
 
 Public Class FormQuarantine
-
-    Private Class Quarantine
-
-        Friend filequar As String
-        Friend datetime As String
-        Friend filepath As String
-        Friend filesize As Long
-        Friend malwarename As String
-        Friend file As Byte()
-
-        Public Sub New(filequar As String, datetime As String, filepath As String, filesize As Long, malwarename As String, Optional file As Byte() = Nothing)
-            Me.filequar = filequar
-            Me.datetime = datetime
-            Me.filepath = filepath
-            Me.filesize = filesize
-            Me.malwarename = malwarename
-            Me.file = file
-        End Sub
-
-    End Class
 
     Private FilesQuar As List(Of Quarantine)
 
@@ -75,29 +54,26 @@ Public Class FormQuarantine
     End Sub
 
     Private Sub MysticClose1_Click(sender As Object, e As EventArgs) Handles MysticClose1.Click
-        Me.Dispose()
+        Dispose()
     End Sub
 
-    Private Sub btnRestore_Click(sender As Object, e As EventArgs) Handles btnRestore.Click
+    Private Sub BtnRestore_Click(sender As Object, e As EventArgs) Handles btnRestore.Click
         If ListView1.SelectedItems.Count = 1 Then
-            FormMain.FileSystemWatcher1.EnableRaisingEvents = False
-
             Dim index = ListView1.SelectedItems.Item(0).Index
-            Dim finfo As FileInfo = New FileInfo(FilesQuar(index).filepath)
+            Dim finfo As New FileInfo(FilesQuar(index).filepath)
 
             If finfo.Directory.Exists Then
                 Decrypt(FilesQuar(index).file, FilesQuar(index).filequar, FilesQuar(index).filepath)
             Else
-                Dim fod As New SaveFileDialog
-                fod.FileName = finfo.Name
+                Dim fod As New SaveFileDialog With {
+                    .FileName = finfo.Name
+                }
 
                 If fod.ShowDialog() = Windows.Forms.DialogResult.OK Then
                     Decrypt(FilesQuar(index).file, FilesQuar(index).filequar, fod.FileName)
                 End If
             End If
             LoadInfoFiles()
-
-            FormMain.FileSystemWatcher1.EnableRaisingEvents = True
         End If
     End Sub
 
@@ -112,7 +88,7 @@ Public Class FormQuarantine
         MsgBox("Archivo restaurado", MsgBoxStyle.Information, "Restaurado")
     End Sub
 
-    Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+    Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
         If ListView1.SelectedItems.Count = 1 Then
             Dim index = ListView1.SelectedItems.Item(0).Index
 

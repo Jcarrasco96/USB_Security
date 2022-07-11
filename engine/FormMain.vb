@@ -10,15 +10,10 @@ Public Class FormMain
     Public path As String
     Public tScan As TypeScan
 
-    Private Sub btnCancel_Click(sender As Object, e As EventArgs)
-        If FileScanner.IsBusy = True Then FileScanner.CancelAsync()
-    End Sub
-
     Private Sub FileScanner_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles FileScanner.DoWork
         On Error Resume Next
         Dim Folders As New List(Of DirectoryInfo)
         Dim Files As New List(Of String)
-        Dim virus As Virus
         FilesDetected = New List(Of Virus)
 
         Select Case tScan
@@ -40,11 +35,28 @@ Public Class FormMain
                 MysticTheme1.Text = "Analizando sistema (rápido)"
 
             Case TypeScan.DRIVE_SCAN
-                Folders.AddRange(LogicUSB.GetFolders(path))
+                Folders.AddRange(GetFolders(path))
                 MysticTheme1.Text = "Analizando " & path
 
             Case TypeScan.FILE_SCAN
-                MsgBox(path)
+                Hide()
+
+                Dim v As Virus = EngineScan.ScanAll(path)
+                If v.isMalware Then
+                    If Options.checkReprodSounds Then
+                        sndPlaySound("sound\sound04.wav", SND_ASYNC)
+                    End If
+
+                    FormDetected.detectedVirus = v
+                    FormDetected.playSound = False
+                    FormDetected.ShowDialog()
+                End If
+                End
+
+            Case TypeScan.FOLDER_SCAN
+                Folders.AddRange(GetFolders(path))
+                MysticTheme1.Text = "Analizando carpeta " & path
+
             Case Else
 
         End Select
@@ -80,20 +92,20 @@ Public Class FormMain
         Me.Hide()
 
         If Options.checkResultadoAna Then
-            Dim handle As Integer = Messages.FindWindow(vbNullString, "USBSecurity - Main")
+            Dim handle As Integer = FindWindow(vbNullString, "USBSecurity - Main")
             If handle > 0 Then
                 If FilesDetected.Count = 0 Then
-                    Messages.SendMessage(handle, WM_POWER, WM_MESSAGE, WM_SCAN_NOVIRUS)
+                    SendMessage(handle, WM_POWER, WM_MESSAGE, WM_SCAN_NOVIRUS)
                 ElseIf FilesDetected.Count = 1 Then
-                    Messages.SendMessage(handle, WM_POWER, WM_MESSAGE, WM_SCAN_ONEVIRUS)
+                    SendMessage(handle, WM_POWER, WM_MESSAGE, WM_SCAN_ONEVIRUS)
                 ElseIf FilesDetected.Count > 1 Then
-                    Messages.SendMessage(handle, WM_POWER, WM_MESSAGE, WM_SCAN_MANYVIRUS)
+                    SendMessage(handle, WM_POWER, WM_MESSAGE, WM_SCAN_MANYVIRUS)
                 End If
             End If
         End If
 
         If Options.checkReprodSounds Then
-            LogicUSB.sndPlaySound("sound\sound04.wav", SND_ASYNC)
+            sndPlaySound("sound\sound04.wav", SND_ASYNC)
         End If
 
         Dim filesToQuar As New List(Of Virus)
@@ -125,8 +137,9 @@ Public Class FormMain
         Next
 
         If Options.checkFilesMoveToQuar And filesToQuar.Count > 0 Then
-            Dim fq As New FormQuarantine
-            fq.arrToQuar = filesToQuar
+            Dim fq As New FormQuarantine With {
+                .arrToQuar = filesToQuar
+            }
             fq.ShowDialog()
         End If
 
@@ -134,7 +147,7 @@ Public Class FormMain
         If tScan = TypeScan.DRIVE_SCAN Then
             SetDriveAutorunFile(path, Options)
             ' Abrir dispositivo despues de escanear
-            If Options.checkOpenDevice Then Interaction.Shell("explorer " & path, AppWinStyle.NormalFocus)
+            If Options.checkOpenDevice Then Shell("explorer " & path, AppWinStyle.NormalFocus)
         End If
 
         Me.Dispose()
@@ -143,10 +156,9 @@ Public Class FormMain
     Private Sub FormMain_Load(sender As Object, e As EventArgs) Handles Me.Load
         CheckForIllegalCrossThreadCalls = False
 
-        updatePosition(Me)
+        UpdatePosition(Me)
 
         MysticTheme1.Text = "Cargando archivos, por favor espere..."
-        'Debug.WriteLine("test for console or debug")
 
         Options = New ScanOptions
         EngineScan = New EngineScan(Options)
@@ -161,20 +173,21 @@ Public Class FormMain
 
     Private Sub MysticClose1_Click(sender As Object, e As EventArgs) Handles MysticClose1.Click
         If FileScanner.IsBusy = True Then FileScanner.CancelAsync()
+        Me.Hide()
     End Sub
 
     Private Sub ScanFile(filepath As String)
         Dim F As FileInfo = My.Computer.FileSystem.GetFileInfo(filepath)
 
         labelName.Text = "Nombre: " & F.Name
-        labelPath.Text = "Ubicación: " & splitPath(F.DirectoryName, 50) 'FullName 'DirectoryName
-        labelSize.Text = "Tamaño: " & LogicUSB.GetBytes(F.Length)
+        labelPath.Text = "Ubicación: " & SplitPath(F.DirectoryName, 50) 'FullName 'DirectoryName
+        labelSize.Text = "Tamaño: " & GetBytes(F.Length)
         labelDetect.Text = "Detectados: " & FilesDetected.Count
         If FilesDetected.Count > 0 Then
             labelDetect.ForeColor = Color.FromArgb(255, 128, 128)
         End If
 
-        Dim virus = EngineScan.scanAll(filepath)
+        Dim virus = EngineScan.ScanAll(filepath)
         If virus.isMalware Then
             FilesDetected.Add(virus)
         End If

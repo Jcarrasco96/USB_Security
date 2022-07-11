@@ -58,8 +58,9 @@
     <Compile Include="Encrypter.vb" />
     <Compile Include="EngineScan.vb" />
     <Compile Include="LogicUSB.vb" />
+    <Compile Include="ReturnCheckVirusName.vb" />
     <Compile Include="ScanOptions.vb" />
-    <Compile Include="Theme.vb" />
+    <Compile Include="Security06.vb" />
     <Compile Include="Virus.vb" />
     <Compile Include="Messages.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />

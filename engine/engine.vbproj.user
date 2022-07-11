@@ -11,8 +11,9 @@
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <StartArguments>scan-drive F:\</StartArguments>
+    <StartArguments>scan-drive E:\</StartArguments>
     <RemoteDebugEnabled>false</RemoteDebugEnabled>
-    <StartWorkingDirectory>C:\Users\jcarrasco96\Documents\Visual Studio 2012\Projects\USB Security\bin\</StartWorkingDirectory>
+    <StartWorkingDirectory>
+    </StartWorkingDirectory>
   </PropertyGroup>
 </Project>

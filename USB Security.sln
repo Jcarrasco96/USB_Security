@@ -1,15 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "USB Security", "USB Security\USB Security.vbproj", "{8B61DDD3-1397-4847-9100-D5928CC80AB4}"
 	ProjectSection(ProjectDependencies) = postProject
+		{A1F61B41-53E7-4638-B1B6-A7D46EB2871A} = {A1F61B41-53E7-4638-B1B6-A7D46EB2871A}
 		{CD8FB105-71FB-4E5B-A9FE-C4D1DDB94BF7} = {CD8FB105-71FB-4E5B-A9FE-C4D1DDB94BF7}
 	EndProjectSection
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "engine", "engine\engine.vbproj", "{A1F61B41-53E7-4638-B1B6-A7D46EB2871A}"
 	ProjectSection(ProjectDependencies) = postProject
 		{CD8FB105-71FB-4E5B-A9FE-C4D1DDB94BF7} = {CD8FB105-71FB-4E5B-A9FE-C4D1DDB94BF7}
-		{8B61DDD3-1397-4847-9100-D5928CC80AB4} = {8B61DDD3-1397-4847-9100-D5928CC80AB4}
 	EndProjectSection
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "vblibusb", "vblibusb\vblibusb.vbproj", "{CD8FB105-71FB-4E5B-A9FE-C4D1DDB94BF7}"
@@ -17,8 +19,6 @@ EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "update", "update\update.vbproj", "{EF754F1F-E69E-4573-BCDC-60D8B8E79DD8}"
 	ProjectSection(ProjectDependencies) = postProject
 		{CD8FB105-71FB-4E5B-A9FE-C4D1DDB94BF7} = {CD8FB105-71FB-4E5B-A9FE-C4D1DDB94BF7}
-		{A1F61B41-53E7-4638-B1B6-A7D46EB2871A} = {A1F61B41-53E7-4638-B1B6-A7D46EB2871A}
-		{8B61DDD3-1397-4847-9100-D5928CC80AB4} = {8B61DDD3-1397-4847-9100-D5928CC80AB4}
 	EndProjectSection
 EndProject
 Global
@@ -46,5 +46,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FABC5208-D73A-49CA-892A-61B8B27B33FB}
 	EndGlobalSection
 EndGlobal

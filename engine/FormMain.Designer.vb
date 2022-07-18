@@ -28,7 +28,6 @@ Partial Class FormMain
         Me.labelDetect = New System.Windows.Forms.Label()
         Me.MysticClose1 = New engine.MysticClose()
         Me.progressTotal = New engine.ProgressB()
-        Me.progressFile = New engine.ProgressB()
         Me.picDrive = New System.Windows.Forms.PictureBox()
         Me.labelSize = New System.Windows.Forms.Label()
         Me.labelPath = New System.Windows.Forms.Label()
@@ -47,7 +46,6 @@ Partial Class FormMain
         Me.MysticTheme1.Controls.Add(Me.labelDetect)
         Me.MysticTheme1.Controls.Add(Me.MysticClose1)
         Me.MysticTheme1.Controls.Add(Me.progressTotal)
-        Me.MysticTheme1.Controls.Add(Me.progressFile)
         Me.MysticTheme1.Controls.Add(Me.picDrive)
         Me.MysticTheme1.Controls.Add(Me.labelSize)
         Me.MysticTheme1.Controls.Add(Me.labelPath)
@@ -56,7 +54,7 @@ Partial Class FormMain
         Me.MysticTheme1.Location = New System.Drawing.Point(0, 0)
         Me.MysticTheme1.Movible = True
         Me.MysticTheme1.Name = "MysticTheme1"
-        Me.MysticTheme1.Size = New System.Drawing.Size(375, 150)
+        Me.MysticTheme1.Size = New System.Drawing.Size(375, 135)
         Me.MysticTheme1.TabIndex = 0
         Me.MysticTheme1.Text = "Analizando"
         '
@@ -87,19 +85,10 @@ Partial Class FormMain
         '
         Me.progressTotal.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.progressTotal.Location = New System.Drawing.Point(12, 128)
+        Me.progressTotal.Location = New System.Drawing.Point(12, 113)
         Me.progressTotal.Name = "progressTotal"
         Me.progressTotal.Size = New System.Drawing.Size(350, 10)
         Me.progressTotal.TabIndex = 10
-        '
-        'progressFile
-        '
-        Me.progressFile.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.progressFile.Location = New System.Drawing.Point(12, 113)
-        Me.progressFile.Name = "progressFile"
-        Me.progressFile.Size = New System.Drawing.Size(350, 10)
-        Me.progressFile.TabIndex = 9
         '
         'picDrive
         '
@@ -153,7 +142,7 @@ Partial Class FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(375, 150)
+        Me.ClientSize = New System.Drawing.Size(375, 135)
         Me.Controls.Add(Me.MysticTheme1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -172,7 +161,6 @@ Partial Class FormMain
     Friend WithEvents labelPath As System.Windows.Forms.Label
     Friend WithEvents FileScanner As System.ComponentModel.BackgroundWorker
     Friend WithEvents picDrive As System.Windows.Forms.PictureBox
-    Friend WithEvents progressFile As engine.ProgressB
     Friend WithEvents progressTotal As engine.ProgressB
     Friend WithEvents MysticClose1 As engine.MysticClose
     Friend WithEvents labelDetect As System.Windows.Forms.Label

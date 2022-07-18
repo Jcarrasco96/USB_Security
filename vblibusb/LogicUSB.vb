@@ -3,6 +3,7 @@ Imports System.Text
 Imports System.IO
 Imports Microsoft.Win32
 Imports Microsoft.VisualBasic.FileIO
+Imports SearchOption = System.IO.SearchOption
 
 Public Module LogicUSB
 
@@ -255,20 +256,20 @@ Safe:
         Return Math.Round(V, 2) & BytesList(T1)
     End Function
 
-    Public Function GetFolders(Path As String) As List(Of DirectoryInfo)
-        'On Error Resume Next
-        Dim L As New List(Of DirectoryInfo)
-        Dim D As New DirectoryInfo(Path)
-        L.Add(D)
-        Try
-            For Each DD As DirectoryInfo In D.GetDirectories("*.*", System.IO.SearchOption.TopDirectoryOnly)
-                L.AddRange(GetFolders(DD.FullName))
-            Next
-        Catch ex As Exception
-            Debug.WriteLine("-----E-----" & ex.Message)
-        End Try
+    Public Function GetFiles(path As String) As List(Of String)
+        Dim F As New List(Of String)
+        For Each strDir As String In Directory.GetDirectories(path, "*.*", SearchOption.TopDirectoryOnly)
+            Try
+                For Each strFile As String In Directory.GetFiles(strDir, "*.*", SearchOption.AllDirectories)
+                    F.Add(strFile)
+                Next
+            Catch ex As Exception
+                Debug.WriteLine("-----E-----" & ex.Message)
+                LogError("-----E-----" & ex.Message & vbCrLf)
+            End Try
+        Next
 
-        Return L
+        Return F
     End Function
 
     Public Function DecryptMalwares() As Dictionary(Of String, String)

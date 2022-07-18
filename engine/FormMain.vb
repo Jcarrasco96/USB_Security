@@ -11,32 +11,31 @@ Public Class FormMain
     Public tScan As TypeScan
 
     Private Sub FileScanner_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles FileScanner.DoWork
-        On Error Resume Next
-        Dim Folders As New List(Of DirectoryInfo)
+        'On Error Resume Next
         Dim Files As New List(Of String)
         FilesDetected = New List(Of Virus)
 
         Select Case tScan
             Case TypeScan.FULL_SCAN
+                MysticTheme1.Text = "Analizando sistema"
                 For Each Driver As DriveInfo In My.Computer.FileSystem.Drives
                     'If Driver.Name = "C:\" Then Continue For
-                    Folders.AddRange(GetFolders(Driver.Name))
+                    Files.AddRange(GetFiles(Driver.Name))
                     If FileScanner.CancellationPending = True Then Exit For
                 Next
-                MysticTheme1.Text = "Analizando sistema"
 
             Case TypeScan.QUICK_SCAN
+                MysticTheme1.Text = "Analizando sistema (rápido)"
                 For Each Directory_Info As String In SPECIALDIRECTORIESSS()
                     If Directory.Exists(Directory_Info) Then
-                        Folders.AddRange(GetFolders(Directory_Info))
+                        Files.AddRange(GetFiles(Directory_Info))
                     End If
                     If FileScanner.CancellationPending = True Then Exit For
                 Next
-                MysticTheme1.Text = "Analizando sistema (rápido)"
 
             Case TypeScan.DRIVE_SCAN
-                Folders.AddRange(GetFolders(path))
                 MysticTheme1.Text = "Analizando " & path
+                Files.AddRange(GetFiles(path))
 
             Case TypeScan.FILE_SCAN
                 Hide()
@@ -54,36 +53,27 @@ Public Class FormMain
                 End
 
             Case TypeScan.FOLDER_SCAN
-                Folders.AddRange(GetFolders(path))
                 MysticTheme1.Text = "Analizando carpeta " & path
+                Files.AddRange(GetFiles(path))
 
             Case Else
 
         End Select
 
-        MysticTheme1.Invalidate()
+        'MysticTheme1.Invalidate()
 
         If tScan = TypeScan.FILE_SCAN Then
             ScanFile(path)
         Else
             progressTotal.Value = 0
-            progressTotal.Maximum = Folders.Count
+            progressTotal.Maximum = Files.Count
 
-            For Each Element_Directory As DirectoryInfo In Folders
-                Files.Clear()
-                Files.AddRange(Directory.GetFiles(Element_Directory.FullName, "*.*", SearchOption.TopDirectoryOnly))
-                progressFile.Value = 0
-                progressFile.Maximum = Files.Count
-
-                For Each ElementFile As String In Files
-                    ScanFile(ElementFile)
-                    progressFile.Value += 1
-                    If FileScanner.CancellationPending = True Then Exit For
-                Next
-
+            For Each file As String In Files
+                ScanFile(file)
                 progressTotal.Value += 1
                 If FileScanner.CancellationPending = True Then Exit For
             Next
+
         End If
         
     End Sub

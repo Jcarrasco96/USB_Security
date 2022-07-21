@@ -1,4 +1,5 @@
 ﻿Imports System.IO
+Imports System.ComponentModel
 Imports vblibusb
 
 Public Class FormMain
@@ -10,13 +11,13 @@ Public Class FormMain
     Public path As String
     Public tScan As TypeScan
 
-    Private Sub FileScanner_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles FileScanner.DoWork
-        'On Error Resume Next
+    Private Sub FileScanner_DoWork(sender As Object, e As DoWorkEventArgs) Handles FileScanner.DoWork
+        On Error Resume Next
         Dim Files As New List(Of String)
         FilesDetected = New List(Of Virus)
 
         Select Case tScan
-            Case TypeScan.FULL_SCAN
+            Case TypeScan.FULL_SCAN ' analizar todo el sistema
                 MysticTheme1.Text = "Analizando sistema"
                 For Each Driver As DriveInfo In My.Computer.FileSystem.Drives
                     'If Driver.Name = "C:\" Then Continue For
@@ -24,7 +25,7 @@ Public Class FormMain
                     If FileScanner.CancellationPending = True Then Exit For
                 Next
 
-            Case TypeScan.QUICK_SCAN
+            Case TypeScan.QUICK_SCAN ' analizar areas criticas del sistema
                 MysticTheme1.Text = "Analizando sistema (rápido)"
                 For Each Directory_Info As String In SPECIALDIRECTORIESSS()
                     If Directory.Exists(Directory_Info) Then
@@ -33,11 +34,11 @@ Public Class FormMain
                     If FileScanner.CancellationPending = True Then Exit For
                 Next
 
-            Case TypeScan.DRIVE_SCAN
+            Case TypeScan.DRIVE_SCAN ' analizar un hdd, ssd, usb, etc
                 MysticTheme1.Text = "Analizando " & path
                 Files.AddRange(GetFiles(path))
 
-            Case TypeScan.FILE_SCAN
+            Case TypeScan.FILE_SCAN ' analizar un archivo
                 Hide()
 
                 Dim v As Virus = EngineScan.ScanAll(path)
@@ -52,7 +53,7 @@ Public Class FormMain
                 End If
                 End
 
-            Case TypeScan.FOLDER_SCAN
+            Case TypeScan.FOLDER_SCAN ' analizar una carpeta
                 MysticTheme1.Text = "Analizando carpeta " & path
                 Files.AddRange(GetFiles(path))
 
@@ -61,6 +62,8 @@ Public Class FormMain
         End Select
 
         'MysticTheme1.Invalidate()
+
+        ShowAll()
 
         If tScan = TypeScan.FILE_SCAN Then
             ScanFile(path)
@@ -75,10 +78,10 @@ Public Class FormMain
             Next
 
         End If
-        
+
     End Sub
 
-    Private Sub FileScanner_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles FileScanner.RunWorkerCompleted
+    Private Sub FileScanner_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles FileScanner.RunWorkerCompleted
         Me.Hide()
 
         If Options.checkResultadoAna Then
@@ -150,6 +153,10 @@ Public Class FormMain
 
         MysticTheme1.Text = "Cargando archivos, por favor espere..."
 
+        LogFunc(Now.ToString & "*" & UserName & "*Búsqueda*Inicio en " & path)
+
+        ShowAll(False)
+
         Options = New ScanOptions
         EngineScan = New EngineScan(Options)
 
@@ -158,7 +165,6 @@ Public Class FormMain
         Else
             MsgBox("Still Running")
         End If
-
     End Sub
 
     Private Sub MysticClose1_Click(sender As Object, e As EventArgs) Handles MysticClose1.Click
@@ -170,7 +176,7 @@ Public Class FormMain
         Dim F As FileInfo = My.Computer.FileSystem.GetFileInfo(filepath)
 
         labelName.Text = "Nombre: " & F.Name
-        labelPath.Text = "Ubicación: " & SplitPath(F.DirectoryName, 50) 'FullName 'DirectoryName
+        labelPath.Text = "Ubicación: " & F.DirectoryName ' SplitPath(F.DirectoryName, 50)
         labelSize.Text = "Tamaño: " & GetBytes(F.Length)
         labelDetect.Text = "Detectados: " & FilesDetected.Count
         If FilesDetected.Count > 0 Then
@@ -181,6 +187,15 @@ Public Class FormMain
         If virus.isMalware Then
             FilesDetected.Add(virus)
         End If
+    End Sub
+
+    Private Sub ShowAll(Optional show As Boolean = True)
+        labelName.Visible = show
+        labelPath.Visible = show
+        labelSize.Visible = show
+        labelDetect.Visible = show
+        'progressTotal.Visible = show
+        labelLoading.Visible = Not show
     End Sub
 
 End Class

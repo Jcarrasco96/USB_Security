@@ -245,7 +245,7 @@ Safe:
     Public Function GetBytes(value As Decimal) As String
         Dim V As Decimal = value
         Dim T1 As Integer = 0
-        Dim BytesList As String() = {" B", " kB", " MB", " GB", " TB", " PB", " EB", " ZB", " YB"}
+        Dim BytesList As String() = {" B", " KB", " MB", " GB", " TB", " PB", " EB", " ZB", " YB"}
         If value >= 1024 Then
             Do While V >= 1024
                 V /= 1024

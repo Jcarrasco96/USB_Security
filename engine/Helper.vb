@@ -18,11 +18,11 @@ Module Helper
     ' Encriptar el archivo infestado
     ' En un nuevo archivo escribir "USB Security Quarantine File"
     ' Escribir datos del archivo "datetime, filepath, filesize, malwarename, size, file"
-    ' string, string, string, long, string, long, byte()
+    '                       string, string,   string,     long,      string, long, byte()
     Function AddToQuarantine(filepath As String, fileSize As Long, malwareName As String) As Boolean
         Dim drive As String = filepath.Substring(0, 3)
         Dim success As Boolean = False
-        Dim filenameTMP As String = DirQuar & MD5Hash(Now.ToString) & ".TMP"
+        Dim filenameTMP As String = DirQuar & MD5Hash(Now.ToString) & ".ENC_TMP"
         Dim filenameQUA As String = DirQuar & MD5Hash(Now.ToString) & ".QUA"
 
         If malwareName.Equals("") Or malwareName.Equals("NO_MALWARE", StringComparison.OrdinalIgnoreCase) Then malwareName = "Unknown"
@@ -35,7 +35,6 @@ Module Helper
         bw.Write(Now.ToString)
         bw.Write(filepath)
         bw.Write(fileSize)
-        'bw.Write(fileMDS)
         bw.Write(malwareName)
         bw.Write(fileBytes.LongLength)
         bw.Write(fileBytes)
@@ -99,8 +98,6 @@ Module Helper
     End Sub
 
     Public Function SPECIALDIRECTORIESSS() As List(Of String)
-        'On Error Resume Next
-
         Dim FoldersSpecial As New List(Of String) From {
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
             Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),

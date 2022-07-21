@@ -60,17 +60,18 @@ Public Class FormQuarantine
     Private Sub BtnRestore_Click(sender As Object, e As EventArgs) Handles btnRestore.Click
         If ListView1.SelectedItems.Count = 1 Then
             Dim index = ListView1.SelectedItems.Item(0).Index
-            Dim finfo As New FileInfo(FilesQuar(index).filepath)
+            Dim fileQuar = FilesQuar(index)
+            Dim finfo As New FileInfo(fileQuar.filepath)
 
             If finfo.Directory.Exists Then
-                Decrypt(FilesQuar(index).file, FilesQuar(index).filequar, FilesQuar(index).filepath)
+                Decrypt(fileQuar.file, fileQuar.filequar, fileQuar.filepath)
             Else
                 Dim fod As New SaveFileDialog With {
                     .FileName = finfo.Name
                 }
 
                 If fod.ShowDialog() = Windows.Forms.DialogResult.OK Then
-                    Decrypt(FilesQuar(index).file, FilesQuar(index).filequar, fod.FileName)
+                    Decrypt(fileQuar.file, fileQuar.filequar, fod.FileName)
                 End If
             End If
             LoadInfoFiles()

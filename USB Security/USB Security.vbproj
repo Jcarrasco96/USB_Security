@@ -74,7 +74,8 @@
     <ManifestCertificateThumbprint>1D21810BB87E507E3E1A3B91A4E3C6C45F04C2BE</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>USB Security_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>

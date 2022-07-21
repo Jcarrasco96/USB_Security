@@ -25,6 +25,7 @@ Partial Class FormMain
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMain))
         Me.FileScanner = New System.ComponentModel.BackgroundWorker()
         Me.MysticTheme1 = New engine.MysticTheme()
+        Me.labelLoading = New System.Windows.Forms.Label()
         Me.labelDetect = New System.Windows.Forms.Label()
         Me.MysticClose1 = New engine.MysticClose()
         Me.progressTotal = New engine.ProgressB()
@@ -43,6 +44,7 @@ Partial Class FormMain
         '
         'MysticTheme1
         '
+        Me.MysticTheme1.Controls.Add(Me.labelLoading)
         Me.MysticTheme1.Controls.Add(Me.labelDetect)
         Me.MysticTheme1.Controls.Add(Me.MysticClose1)
         Me.MysticTheme1.Controls.Add(Me.progressTotal)
@@ -57,6 +59,19 @@ Partial Class FormMain
         Me.MysticTheme1.Size = New System.Drawing.Size(375, 135)
         Me.MysticTheme1.TabIndex = 0
         Me.MysticTheme1.Text = "Analizando"
+        '
+        'labelLoading
+        '
+        Me.labelLoading.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.labelLoading.BackColor = System.Drawing.Color.Transparent
+        Me.labelLoading.ForeColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(189, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.labelLoading.Location = New System.Drawing.Point(66, 66)
+        Me.labelLoading.Name = "labelLoading"
+        Me.labelLoading.Size = New System.Drawing.Size(297, 13)
+        Me.labelLoading.TabIndex = 13
+        Me.labelLoading.Text = "Cargando, espere hasta que finalice el proceso..."
+        Me.labelLoading.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.labelLoading.Visible = False
         '
         'labelDetect
         '
@@ -110,7 +125,7 @@ Partial Class FormMain
         Me.labelSize.Name = "labelSize"
         Me.labelSize.Size = New System.Drawing.Size(155, 13)
         Me.labelSize.TabIndex = 5
-        Me.labelSize.Text = "Tamaño: 0B"
+        Me.labelSize.Text = "Tamaño: 0 B"
         '
         'labelPath
         '
@@ -164,4 +179,5 @@ Partial Class FormMain
     Friend WithEvents progressTotal As engine.ProgressB
     Friend WithEvents MysticClose1 As engine.MysticClose
     Friend WithEvents labelDetect As System.Windows.Forms.Label
+    Friend WithEvents labelLoading As Label
 End Class

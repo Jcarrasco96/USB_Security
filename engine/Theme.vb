@@ -86,9 +86,9 @@ Class MysticButton : Inherits MyControl
 
         Select Case _State
             Case MouseState.Over
-                G.FillRectangle(New SolidBrush(Color.FromArgb(40, Color.DarkBlue)), New Rectangle(0, 0, Width, Height))
+                G.FillRectangle(New SolidBrush(Color.FromArgb(40, Color.White)), New Rectangle(0, 0, Width, Height))
             Case MouseState.Down
-                G.FillRectangle(New SolidBrush(Color.FromArgb(80, Color.DarkBlue)), New Rectangle(0, 0, Width, Height))
+                G.FillRectangle(New SolidBrush(Color.FromArgb(80, Color.Black)), New Rectangle(0, 0, Width, Height))
         End Select
 
         G.FillRectangle(New SolidBrush(Color.FromArgb(44, 51, 62)), New Rectangle(0, 0, 1, 1))
@@ -111,7 +111,7 @@ Class MysticButton : Inherits MyControl
                 .Alignment = StringAlignment.Center,
                 .LineAlignment = StringAlignment.Center
             }
-            G.DrawString(Text, New Font("Segoe UI", 9, FontStyle.Bold), Brushes.White, New RectangleF(0, 0, Width - 1, Height - 1), _StringF)
+            G.DrawString(Text, Me.Font, Brushes.White, New RectangleF(0, 0, Width - 1, Height - 1), _StringF)
         End If
     End Sub
 

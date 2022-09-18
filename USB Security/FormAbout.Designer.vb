@@ -22,26 +22,26 @@ Partial Class FormAbout
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.MysticTheme1 = New USB_Security.MysticTheme()
+        Me.Theme1 = New Theme.DarkTheme()
         Me.labelTitle = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.MysticClose1 = New USB_Security.MysticClose()
-        Me.MysticTheme1.SuspendLayout()
+        Me.ThemeClose1 = New Theme.DarkClose()
+        Me.Theme1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'MysticTheme1
+        'Theme1
         '
-        Me.MysticTheme1.Controls.Add(Me.labelTitle)
-        Me.MysticTheme1.Controls.Add(Me.PictureBox1)
-        Me.MysticTheme1.Controls.Add(Me.MysticClose1)
-        Me.MysticTheme1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.MysticTheme1.Location = New System.Drawing.Point(0, 0)
-        Me.MysticTheme1.Movible = True
-        Me.MysticTheme1.Name = "MysticTheme1"
-        Me.MysticTheme1.Size = New System.Drawing.Size(450, 160)
-        Me.MysticTheme1.TabIndex = 0
-        Me.MysticTheme1.Text = "Acerca de..."
+        Me.Theme1.Controls.Add(Me.labelTitle)
+        Me.Theme1.Controls.Add(Me.PictureBox1)
+        Me.Theme1.Controls.Add(Me.ThemeClose1)
+        Me.Theme1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Theme1.Location = New System.Drawing.Point(0, 0)
+        Me.Theme1.Movible = True
+        Me.Theme1.Name = "Theme1"
+        Me.Theme1.Size = New System.Drawing.Size(450, 160)
+        Me.Theme1.TabIndex = 0
+        Me.Theme1.Text = "Acerca de..."
         '
         'labelTitle
         '
@@ -68,35 +68,35 @@ Partial Class FormAbout
         Me.PictureBox1.TabIndex = 1
         Me.PictureBox1.TabStop = False
         '
-        'MysticClose1
+        'ThemeClose1
         '
-        Me.MysticClose1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.MysticClose1.BackColor = System.Drawing.Color.Transparent
-        Me.MysticClose1.Cursor = System.Windows.Forms.Cursors.Default
-        Me.MysticClose1.Location = New System.Drawing.Point(420, 6)
-        Me.MysticClose1.Name = "MysticClose1"
-        Me.MysticClose1.Size = New System.Drawing.Size(24, 24)
-        Me.MysticClose1.TabIndex = 0
+        Me.ThemeClose1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ThemeClose1.BackColor = System.Drawing.Color.Transparent
+        Me.ThemeClose1.Cursor = System.Windows.Forms.Cursors.Default
+        Me.ThemeClose1.Location = New System.Drawing.Point(420, 6)
+        Me.ThemeClose1.Name = "ThemeClose1"
+        Me.ThemeClose1.Size = New System.Drawing.Size(24, 24)
+        Me.ThemeClose1.TabIndex = 0
         '
         'FormAbout
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(450, 160)
-        Me.Controls.Add(Me.MysticTheme1)
+        Me.Controls.Add(Me.Theme1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "FormAbout"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "FormAbout"
         Me.TransparencyKey = System.Drawing.Color.Fuchsia
-        Me.MysticTheme1.ResumeLayout(False)
+        Me.Theme1.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents MysticTheme1 As USB_Security.MysticTheme
-    Friend WithEvents MysticClose1 As USB_Security.MysticClose
+    Friend WithEvents Theme1 As Theme.DarkTheme
+    Friend WithEvents ThemeClose1 As Theme.DarkClose
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents labelTitle As System.Windows.Forms.Label
 End Class

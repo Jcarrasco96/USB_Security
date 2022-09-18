@@ -5,6 +5,7 @@ Imports vblibusb.LogicUSB
 Public Class FormQuarantine
 
     Private FilesQuar As List(Of Quarantine)
+    Private SizeQuar As Integer
 
     Private Sub FormQuarantine_Disposed(sender As Object, e As EventArgs) Handles Me.Disposed
         FilesQuar.Clear()
@@ -16,9 +17,10 @@ Public Class FormQuarantine
 
     Private Sub LoadInfoFiles()
         FilesQuar = New List(Of Quarantine)
+        SizeQuar = 0
+
         ListView1.Items.Clear()
         Dim filesQUA As String() = Directory.GetFiles(DirQuar, "*.QUA")
-        labelSize.Text = filesQUA.Length & IIf(filesQUA.Length = 1, " ARCHIVO", " ARCHIVOS")
 
         For Each fileQUA As String In filesQUA
             Try
@@ -33,6 +35,8 @@ Public Class FormQuarantine
                     Dim size As Long = br.ReadInt64()
                     Dim file As Byte() = br.ReadBytes(size)
 
+                    SizeQuar += size
+
                     Dim q As New Quarantine(fileQUA, datetime, filepath, filesize, malwarename, file)
                     FilesQuar.Add(q)
                 End If
@@ -43,6 +47,8 @@ Public Class FormQuarantine
             End Try
         Next
 
+        labelSize.Text = filesQUA.Length & IIf(filesQUA.Length > 1, " ARCHIVOS / ", " ARCHIVO / ") & GetBytes(SizeQuar).ToUpper
+
         For Each q As Quarantine In FilesQuar
             Dim s = New ListViewItem(q.datetime)
             s.SubItems.Add(q.filepath)
@@ -51,6 +57,10 @@ Public Class FormQuarantine
             ListView1.Items.Add(s)
         Next
 
+        btnRestore.Enabled = FilesQuar.Count <> 0
+        btnDelete.Enabled = FilesQuar.Count <> 0
+        btnClear.Enabled = FilesQuar.Count <> 0
+        
     End Sub
 
     Private Sub MysticClose1_Click(sender As Object, e As EventArgs) Handles MysticClose1.Click
@@ -107,7 +117,7 @@ Public Class FormQuarantine
         End If
     End Sub
 
-    Private Sub MysticButton1_Click(sender As Object, e As EventArgs) Handles MysticButton1.Click
+    Private Sub MysticButton1_Click(sender As Object, e As EventArgs) Handles btnClear.Click
         Dim result As MsgBoxResult = MsgBox("Vaciar registro de cuarentena?", MsgBoxStyle.Question + MsgBoxStyle.YesNo)
         If result = MsgBoxResult.Yes Then
             Dim files As String() = Directory.GetFiles(DirQuar, "*.QUA")
@@ -117,4 +127,5 @@ Public Class FormQuarantine
             LoadInfoFiles()
         End If
     End Sub
+
 End Class

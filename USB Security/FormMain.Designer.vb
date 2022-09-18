@@ -1,4 +1,6 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿Imports Theme
+
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class FormMain
     Inherits System.Windows.Forms.Form
 
@@ -39,14 +41,14 @@ Partial Class FormMain
         Me.mnuExit = New System.Windows.Forms.ToolStripMenuItem()
         Me.LoadVirusHashes = New System.ComponentModel.BackgroundWorker()
         Me.ttipButtons = New System.Windows.Forms.ToolTip(Me.components)
-        Me.btnLogs = New USB_Security.MysticButton()
-        Me.btnSettings = New USB_Security.MysticButton()
-        Me.btnUpdate = New USB_Security.MysticButton()
-        Me.btnScan = New USB_Security.MysticButton()
-        Me.MysticTheme1 = New USB_Security.MysticTheme()
+        Me.btnLogs = New Theme.DarkButton()
+        Me.btnSettings = New Theme.DarkButton()
+        Me.btnUpdate = New Theme.DarkButton()
+        Me.btnScan = New Theme.DarkButton()
+        Me.MysticTheme1 = New Theme.DarkTheme()
         Me.labelInfo = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.MysticClose1 = New USB_Security.MysticClose()
+        Me.MysticClose1 = New Theme.DarkClose()
         Me.mnuNotify.SuspendLayout()
         Me.MysticTheme1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -238,6 +240,7 @@ Partial Class FormMain
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
         Me.Text = "USBSecurity - Main"
+        Me.TopMost = True
         Me.TransparencyKey = System.Drawing.Color.Fuchsia
         Me.mnuNotify.ResumeLayout(False)
         Me.MysticTheme1.ResumeLayout(False)
@@ -245,8 +248,8 @@ Partial Class FormMain
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents MysticTheme1 As USB_Security.MysticTheme
-    Friend WithEvents MysticClose1 As USB_Security.MysticClose
+    Friend WithEvents MysticTheme1 As DarkTheme
+    Friend WithEvents MysticClose1 As DarkClose
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents notify As System.Windows.Forms.NotifyIcon
     Friend WithEvents mnuNotify As System.Windows.Forms.ContextMenuStrip
@@ -257,10 +260,10 @@ Partial Class FormMain
     Friend WithEvents mnuExit As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents labelInfo As System.Windows.Forms.Label
     Friend WithEvents LoadVirusHashes As System.ComponentModel.BackgroundWorker
-    Friend WithEvents btnLogs As USB_Security.MysticButton
-    Friend WithEvents btnSettings As USB_Security.MysticButton
-    Friend WithEvents btnUpdate As USB_Security.MysticButton
-    Friend WithEvents btnScan As USB_Security.MysticButton
+    Friend WithEvents btnLogs As DarkButton
+    Friend WithEvents btnSettings As DarkButton
+    Friend WithEvents btnUpdate As DarkButton
+    Friend WithEvents btnScan As DarkButton
     Friend WithEvents mnuEnableProt As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents mnuDisableProt As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents mnuQuarantine As System.Windows.Forms.ToolStripMenuItem

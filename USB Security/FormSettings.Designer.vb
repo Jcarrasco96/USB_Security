@@ -1,4 +1,6 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿Imports Theme
+
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class FormSettings
     Inherits System.Windows.Forms.Form
 
@@ -22,39 +24,39 @@ Partial Class FormSettings
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.MysticTheme1 = New USB_Security.MysticTheme()
-        Me.btnAceptar = New USB_Security.MysticButton()
-        Me.btnCancelar = New USB_Security.MysticButton()
-        Me.MysticClose1 = New USB_Security.MysticClose()
-        Me.ThirteenTabControl1 = New USB_Security.ThirteenTabControl()
+        Me.MysticTheme1 = New DarkTheme()
+        Me.btnAceptar = New DarkButton()
+        Me.btnCancelar = New DarkButton()
+        Me.MysticClose1 = New DarkClose()
+        Me.ThirteenTabControl1 = New DarkTabControl()
         Me.tabGeneral = New System.Windows.Forms.TabPage()
-        Me.checkFindNewsUpdates = New USB_Security.MysticCheckBox()
-        Me.checkCopyLastUpdate = New USB_Security.MysticCheckBox()
-        Me.checkShowFFHidden = New USB_Security.MysticCheckBox()
-        Me.checkCreateProtHDD = New USB_Security.MysticCheckBox()
-        Me.comboDetectMalware = New USB_Security.ThirteenComboBox()
+        Me.checkFindNewsUpdates = New DarkCheckBox()
+        Me.checkCopyLastUpdate = New DarkCheckBox()
+        Me.checkShowFFHidden = New DarkCheckBox()
+        Me.checkCreateProtHDD = New DarkCheckBox()
+        Me.comboDetectMalware = New DarkComboBox()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.checkCreateProtUSB = New USB_Security.MysticCheckBox()
-        Me.checkOpenDevice = New USB_Security.MysticCheckBox()
-        Me.comboDetectFilesSuspect = New USB_Security.ThirteenComboBox()
+        Me.checkCreateProtUSB = New DarkCheckBox()
+        Me.checkOpenDevice = New DarkCheckBox()
+        Me.comboDetectFilesSuspect = New DarkComboBox()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.checkStartSystem = New USB_Security.MysticCheckBox()
+        Me.checkStartSystem = New DarkCheckBox()
         Me.tabRegistry = New System.Windows.Forms.TabPage()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.numRegSizeQuar = New USB_Security.MysticTextBox()
+        Me.numRegSizeQuar = New DarkTextBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.checkSucesos = New USB_Security.MysticCheckBox()
-        Me.checkExplorePC = New USB_Security.MysticCheckBox()
-        Me.checkDisposConect = New USB_Security.MysticCheckBox()
-        Me.checkAmenazasDetect = New USB_Security.MysticCheckBox()
+        Me.checkSucesos = New DarkCheckBox()
+        Me.checkExplorePC = New DarkCheckBox()
+        Me.checkDisposConect = New DarkCheckBox()
+        Me.checkAmenazasDetect = New DarkCheckBox()
         Me.tabNotify = New System.Windows.Forms.TabPage()
-        Me.checkReprodSounds = New USB_Security.MysticCheckBox()
-        Me.checkResultadoAna = New USB_Security.MysticCheckBox()
-        Me.checkFilesMoveToQuar = New USB_Security.MysticCheckBox()
-        Me.checkUpdatedSuccess = New USB_Security.MysticCheckBox()
-        Me.checkNoUpdated = New USB_Security.MysticCheckBox()
-        Me.checkAlertMess = New USB_Security.MysticCheckBox()
+        Me.checkReprodSounds = New DarkCheckBox()
+        Me.checkResultadoAna = New DarkCheckBox()
+        Me.checkFilesMoveToQuar = New DarkCheckBox()
+        Me.checkUpdatedSuccess = New DarkCheckBox()
+        Me.checkNoUpdated = New DarkCheckBox()
+        Me.checkAlertMess = New DarkCheckBox()
         Me.MysticTheme1.SuspendLayout()
         Me.ThirteenTabControl1.SuspendLayout()
         Me.tabGeneral.SuspendLayout()
@@ -440,37 +442,37 @@ Partial Class FormSettings
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents MysticTheme1 As USB_Security.MysticTheme
-    Friend WithEvents MysticClose1 As USB_Security.MysticClose
-    Friend WithEvents btnCancelar As USB_Security.MysticButton
-    Friend WithEvents btnAceptar As USB_Security.MysticButton
-    Friend WithEvents ThirteenTabControl1 As USB_Security.ThirteenTabControl
+    Friend WithEvents MysticTheme1 As DarkTheme
+    Friend WithEvents MysticClose1 As DarkClose
+    Friend WithEvents btnCancelar As DarkButton
+    Friend WithEvents btnAceptar As DarkButton
+    Friend WithEvents ThirteenTabControl1 As DarkTabControl
     Friend WithEvents tabGeneral As System.Windows.Forms.TabPage
-    Friend WithEvents checkStartSystem As USB_Security.MysticCheckBox
+    Friend WithEvents checkStartSystem As DarkCheckBox
     Friend WithEvents tabRegistry As System.Windows.Forms.TabPage
     Friend WithEvents tabNotify As System.Windows.Forms.TabPage
-    Friend WithEvents comboDetectFilesSuspect As USB_Security.ThirteenComboBox
+    Friend WithEvents comboDetectFilesSuspect As DarkComboBox
     Friend WithEvents Label5 As System.Windows.Forms.Label
-    Friend WithEvents checkCreateProtUSB As USB_Security.MysticCheckBox
-    Friend WithEvents checkOpenDevice As USB_Security.MysticCheckBox
-    Friend WithEvents comboDetectMalware As USB_Security.ThirteenComboBox
+    Friend WithEvents checkCreateProtUSB As DarkCheckBox
+    Friend WithEvents checkOpenDevice As DarkCheckBox
+    Friend WithEvents comboDetectMalware As DarkComboBox
     Friend WithEvents Label6 As System.Windows.Forms.Label
-    Friend WithEvents checkShowFFHidden As USB_Security.MysticCheckBox
-    Friend WithEvents checkCreateProtHDD As USB_Security.MysticCheckBox
-    Friend WithEvents checkFindNewsUpdates As USB_Security.MysticCheckBox
-    Friend WithEvents checkCopyLastUpdate As USB_Security.MysticCheckBox
+    Friend WithEvents checkShowFFHidden As DarkCheckBox
+    Friend WithEvents checkCreateProtHDD As DarkCheckBox
+    Friend WithEvents checkFindNewsUpdates As DarkCheckBox
+    Friend WithEvents checkCopyLastUpdate As DarkCheckBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents numRegSizeQuar As USB_Security.MysticTextBox
+    Friend WithEvents numRegSizeQuar As DarkTextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents checkSucesos As USB_Security.MysticCheckBox
-    Friend WithEvents checkExplorePC As USB_Security.MysticCheckBox
-    Friend WithEvents checkDisposConect As USB_Security.MysticCheckBox
-    Friend WithEvents checkAmenazasDetect As USB_Security.MysticCheckBox
-    Friend WithEvents checkReprodSounds As USB_Security.MysticCheckBox
-    Friend WithEvents checkResultadoAna As USB_Security.MysticCheckBox
-    Friend WithEvents checkFilesMoveToQuar As USB_Security.MysticCheckBox
-    Friend WithEvents checkUpdatedSuccess As USB_Security.MysticCheckBox
-    Friend WithEvents checkNoUpdated As USB_Security.MysticCheckBox
-    Friend WithEvents checkAlertMess As USB_Security.MysticCheckBox
+    Friend WithEvents checkSucesos As DarkCheckBox
+    Friend WithEvents checkExplorePC As DarkCheckBox
+    Friend WithEvents checkDisposConect As DarkCheckBox
+    Friend WithEvents checkAmenazasDetect As DarkCheckBox
+    Friend WithEvents checkReprodSounds As DarkCheckBox
+    Friend WithEvents checkResultadoAna As DarkCheckBox
+    Friend WithEvents checkFilesMoveToQuar As DarkCheckBox
+    Friend WithEvents checkUpdatedSuccess As DarkCheckBox
+    Friend WithEvents checkNoUpdated As DarkCheckBox
+    Friend WithEvents checkAlertMess As DarkCheckBox
     Friend WithEvents Label7 As System.Windows.Forms.Label
 End Class

@@ -1,6 +1,6 @@
 ﻿Public Class FormAbout
 
-    Private Sub MysticClose1_Click(sender As Object, e As EventArgs) Handles MysticClose1.Click
+    Private Sub MysticClose1_Click(sender As Object, e As EventArgs) Handles ThemeClose1.Click
         Dispose()
     End Sub
 

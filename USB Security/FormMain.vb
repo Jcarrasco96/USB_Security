@@ -1,22 +1,21 @@
 ﻿Imports System.Runtime.InteropServices
-Imports vblibusb.Constants
 Imports vblibusb.LogicUSB
 Imports vblibusb
 
 Public Class FormMain
 
+    Dim thread As Threading.Thread
+
     Private PROTECTION_ENABLED = True
     Private HASHES = 0
 
     Protected Overrides Sub WndProc(ByRef m As Message)
-        MyBase.WndProc(m)
-
         Select Case m.Msg
-            Case deviceChange ' Cambian los dispositivos del sistema
+            Case WM_DEVICECHANGE ' Cambian los dispositivos del sistema
                 Select Case m.WParam.ToInt32
-                    Case deviceArrival ' Llegada de un dispositivo. Se insertó un dispositivo en la unidad
+                    Case DBT_DEVICEARRIVAL ' Llegada de un dispositivo. Se insertó un dispositivo en la unidad
                         Dim devType As Integer = Marshal.ReadInt32(m.LParam, 4)
-                        If PROTECTION_ENABLED And devType = deviceTypeVolume Then ' Si proteccion esta habilitada y es un volumen lógico... (unidad de disco)
+                        If PROTECTION_ENABLED And devType = DBT_DEVTYP_VOLUME Then ' Si proteccion esta habilitada y es un volumen lógico... (unidad de disco)
                             Dim vol As Device = Marshal.PtrToStructure(m.LParam, GetType(Device))
                             Dim drive As String = LetraUnidad(vol.dispMask)
                             Dim drvInfo As IO.DriveInfo = My.Computer.FileSystem.GetDriveInfo(drive)
@@ -27,10 +26,6 @@ Public Class FormMain
                 End Select
             Case WM_POWER
                 Select Case m.WParam
-                    'Case WM_SCAN_DRIVE
-                    'hideTimerOff()
-                    'Dim drive As String = Chr(m.LParam.ToInt32) & ":\"
-                    'MsgBox(drive & " otro")
                     Case WM_MESSAGE
                         Select Case m.LParam
                             Case WM_SCAN_NOVIRUS
@@ -49,16 +44,26 @@ Public Class FormMain
                                 Notificar("Existe una actualización más reciente", "Actualización obsoleta", ToolTipIcon.Error)
                             Case WM_UPDATE_NOUPDATE
                                 Notificar("Este archivo no posee una actualización compatible con esta versión de " & AppNameSpace, "Actualización incompatible", ToolTipIcon.Error)
+                            Case WM_SCAN_START
+                                thread = New Threading.Thread(AddressOf ChangeNotifyIcon)
+                                thread.Start()
+                            Case WM_SCAN_STOP
+                                thread.Abort()
+                                notify.Icon = My.Resources.icon
                             Case Else
                                 MsgBox(m.LParam)
                         End Select
                         'updateStatusProtection()
                 End Select
         End Select
+        MyBase.WndProc(m)
     End Sub
 
     Private Sub FormMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CheckForIllegalCrossThreadCalls = False
+
+        'WindowState = FormWindowState.Minimized
+        'Visible = False
 
         MysticTheme1.Text = AppNameSpace & " " & Application.ProductVersion
 
@@ -97,6 +102,11 @@ Public Class FormMain
     End Sub
 
     Private Sub MnuExit_Click(sender As Object, e As EventArgs) Handles mnuExit.Click
+        Try
+            thread.Abort()
+        Catch ex As Exception
+
+        End Try
         Dispose()
     End Sub
 
@@ -230,9 +240,51 @@ Public Class FormMain
         End If
     End Sub
 
-    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
-        Hide()
-        FormFastScan.Show()
+    Private Sub ChangeNotifyIcon()
+        Dim count As Integer = 0
+
+        Try
+            While True
+                count += 1
+
+                If count = 14 Then count = 0 ' count 1 mas de los case
+
+                Select Case count
+                    Case 0
+                        notify.Icon = New Icon("C:\Users\Naty\Desktop\icos\ic_scan_01.ico")
+                    Case 1
+                        notify.Icon = New Icon("C:\Users\Naty\Desktop\icos\ic_scan_02.ico")
+                    Case 2
+                        notify.Icon = New Icon("C:\Users\Naty\Desktop\icos\ic_scan_03.ico")
+                    Case 3
+                        notify.Icon = New Icon("C:\Users\Naty\Desktop\icos\ic_scan_04.ico")
+                    Case 4
+                        notify.Icon = New Icon("C:\Users\Naty\Desktop\icos\ic_scan_05.ico")
+                    Case 5
+                        notify.Icon = New Icon("C:\Users\Naty\Desktop\icos\ic_scan_06.ico")
+                    Case 6
+                        notify.Icon = New Icon("C:\Users\Naty\Desktop\icos\ic_scan_07.ico")
+                    Case 7
+                        notify.Icon = New Icon("C:\Users\Naty\Desktop\icos\ic_scan_08.ico")
+                    Case 8
+                        notify.Icon = New Icon("C:\Users\Naty\Desktop\icos\ic_scan_09.ico")
+                    Case 9
+                        notify.Icon = New Icon("C:\Users\Naty\Desktop\icos\ic_scan_10.ico")
+                    Case 10
+                        notify.Icon = New Icon("C:\Users\Naty\Desktop\icos\ic_scan_11.ico")
+                    Case 11
+                        notify.Icon = New Icon("C:\Users\Naty\Desktop\icos\ic_scan_12.ico")
+                    Case 12
+                        notify.Icon = New Icon("C:\Users\Naty\Desktop\icos\ic_scan_13.ico")
+                    Case 13
+                        notify.Icon = New Icon("C:\Users\Naty\Desktop\icos\ic_scan_14.ico")
+                End Select
+
+                Threading.Thread.Sleep(100)
+            End While
+        Catch ex As Exception
+
+        End Try
     End Sub
 
 End Class

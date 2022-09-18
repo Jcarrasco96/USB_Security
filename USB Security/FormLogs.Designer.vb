@@ -1,4 +1,6 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿Imports Theme
+
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class FormLogs
     Inherits System.Windows.Forms.Form
 
@@ -22,16 +24,16 @@ Partial Class FormLogs
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.MysticTheme1 = New USB_Security.MysticTheme()
-        Me.MysticButton3 = New USB_Security.MysticButton()
-        Me.MysticButton2 = New USB_Security.MysticButton()
-        Me.MysticButton1 = New USB_Security.MysticButton()
-        Me.ThirteenTabControl1 = New USB_Security.ThirteenTabControl()
+        Me.MysticTheme1 = New Theme.DarkTheme()
+        Me.MysticButton3 = New Theme.DarkButton()
+        Me.MysticButton2 = New Theme.DarkButton()
+        Me.MysticButton1 = New Theme.DarkButton()
+        Me.ThirteenTabControl1 = New Theme.DarkTabControl()
         Me.tabGeneral = New System.Windows.Forms.TabPage()
         Me.listViewMalwares = New System.Windows.Forms.ListView()
         Me.tabRegistry = New System.Windows.Forms.TabPage()
         Me.listViewFuncionamiento = New System.Windows.Forms.ListView()
-        Me.MysticClose1 = New USB_Security.MysticClose()
+        Me.MysticClose1 = New Theme.DarkClose()
         Me.MysticTheme1.SuspendLayout()
         Me.ThirteenTabControl1.SuspendLayout()
         Me.tabGeneral.SuspendLayout()
@@ -163,14 +165,14 @@ Partial Class FormLogs
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents MysticClose1 As USB_Security.MysticClose
-    Friend WithEvents MysticTheme1 As USB_Security.MysticTheme
-    Friend WithEvents ThirteenTabControl1 As USB_Security.ThirteenTabControl
+    Friend WithEvents MysticClose1 As DarkClose
+    Friend WithEvents MysticTheme1 As DarkTheme
+    Friend WithEvents ThirteenTabControl1 As DarkTabControl
     Friend WithEvents tabGeneral As System.Windows.Forms.TabPage
     Friend WithEvents tabRegistry As System.Windows.Forms.TabPage
-    Friend WithEvents MysticButton3 As USB_Security.MysticButton
-    Friend WithEvents MysticButton2 As USB_Security.MysticButton
-    Friend WithEvents MysticButton1 As USB_Security.MysticButton
+    Friend WithEvents MysticButton3 As DarkButton
+    Friend WithEvents MysticButton2 As DarkButton
+    Friend WithEvents MysticButton1 As DarkButton
     Friend WithEvents listViewMalwares As System.Windows.Forms.ListView
     Friend WithEvents listViewFuncionamiento As System.Windows.Forms.ListView
 End Class

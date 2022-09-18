@@ -13,28 +13,11 @@ Module Helper
         FormMain.notify.ShowBalloonTip(d)
     End Sub
 
-    ' Altura de la barra de tareas
-    Function HeightTaskBar() As Integer
-        Return Screen.PrimaryScreen.Bounds.Height - Screen.PrimaryScreen.WorkingArea.Size.Height
-    End Function
-
-    ' Ancho de la barra de tareas
-    Function WidthTaskBar() As Integer
-        Return Screen.PrimaryScreen.Bounds.Width - Screen.PrimaryScreen.WorkingArea.Size.Width
-    End Function
-
-    Sub UpdatePosition(form As Form)
-        form.SetDesktopLocation(My.Computer.Screen.Bounds.Width - form.Width - WidthTaskBar() - 5, My.Computer.Screen.Bounds.Height - form.Height - HeightTaskBar())
-    End Sub
-
     Public Function LetraUnidad(unitmask As Integer) As String
         Dim units() As Char = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}
-        ' Convetimos la máscara en un array primario y buscamos el índice de la primera ocurrencia (la letra de unidad)
         Dim ba As New BitArray(BitConverter.GetBytes(unitmask))
         For i As Integer = 0 To ba.Length
-            If ba(i) = True Then
-                Return units(i) & ":\"
-            End If
+            If ba(i) Then Return units(i) & ":\"
         Next
         Return ""
     End Function
@@ -69,7 +52,7 @@ Module Helper
 
         ' Copiar el archivo de configuracion, si no existe
         If Not My.Computer.FileSystem.GetFileInfo(DirProject & "config.ini").Exists Then
-            My.Computer.FileSystem.WriteAllText(DirProject & "config.ini", My.Resources.config, False, Text.Encoding.Unicode)
+            My.Computer.FileSystem.WriteAllText(DirProject & "config.ini", My.Resources.config, False, System.Text.Encoding.Unicode)
         End If
         ' Copiar el icono de actualizacion, si no existe
         If Not My.Computer.FileSystem.GetFileInfo(DirProject & "ic_update.ico").Exists Then

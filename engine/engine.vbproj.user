@@ -11,7 +11,7 @@
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <StartArguments>scan-drive E:\</StartArguments>
+    <StartArguments>scan-drive G:\</StartArguments>
     <RemoteDebugEnabled>false</RemoteDebugEnabled>
     <StartWorkingDirectory>
     </StartWorkingDirectory>

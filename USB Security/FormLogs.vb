@@ -37,10 +37,10 @@ Public Class FormLogs
 
         listViewFuncionamiento.Items.Clear()
         listViewFuncionamiento.Columns.Clear()
-        listViewFuncionamiento.Columns.Add("Fecha", 140, HorizontalAlignment.Left)
-        listViewFuncionamiento.Columns.Add("Usuario", 100, HorizontalAlignment.Left)
-        listViewFuncionamiento.Columns.Add("Componente", 150, HorizontalAlignment.Left)
-        listViewFuncionamiento.Columns.Add("Detalles", 360, HorizontalAlignment.Left)
+        listViewFuncionamiento.Columns.Add("Fecha", 120, HorizontalAlignment.Left)
+        listViewFuncionamiento.Columns.Add("Usuario", 160, HorizontalAlignment.Left)
+        listViewFuncionamiento.Columns.Add("Componente", 120, HorizontalAlignment.Left)
+        listViewFuncionamiento.Columns.Add("Detalles", 300, HorizontalAlignment.Left)
 
         If My.Computer.FileSystem.GetFileInfo(filename).Exists Then
             Dim fields As String()

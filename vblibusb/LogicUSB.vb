@@ -4,8 +4,27 @@ Imports System.IO
 Imports Microsoft.Win32
 Imports Microsoft.VisualBasic.FileIO
 Imports SearchOption = System.IO.SearchOption
+Imports System.Windows.Forms
 
 Public Module LogicUSB
+
+    Public Const AppName As String = "USBSecurity"
+    Public Const AppNameSpace As String = "USB Security"
+    Public Const FileSizeMin As Integer = 1 ' Tamaño minimo de archivos a escanear
+    Public Const FileSizeMax As Integer = 67000000 ' Tamaño maximo de archivos a escanear ' 66168832
+    Public Const DaysToUpdate As Byte = 7 ' dias hasta notificar que el AV esta desactualizado
+
+    Function HeightTaskBar() As Integer
+        Return Screen.PrimaryScreen.Bounds.Height - Screen.PrimaryScreen.WorkingArea.Size.Height
+    End Function
+
+    Function WidthTaskBar() As Integer
+        Return Screen.PrimaryScreen.Bounds.Width - Screen.PrimaryScreen.WorkingArea.Size.Width
+    End Function
+
+    Sub UpdatePosition(form As Form)
+        form.SetDesktopLocation(My.Computer.Screen.Bounds.Width - form.Width - WidthTaskBar() - 5, My.Computer.Screen.Bounds.Height - form.Height - HeightTaskBar())
+    End Sub
 
     Public UserName As String = My.User.Name
     Public SysDirectory As String = Environment.SystemDirectory
@@ -13,18 +32,13 @@ Public Module LogicUSB
     Public AppData As String = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)
     Public DirExecPath As String = My.Application.Info.DirectoryPath & "\"
     Public DirProject As String = AppData & "\" & AppName & "\"
-    ' Rutas no tan estaticas, jaja
+    ' Otras rutas
     Public DirDef As String = DirProject & "bases\"
     Public DirCache As String = DirProject & "cache\"
     Public DirError As String = DirProject & "error\"
     Public DirIco As String = DirProject & "images\"
     Public DirQuar As String = DirProject & "quarantine\"
     Public DirSound As String = DirExecPath & "sound\"
-
-    Public Declare Function GetFileIconA Lib "SecurityIcons.dll" Alias "GetFileIcon" (txt As String) As String
-    Private Declare Function GetPrivateProfileString Lib "kernel32" Alias "GetPrivateProfileStringA" (lpApplicationName As String, lpKeyName As String, lpDefault As String, lpReturnedString As String, nSize As Integer, lpFileName As String) As Integer
-    Private Declare Function WritePrivateProfileString Lib "kernel32" Alias "WritePrivateProfileStringA" (lpApplicationName As String, lpKeyName As String, lpString As String, lpFileName As String) As Integer
-    Public Declare Function sndPlaySound Lib "winmm.dll" Alias "sndPlaySoundA" (lpszSoundName As String, uFlags As Long) As Long
 
     Public Function MD5Hash(t As String) As String
         Dim s As Byte() = Encoding.UTF8.GetBytes(t)
@@ -45,7 +59,6 @@ Public Module LogicUSB
         'On Error Resume Next
         Dim Md5 As New MD5CryptoServiceProvider
         Dim sBuilder As New StringBuilder
-
         Dim F As New FileStream(Path, FileMode.Open, FileAccess.Read, FileShare.Read, 8192)
 
         If F Is Nothing Then Return ""
@@ -160,19 +173,13 @@ Public Module LogicUSB
             If m1 > m2 Then
                 Return True
             ElseIf m1 = m2 Then
-                If d1 > d2 Then
-                    Return True
-                Else
-                    Return False
-                End If
+                Return d1 > d2
             Else
                 Return False
             End If
         Else
             Return False
         End If
-
-        Return True
     End Function
 
     ' Retorna la direccion original (en caso que exista) de un acceso directo
@@ -188,9 +195,7 @@ Public Module LogicUSB
     Public Function ValueOfFile(title As String, key As String, fn As String) As String
         Dim ret As New String("", 255)
 
-        If fn = "config.ini" Then
-            fn = DirProject & fn
-        End If
+        If fn = "config.ini" Then fn = DirProject & fn
 
         Dim fi = My.Computer.FileSystem.GetFileInfo(fn)
 
@@ -258,14 +263,22 @@ Safe:
 
     Public Function GetFiles(path As String) As List(Of String)
         Dim F As New List(Of String)
+
+        Try
+            F.AddRange(Directory.GetFiles(path, "*.*", SearchOption.TopDirectoryOnly))
+        Catch ex As Exception
+            Debug.WriteLine("-----GetFilesRoot-----" & ex.Message)
+            LogError("-----GetFilesRoot-----" & ex.Message & vbCrLf)
+        End Try
+
         For Each strDir As String In Directory.GetDirectories(path, "*.*", SearchOption.TopDirectoryOnly)
             Try
                 For Each strFile As String In Directory.GetFiles(strDir, "*.*", SearchOption.AllDirectories)
                     F.Add(strFile)
                 Next
             Catch ex As Exception
-                Debug.WriteLine("-----E-----" & ex.Message)
-                LogError("-----E-----" & ex.Message & vbCrLf)
+                Debug.WriteLine("-----GetFiles-----" & ex.Message)
+                LogError("-----GetFiles-----" & ex.Message & vbCrLf)
             End Try
         Next
 
@@ -287,7 +300,7 @@ Safe:
         file.Close()
 
         Try
-            My.Computer.FileSystem.DeleteFile(DirCache & "security00.cache")
+            DeleteFile(DirCache & "security00.cache")
         Catch ex As Exception
             LogError("-----ERROR-----" & vbCrLf & ex.Message & ex.StackTrace)
         End Try
@@ -310,7 +323,7 @@ Safe:
         file.Close()
 
         Try
-            My.Computer.FileSystem.DeleteFile(DirCache & "security01.cache")
+            DeleteFile(DirCache & "security01.cache")
         Catch ex As Exception
             LogError("-----ERROR-----" & vbCrLf & ex.Message & ex.StackTrace)
         End Try

@@ -1,4 +1,6 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿Imports Theme
+
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class FormQuarantine
     Inherits System.Windows.Forms.Form
 
@@ -22,17 +24,17 @@ Partial Class FormQuarantine
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.MysticTheme1 = New USB_Security.MysticTheme()
+        Me.MysticTheme1 = New Theme.DarkTheme()
         Me.labelSize = New System.Windows.Forms.Label()
         Me.ListView1 = New System.Windows.Forms.ListView()
         Me.colDateTime = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colName = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colPath = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colMalware = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.btnRestore = New USB_Security.MysticButton()
-        Me.btnDelete = New USB_Security.MysticButton()
-        Me.MysticButton1 = New USB_Security.MysticButton()
-        Me.MysticClose1 = New USB_Security.MysticClose()
+        Me.btnRestore = New Theme.DarkButton()
+        Me.btnDelete = New Theme.DarkButton()
+        Me.btnClear = New Theme.DarkButton()
+        Me.MysticClose1 = New Theme.DarkClose()
         Me.MysticTheme1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -42,7 +44,7 @@ Partial Class FormQuarantine
         Me.MysticTheme1.Controls.Add(Me.ListView1)
         Me.MysticTheme1.Controls.Add(Me.btnRestore)
         Me.MysticTheme1.Controls.Add(Me.btnDelete)
-        Me.MysticTheme1.Controls.Add(Me.MysticButton1)
+        Me.MysticTheme1.Controls.Add(Me.btnClear)
         Me.MysticTheme1.Controls.Add(Me.MysticClose1)
         Me.MysticTheme1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.MysticTheme1.Location = New System.Drawing.Point(0, 0)
@@ -59,11 +61,11 @@ Partial Class FormQuarantine
         Me.labelSize.BackColor = System.Drawing.Color.Transparent
         Me.labelSize.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.labelSize.ForeColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(189, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.labelSize.Location = New System.Drawing.Point(12, 526)
+        Me.labelSize.Location = New System.Drawing.Point(12, 533)
         Me.labelSize.Name = "labelSize"
-        Me.labelSize.Size = New System.Drawing.Size(86, 16)
+        Me.labelSize.Size = New System.Drawing.Size(127, 16)
         Me.labelSize.TabIndex = 5
-        Me.labelSize.Text = "0 ARCHIVOS"
+        Me.labelSize.Text = "0 ARCHIVOS / 0 MB"
         '
         'ListView1
         '
@@ -118,14 +120,14 @@ Partial Class FormQuarantine
         Me.btnDelete.TabIndex = 2
         Me.btnDelete.Text = "Eliminar"
         '
-        'MysticButton1
+        'btnClear
         '
-        Me.MysticButton1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.MysticButton1.Location = New System.Drawing.Point(652, 519)
-        Me.MysticButton1.Name = "MysticButton1"
-        Me.MysticButton1.Size = New System.Drawing.Size(120, 30)
-        Me.MysticButton1.TabIndex = 1
-        Me.MysticButton1.Text = "Vaciar registro"
+        Me.btnClear.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnClear.Location = New System.Drawing.Point(652, 519)
+        Me.btnClear.Name = "btnClear"
+        Me.btnClear.Size = New System.Drawing.Size(120, 30)
+        Me.btnClear.TabIndex = 1
+        Me.btnClear.Text = "Vaciar registro"
         '
         'MysticClose1
         '
@@ -155,11 +157,11 @@ Partial Class FormQuarantine
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents MysticTheme1 As USB_Security.MysticTheme
-    Friend WithEvents MysticClose1 As USB_Security.MysticClose
-    Friend WithEvents MysticButton1 As USB_Security.MysticButton
-    Friend WithEvents btnRestore As USB_Security.MysticButton
-    Friend WithEvents btnDelete As USB_Security.MysticButton
+    Friend WithEvents MysticTheme1 As DarkTheme
+    Friend WithEvents MysticClose1 As DarkClose
+    Friend WithEvents btnClear As DarkButton
+    Friend WithEvents btnRestore As DarkButton
+    Friend WithEvents btnDelete As DarkButton
     Friend WithEvents ListView1 As System.Windows.Forms.ListView
     Friend WithEvents labelSize As System.Windows.Forms.Label
     Friend WithEvents colDateTime As System.Windows.Forms.ColumnHeader

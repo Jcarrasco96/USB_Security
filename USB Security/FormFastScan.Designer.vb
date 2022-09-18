@@ -1,4 +1,6 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿Imports Theme
+
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class FormFastScan
     Inherits System.Windows.Forms.Form
 
@@ -32,12 +34,12 @@ Partial Class FormFastScan
         Me.lblStart = New System.Windows.Forms.Label()
         Me.lblServices = New System.Windows.Forms.Label()
         Me.lblBases = New System.Windows.Forms.Label()
-        Me.MysticTheme1 = New USB_Security.MysticTheme()
+        Me.MysticTheme1 = New DarkTheme()
         Me.lblTotal = New System.Windows.Forms.Label()
         Me.lblMalwares = New System.Windows.Forms.Label()
-        Me.MysticButton1 = New USB_Security.MysticButton()
+        Me.MysticButton1 = New DarkButton()
         Me.lblStatus = New System.Windows.Forms.Label()
-        Me.MysticClose1 = New USB_Security.MysticClose()
+        Me.MysticClose1 = New DarkClose()
         Me.MysticTheme1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -229,11 +231,11 @@ Partial Class FormFastScan
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents MysticTheme1 As USB_Security.MysticTheme
-    Friend WithEvents MysticClose1 As USB_Security.MysticClose
+    Friend WithEvents MysticTheme1 As DarkTheme
+    Friend WithEvents MysticClose1 As DarkClose
     Friend WithEvents lblStatus As System.Windows.Forms.Label
     Friend WithEvents bwScanner As System.ComponentModel.BackgroundWorker
-    Friend WithEvents MysticButton1 As USB_Security.MysticButton
+    Friend WithEvents MysticButton1 As DarkButton
     Friend WithEvents lblMalwares As System.Windows.Forms.Label
     Friend WithEvents lblBases As System.Windows.Forms.Label
     Friend WithEvents lblCritic As System.Windows.Forms.Label

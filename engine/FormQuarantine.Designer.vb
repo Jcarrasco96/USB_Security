@@ -1,4 +1,6 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿Imports Theme
+
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class FormQuarantine
     Inherits System.Windows.Forms.Form
 
@@ -23,11 +25,11 @@ Partial Class FormQuarantine
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormQuarantine))
-        Me.MysticTheme1 = New engine.MysticTheme()
+        Me.MysticTheme1 = New DarkTheme
         Me.ListView1 = New System.Windows.Forms.ListView()
         Me.colFile = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colMalware = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.MysticClose1 = New engine.MysticClose()
+        Me.MysticClose1 = New DarkClose()
         Me.MysticTheme1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -90,8 +92,8 @@ Partial Class FormQuarantine
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents MysticTheme1 As engine.MysticTheme
-    Friend WithEvents MysticClose1 As engine.MysticClose
+    Friend WithEvents MysticTheme1 As DarkTheme
+    Friend WithEvents MysticClose1 As DarkClose
     Friend WithEvents ListView1 As System.Windows.Forms.ListView
     Friend WithEvents colFile As System.Windows.Forms.ColumnHeader
     Friend WithEvents colMalware As System.Windows.Forms.ColumnHeader

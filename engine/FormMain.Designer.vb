@@ -1,4 +1,6 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+﻿Imports Theme
+
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormMain
     Inherits System.Windows.Forms.Form
 
@@ -24,11 +26,11 @@ Partial Class FormMain
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMain))
         Me.FileScanner = New System.ComponentModel.BackgroundWorker()
-        Me.MysticTheme1 = New engine.MysticTheme()
+        Me.MysticTheme1 = New DarkTheme()
         Me.labelLoading = New System.Windows.Forms.Label()
         Me.labelDetect = New System.Windows.Forms.Label()
-        Me.MysticClose1 = New engine.MysticClose()
-        Me.progressTotal = New engine.ProgressB()
+        Me.MysticClose1 = New DarkClose()
+        Me.progressTotal = New DarkProgressBar()
         Me.picDrive = New System.Windows.Forms.PictureBox()
         Me.labelSize = New System.Windows.Forms.Label()
         Me.labelPath = New System.Windows.Forms.Label()
@@ -170,14 +172,14 @@ Partial Class FormMain
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents MysticTheme1 As engine.MysticTheme
+    Friend WithEvents MysticTheme1 As DarkTheme
     Friend WithEvents labelName As System.Windows.Forms.Label
     Friend WithEvents labelSize As System.Windows.Forms.Label
     Friend WithEvents labelPath As System.Windows.Forms.Label
     Friend WithEvents FileScanner As System.ComponentModel.BackgroundWorker
     Friend WithEvents picDrive As System.Windows.Forms.PictureBox
-    Friend WithEvents progressTotal As engine.ProgressB
-    Friend WithEvents MysticClose1 As engine.MysticClose
+    Friend WithEvents progressTotal As DarkProgressBar
+    Friend WithEvents MysticClose1 As DarkClose
     Friend WithEvents labelDetect As System.Windows.Forms.Label
     Friend WithEvents labelLoading As Label
 End Class

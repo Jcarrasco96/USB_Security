@@ -13,6 +13,9 @@ Public Class FormMain
 
     Private Sub FileScanner_DoWork(sender As Object, e As DoWorkEventArgs) Handles FileScanner.DoWork
         On Error Resume Next
+
+        SendMyMessage(WM_SCAN_START)
+
         Dim Files As New List(Of String)
         FilesDetected = New List(Of Virus)
 
@@ -84,16 +87,15 @@ Public Class FormMain
     Private Sub FileScanner_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles FileScanner.RunWorkerCompleted
         Me.Hide()
 
+        SendMyMessage(WM_SCAN_STOP)
+
         If Options.checkResultadoAna Then
-            Dim handle As Integer = FindWindow(vbNullString, "USBSecurity - Main")
-            If handle > 0 Then
-                If FilesDetected.Count = 0 Then
-                    SendMessage(handle, WM_POWER, WM_MESSAGE, WM_SCAN_NOVIRUS)
-                ElseIf FilesDetected.Count = 1 Then
-                    SendMessage(handle, WM_POWER, WM_MESSAGE, WM_SCAN_ONEVIRUS)
-                ElseIf FilesDetected.Count > 1 Then
-                    SendMessage(handle, WM_POWER, WM_MESSAGE, WM_SCAN_MANYVIRUS)
-                End If
+            If FilesDetected.Count = 0 Then
+                SendMyMessage(WM_SCAN_NOVIRUS)
+            ElseIf FilesDetected.Count = 1 Then
+                SendMyMessage(WM_SCAN_ONEVIRUS)
+            ElseIf FilesDetected.Count > 1 Then
+                SendMyMessage(WM_SCAN_MANYVIRUS)
             End If
         End If
 
@@ -102,6 +104,7 @@ Public Class FormMain
         End If
 
         Dim filesToQuar As New List(Of Virus)
+
         For Each virus As Virus In FilesDetected
             If Options.comboDetectMalware = 1 Then ' Añadir directamente a la cuarentena
                 Dim f = My.Computer.FileSystem.GetFileInfo(virus.filepath)

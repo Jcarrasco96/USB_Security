@@ -20,10 +20,8 @@ Module Helper
     ' Escribir datos del archivo "datetime, filepath, filesize, malwarename, size, file"
     '                       string, string,   string,     long,      string, long, byte()
     Function AddToQuarantine(filepath As String, fileSize As Long, malwareName As String) As Boolean
-        Dim drive As String = filepath.Substring(0, 3)
-        Dim success As Boolean = False
-        Dim filenameTMP As String = DirQuar & MD5Hash(Now.ToString) & ".ENC_TMP"
-        Dim filenameQUA As String = DirQuar & MD5Hash(Now.ToString) & ".QUA"
+        Dim filenameTMP As String = DirQuar & MD5Hash(Now.Ticks) & ".ENC_TMP"
+        Dim filenameQUA As String = DirQuar & MD5Hash(Now.Ticks) & ".QUA"
 
         If malwareName.Equals("") Or malwareName.Equals("NO_MALWARE", StringComparison.OrdinalIgnoreCase) Then malwareName = "Unknown"
 
@@ -71,7 +69,7 @@ Module Helper
                         LogError("------Error en el proceso del sistema------" & vbCrLf & ex.Message & vbCrLf & ex.StackTrace)
                     End Try
                 Next
-                My.Computer.FileSystem.DeleteFile(file.FullName)
+                DeleteFile(file.FullName)
                 file.Refresh()
             Catch ex As Exception
                 LogError("------Error al tratar de eliminar el archivo 02------" & vbCrLf & ex.Message & vbCrLf & ex.StackTrace)
@@ -82,20 +80,6 @@ Module Helper
 
         Return Not file.Exists
     End Function
-
-    ' Altura de la barra de tareas
-    Function HeightTaskBar() As Integer
-        Return Screen.PrimaryScreen.Bounds.Height - Screen.PrimaryScreen.WorkingArea.Size.Height
-    End Function
-
-    ' Ancho de la barra de tareas
-    Function WidthTaskBar() As Integer
-        Return Screen.PrimaryScreen.Bounds.Width - Screen.PrimaryScreen.WorkingArea.Size.Width
-    End Function
-
-    Sub UpdatePosition(form As Form)
-        form.SetDesktopLocation(My.Computer.Screen.Bounds.Width - form.Width - WidthTaskBar() - 5, My.Computer.Screen.Bounds.Height - form.Height - HeightTaskBar())
-    End Sub
 
     Public Function SPECIALDIRECTORIESSS() As List(Of String)
         Dim FoldersSpecial As New List(Of String) From {
@@ -206,9 +190,9 @@ Module Helper
             SendMessage(handle, WM_POWER, WM_MESSAGE, WM_UPDATE_NOUPDATE) ' Este archivo no posee una actualización compatible con esta versión de USB Security
         End If
 
-        If My.Computer.FileSystem.FileExists(DirCache & "config.cache") Then My.Computer.FileSystem.DeleteFile(DirCache & "config.cache")
-        If My.Computer.FileSystem.FileExists(DirCache & "config.sec") Then My.Computer.FileSystem.DeleteFile(DirCache & "config.sec")
-        If My.Computer.FileSystem.FileExists(DirCache & "new.cache") Then My.Computer.FileSystem.DeleteFile(DirCache & "new.cache")
+        If My.Computer.FileSystem.FileExists(DirCache & "config.cache") Then DeleteFile(DirCache & "config.cache")
+        If My.Computer.FileSystem.FileExists(DirCache & "config.sec") Then DeleteFile(DirCache & "config.sec")
+        If My.Computer.FileSystem.FileExists(DirCache & "new.cache") Then DeleteFile(DirCache & "new.cache")
     End Sub
 
 End Module

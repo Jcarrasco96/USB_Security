@@ -1,4 +1,6 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿Imports Theme
+
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class FormDetected
     Inherits System.Windows.Forms.Form
 
@@ -23,14 +25,14 @@ Partial Class FormDetected
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormDetected))
-        Me.MysticTheme1 = New engine.MysticTheme()
+        Me.MysticTheme1 = New DarkTheme
         Me.labelMalware = New System.Windows.Forms.Label()
         Me.labelPath = New System.Windows.Forms.Label()
         Me.labelName = New System.Windows.Forms.Label()
-        Me.btnMoveQuar = New engine.MysticButton()
-        Me.btnDelete = New engine.MysticButton()
-        Me.btnIgnore = New engine.MysticButton()
-        Me.MysticClose1 = New engine.MysticClose()
+        Me.btnMoveQuar = New DarkButton()
+        Me.btnDelete = New DarkButton()
+        Me.btnIgnore = New DarkButton()
+        Me.MysticClose1 = New DarkClose()
         Me.MysticTheme1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -143,11 +145,11 @@ Partial Class FormDetected
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents MysticTheme1 As engine.MysticTheme
-    Friend WithEvents MysticClose1 As engine.MysticClose
-    Friend WithEvents btnIgnore As engine.MysticButton
-    Friend WithEvents btnMoveQuar As engine.MysticButton
-    Friend WithEvents btnDelete As engine.MysticButton
+    Friend WithEvents MysticTheme1 As DarkTheme
+    Friend WithEvents MysticClose1 As DarkClose
+    Friend WithEvents btnIgnore As DarkButton
+    Friend WithEvents btnMoveQuar As DarkButton
+    Friend WithEvents btnDelete As DarkButton
     Friend WithEvents labelPath As System.Windows.Forms.Label
     Friend WithEvents labelName As System.Windows.Forms.Label
     Friend WithEvents labelMalware As System.Windows.Forms.Label

@@ -20,7 +20,7 @@ Public Class FormFastScan
         Options = New ScanOptions
 
         lblStatus.Text = "Iniciando motores de búsqueda..."
-        EngineScan = New EngineScan(Options)
+        EngineScan = New EngineScan(SystemDrive, Options)
         FastScan = New FastScanClass
         FilesDetected = New List(Of Virus)
 

@@ -157,12 +157,6 @@
   <data name="secur002" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\secur002.sec;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="secur003" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\secur003.sec;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="secur004" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\secur004.sec;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="secur006" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\secur006.sec;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

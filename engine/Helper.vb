@@ -49,15 +49,16 @@ Module Helper
         Dim file = My.Computer.FileSystem.GetFileInfo(filename)
 
         Try
+            file.Attributes = FileAttributes.Normal
             file.Delete()
         Catch ex As Exception
-            LogError("------Error al tratar de eliminar el archivo 01------" & vbCrLf & ex.Message & vbCrLf & ex.StackTrace)
+            LogError("Helper::SecureDeleteFile" & vbCrLf & "------Error al tratar de eliminar el archivo 01------" & vbCrLf & filename & vbCrLf & ex.Message & vbCrLf & ex.StackTrace)
         End Try
         file.Refresh()
 
         If file.Exists Then
             Try
-                file.Attributes = IO.FileAttributes.Normal
+                'file.Attributes = FileAttributes.Normal
                 Dim procesos() As Process = Process.GetProcesses()
                 For Each proceso As Process In procesos
                     Try
@@ -66,13 +67,13 @@ Module Helper
                             proceso.Close()
                         End If
                     Catch ex As Exception
-                        LogError("------Error en el proceso del sistema------" & vbCrLf & ex.Message & vbCrLf & ex.StackTrace)
+                        LogError("Helper::SecureDeleteFile" & vbCrLf & "------Error en el proceso del sistema------" & vbCrLf & proceso.MainModule.FileName.ToLower & vbCrLf & ex.Message & vbCrLf & ex.StackTrace)
                     End Try
                 Next
                 DeleteFile(file.FullName)
                 file.Refresh()
             Catch ex As Exception
-                LogError("------Error al tratar de eliminar el archivo 02------" & vbCrLf & ex.Message & vbCrLf & ex.StackTrace)
+                LogError("Helper::SecureDeleteFile" & vbCrLf & "------Error al tratar de eliminar el archivo 02------" & vbCrLf & filename & vbCrLf & ex.Message & vbCrLf & ex.StackTrace)
             End Try
         End If
 

@@ -24,455 +24,434 @@ Partial Class FormSettings
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.MysticTheme1 = New DarkTheme()
-        Me.btnAceptar = New DarkButton()
-        Me.btnCancelar = New DarkButton()
-        Me.MysticClose1 = New DarkClose()
-        Me.ThirteenTabControl1 = New DarkTabControl()
-        Me.tabGeneral = New System.Windows.Forms.TabPage()
-        Me.checkFindNewsUpdates = New DarkCheckBox()
-        Me.checkCopyLastUpdate = New DarkCheckBox()
-        Me.checkShowFFHidden = New DarkCheckBox()
-        Me.checkCreateProtHDD = New DarkCheckBox()
-        Me.comboDetectMalware = New DarkComboBox()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.checkCreateProtUSB = New DarkCheckBox()
-        Me.checkOpenDevice = New DarkCheckBox()
-        Me.comboDetectFilesSuspect = New DarkComboBox()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.checkStartSystem = New DarkCheckBox()
+        Me.tabNotify = New System.Windows.Forms.TabPage()
         Me.tabRegistry = New System.Windows.Forms.TabPage()
+        Me.tabGeneral = New System.Windows.Forms.TabPage()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.btnCancel = New System.Windows.Forms.Button()
+        Me.btnAccept = New System.Windows.Forms.Button()
+        Me.checkStartSystem = New System.Windows.Forms.CheckBox()
+        Me.checkOpenDevice = New System.Windows.Forms.CheckBox()
+        Me.checkCreateProtUSB = New System.Windows.Forms.CheckBox()
+        Me.checkCreateProtHDD = New System.Windows.Forms.CheckBox()
+        Me.checkShowFFHidden = New System.Windows.Forms.CheckBox()
+        Me.checkFindNewsUpdates = New System.Windows.Forms.CheckBox()
+        Me.checkCopyLastUpdate = New System.Windows.Forms.CheckBox()
+        Me.comboDetectMalware = New System.Windows.Forms.ComboBox()
+        Me.comboDetectFilesSuspect = New System.Windows.Forms.ComboBox()
+        Me.checkAmenazasDetect = New System.Windows.Forms.CheckBox()
+        Me.checkDisposConect = New System.Windows.Forms.CheckBox()
+        Me.checkExplorePC = New System.Windows.Forms.CheckBox()
+        Me.checkSucesos = New System.Windows.Forms.CheckBox()
+        Me.checkAlertMess = New System.Windows.Forms.CheckBox()
+        Me.checkNoUpdated = New System.Windows.Forms.CheckBox()
+        Me.checkUpdatedSuccess = New System.Windows.Forms.CheckBox()
+        Me.checkFilesMoveToQuar = New System.Windows.Forms.CheckBox()
+        Me.checkResultadoAna = New System.Windows.Forms.CheckBox()
+        Me.checkReprodSounds = New System.Windows.Forms.CheckBox()
+        Me.numRegSizeQuar = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.numRegSizeQuar = New DarkTextBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.checkSucesos = New DarkCheckBox()
-        Me.checkExplorePC = New DarkCheckBox()
-        Me.checkDisposConect = New DarkCheckBox()
-        Me.checkAmenazasDetect = New DarkCheckBox()
-        Me.tabNotify = New System.Windows.Forms.TabPage()
-        Me.checkReprodSounds = New DarkCheckBox()
-        Me.checkResultadoAna = New DarkCheckBox()
-        Me.checkFilesMoveToQuar = New DarkCheckBox()
-        Me.checkUpdatedSuccess = New DarkCheckBox()
-        Me.checkNoUpdated = New DarkCheckBox()
-        Me.checkAlertMess = New DarkCheckBox()
-        Me.MysticTheme1.SuspendLayout()
-        Me.ThirteenTabControl1.SuspendLayout()
-        Me.tabGeneral.SuspendLayout()
-        Me.tabRegistry.SuspendLayout()
         Me.tabNotify.SuspendLayout()
+        Me.tabRegistry.SuspendLayout()
+        Me.tabGeneral.SuspendLayout()
+        Me.TabControl1.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'MysticTheme1
-        '
-        Me.MysticTheme1.Controls.Add(Me.btnAceptar)
-        Me.MysticTheme1.Controls.Add(Me.btnCancelar)
-        Me.MysticTheme1.Controls.Add(Me.MysticClose1)
-        Me.MysticTheme1.Controls.Add(Me.ThirteenTabControl1)
-        Me.MysticTheme1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.MysticTheme1.Location = New System.Drawing.Point(0, 0)
-        Me.MysticTheme1.Movible = True
-        Me.MysticTheme1.Name = "MysticTheme1"
-        Me.MysticTheme1.Size = New System.Drawing.Size(615, 415)
-        Me.MysticTheme1.TabIndex = 0
-        Me.MysticTheme1.Text = "Ajustes"
-        '
-        'btnAceptar
-        '
-        Me.btnAceptar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAceptar.Location = New System.Drawing.Point(427, 373)
-        Me.btnAceptar.Name = "btnAceptar"
-        Me.btnAceptar.Size = New System.Drawing.Size(85, 30)
-        Me.btnAceptar.TabIndex = 3
-        Me.btnAceptar.Text = "Aceptar"
-        '
-        'btnCancelar
-        '
-        Me.btnCancelar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnCancelar.Location = New System.Drawing.Point(518, 373)
-        Me.btnCancelar.Name = "btnCancelar"
-        Me.btnCancelar.Size = New System.Drawing.Size(85, 30)
-        Me.btnCancelar.TabIndex = 2
-        Me.btnCancelar.Text = "Cancelar"
-        '
-        'MysticClose1
-        '
-        Me.MysticClose1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.MysticClose1.BackColor = System.Drawing.Color.Transparent
-        Me.MysticClose1.Cursor = System.Windows.Forms.Cursors.Default
-        Me.MysticClose1.Location = New System.Drawing.Point(585, 6)
-        Me.MysticClose1.Name = "MysticClose1"
-        Me.MysticClose1.Size = New System.Drawing.Size(24, 24)
-        Me.MysticClose1.TabIndex = 1
-        Me.MysticClose1.Text = "MysticClose1"
-        '
-        'ThirteenTabControl1
-        '
-        Me.ThirteenTabControl1.Controls.Add(Me.tabGeneral)
-        Me.ThirteenTabControl1.Controls.Add(Me.tabRegistry)
-        Me.ThirteenTabControl1.Controls.Add(Me.tabNotify)
-        Me.ThirteenTabControl1.ForeColor = System.Drawing.Color.White
-        Me.ThirteenTabControl1.Location = New System.Drawing.Point(12, 46)
-        Me.ThirteenTabControl1.Name = "ThirteenTabControl1"
-        Me.ThirteenTabControl1.SelectedIndex = 0
-        Me.ThirteenTabControl1.Size = New System.Drawing.Size(591, 315)
-        Me.ThirteenTabControl1.TabIndex = 0
-        '
-        'tabGeneral
-        '
-        Me.tabGeneral.BackColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        Me.tabGeneral.Controls.Add(Me.checkFindNewsUpdates)
-        Me.tabGeneral.Controls.Add(Me.checkCopyLastUpdate)
-        Me.tabGeneral.Controls.Add(Me.checkShowFFHidden)
-        Me.tabGeneral.Controls.Add(Me.checkCreateProtHDD)
-        Me.tabGeneral.Controls.Add(Me.comboDetectMalware)
-        Me.tabGeneral.Controls.Add(Me.Label6)
-        Me.tabGeneral.Controls.Add(Me.checkCreateProtUSB)
-        Me.tabGeneral.Controls.Add(Me.checkOpenDevice)
-        Me.tabGeneral.Controls.Add(Me.comboDetectFilesSuspect)
-        Me.tabGeneral.Controls.Add(Me.Label5)
-        Me.tabGeneral.Controls.Add(Me.checkStartSystem)
-        Me.tabGeneral.Location = New System.Drawing.Point(4, 25)
-        Me.tabGeneral.Name = "tabGeneral"
-        Me.tabGeneral.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabGeneral.Size = New System.Drawing.Size(583, 286)
-        Me.tabGeneral.TabIndex = 0
-        Me.tabGeneral.Text = "General"
-        '
-        'checkFindNewsUpdates
-        '
-        Me.checkFindNewsUpdates.Checked = False
-        Me.checkFindNewsUpdates.Location = New System.Drawing.Point(15, 147)
-        Me.checkFindNewsUpdates.Name = "checkFindNewsUpdates"
-        Me.checkFindNewsUpdates.Size = New System.Drawing.Size(548, 16)
-        Me.checkFindNewsUpdates.TabIndex = 21
-        Me.checkFindNewsUpdates.Text = "Buscar nuevas actualizaciones en los dispositivos"
-        '
-        'checkCopyLastUpdate
-        '
-        Me.checkCopyLastUpdate.Checked = False
-        Me.checkCopyLastUpdate.Location = New System.Drawing.Point(15, 125)
-        Me.checkCopyLastUpdate.Name = "checkCopyLastUpdate"
-        Me.checkCopyLastUpdate.Size = New System.Drawing.Size(548, 16)
-        Me.checkCopyLastUpdate.TabIndex = 20
-        Me.checkCopyLastUpdate.Text = "Copiar la última actualización a todos los dispositivos externos que se conecten " &
-    "a esta PC"
-        '
-        'checkShowFFHidden
-        '
-        Me.checkShowFFHidden.Checked = False
-        Me.checkShowFFHidden.Location = New System.Drawing.Point(15, 103)
-        Me.checkShowFFHidden.Name = "checkShowFFHidden"
-        Me.checkShowFFHidden.Size = New System.Drawing.Size(548, 16)
-        Me.checkShowFFHidden.TabIndex = 17
-        Me.checkShowFFHidden.Text = "Mostrar archivos y carpetas ocultas en los dispositivos"
-        '
-        'checkCreateProtHDD
-        '
-        Me.checkCreateProtHDD.Checked = False
-        Me.checkCreateProtHDD.Location = New System.Drawing.Point(15, 81)
-        Me.checkCreateProtHDD.Name = "checkCreateProtHDD"
-        Me.checkCreateProtHDD.Size = New System.Drawing.Size(548, 16)
-        Me.checkCreateProtHDD.TabIndex = 15
-        Me.checkCreateProtHDD.Text = "Crear protección en unidades HDD"
-        '
-        'comboDetectMalware
-        '
-        Me.comboDetectMalware.AccentColor = System.Drawing.Color.DodgerBlue
-        Me.comboDetectMalware.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
-        Me.comboDetectMalware.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.comboDetectMalware.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboDetectMalware.Font = New System.Drawing.Font("Segoe UI Semilight", 9.75!)
-        Me.comboDetectMalware.ForeColor = System.Drawing.Color.White
-        Me.comboDetectMalware.FormattingEnabled = True
-        Me.comboDetectMalware.Items.AddRange(New Object() {"Preguntar al usuario", "Mover a cuarentena"})
-        Me.comboDetectMalware.Location = New System.Drawing.Point(314, 191)
-        Me.comboDetectMalware.Name = "comboDetectMalware"
-        Me.comboDetectMalware.Size = New System.Drawing.Size(249, 26)
-        Me.comboDetectMalware.TabIndex = 14
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(15, 197)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(125, 13)
-        Me.Label6.TabIndex = 13
-        Me.Label6.Text = "Al detectar una amenaza"
-        '
-        'checkCreateProtUSB
-        '
-        Me.checkCreateProtUSB.Checked = False
-        Me.checkCreateProtUSB.Location = New System.Drawing.Point(15, 59)
-        Me.checkCreateProtUSB.Name = "checkCreateProtUSB"
-        Me.checkCreateProtUSB.Size = New System.Drawing.Size(548, 16)
-        Me.checkCreateProtUSB.TabIndex = 12
-        Me.checkCreateProtUSB.Text = "Crear protección en unidades USB"
-        '
-        'checkOpenDevice
-        '
-        Me.checkOpenDevice.Checked = False
-        Me.checkOpenDevice.Location = New System.Drawing.Point(15, 37)
-        Me.checkOpenDevice.Name = "checkOpenDevice"
-        Me.checkOpenDevice.Size = New System.Drawing.Size(548, 16)
-        Me.checkOpenDevice.TabIndex = 11
-        Me.checkOpenDevice.Text = "Abrir dispositivos luego de analizarlos"
-        '
-        'comboDetectFilesSuspect
-        '
-        Me.comboDetectFilesSuspect.AccentColor = System.Drawing.Color.DodgerBlue
-        Me.comboDetectFilesSuspect.BackColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
-        Me.comboDetectFilesSuspect.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.comboDetectFilesSuspect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboDetectFilesSuspect.Font = New System.Drawing.Font("Segoe UI Semilight", 9.75!)
-        Me.comboDetectFilesSuspect.ForeColor = System.Drawing.Color.White
-        Me.comboDetectFilesSuspect.FormattingEnabled = True
-        Me.comboDetectFilesSuspect.Items.AddRange(New Object() {"Bajo", "Normal", "Alto"})
-        Me.comboDetectFilesSuspect.Location = New System.Drawing.Point(314, 223)
-        Me.comboDetectFilesSuspect.Name = "comboDetectFilesSuspect"
-        Me.comboDetectFilesSuspect.Size = New System.Drawing.Size(249, 26)
-        Me.comboDetectFilesSuspect.TabIndex = 10
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(15, 229)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(179, 13)
-        Me.Label5.TabIndex = 9
-        Me.Label5.Text = "Detección de archivos sospechosos"
-        '
-        'checkStartSystem
-        '
-        Me.checkStartSystem.Checked = False
-        Me.checkStartSystem.Location = New System.Drawing.Point(15, 15)
-        Me.checkStartSystem.Name = "checkStartSystem"
-        Me.checkStartSystem.Size = New System.Drawing.Size(548, 16)
-        Me.checkStartSystem.TabIndex = 1
-        Me.checkStartSystem.Text = "Iniciar con el sistema"
-        '
-        'tabRegistry
-        '
-        Me.tabRegistry.BackColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
-        Me.tabRegistry.Controls.Add(Me.Label7)
-        Me.tabRegistry.Controls.Add(Me.Label3)
-        Me.tabRegistry.Controls.Add(Me.numRegSizeQuar)
-        Me.tabRegistry.Controls.Add(Me.Label1)
-        Me.tabRegistry.Controls.Add(Me.checkSucesos)
-        Me.tabRegistry.Controls.Add(Me.checkExplorePC)
-        Me.tabRegistry.Controls.Add(Me.checkDisposConect)
-        Me.tabRegistry.Controls.Add(Me.checkAmenazasDetect)
-        Me.tabRegistry.Location = New System.Drawing.Point(4, 25)
-        Me.tabRegistry.Name = "tabRegistry"
-        Me.tabRegistry.Size = New System.Drawing.Size(583, 286)
-        Me.tabRegistry.TabIndex = 3
-        Me.tabRegistry.Text = "Registro"
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(283, 133)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(97, 13)
-        Me.Label7.TabIndex = 21
-        Me.Label7.Text = "0 - no borrar nunca"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(367, 111)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(22, 13)
-        Me.Label3.TabIndex = 20
-        Me.Label3.Text = "Mb"
-        '
-        'numRegSizeQuar
-        '
-        Me.numRegSizeQuar.BackColor = System.Drawing.Color.Transparent
-        Me.numRegSizeQuar.Location = New System.Drawing.Point(286, 103)
-        Me.numRegSizeQuar.MaxLength = 32767
-        Me.numRegSizeQuar.Multiline = False
-        Me.numRegSizeQuar.Name = "numRegSizeQuar"
-        Me.numRegSizeQuar.ReadOnly = False
-        Me.numRegSizeQuar.Size = New System.Drawing.Size(75, 27)
-        Me.numRegSizeQuar.TabIndex = 19
-        Me.numRegSizeQuar.Text = "100"
-        Me.numRegSizeQuar.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.numRegSizeQuar.UseSystemPasswordChar = False
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(14, 110)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(266, 13)
-        Me.Label1.TabIndex = 18
-        Me.Label1.Text = "Eliminar archivos de la cuarentena cuando sobrepasen"
-        '
-        'checkSucesos
-        '
-        Me.checkSucesos.Checked = False
-        Me.checkSucesos.Location = New System.Drawing.Point(15, 81)
-        Me.checkSucesos.Name = "checkSucesos"
-        Me.checkSucesos.Size = New System.Drawing.Size(548, 16)
-        Me.checkSucesos.TabIndex = 17
-        Me.checkSucesos.Text = "Sucesos"
-        '
-        'checkExplorePC
-        '
-        Me.checkExplorePC.Checked = False
-        Me.checkExplorePC.Location = New System.Drawing.Point(15, 59)
-        Me.checkExplorePC.Name = "checkExplorePC"
-        Me.checkExplorePC.Size = New System.Drawing.Size(548, 16)
-        Me.checkExplorePC.TabIndex = 16
-        Me.checkExplorePC.Text = "Exploración del equipo"
-        '
-        'checkDisposConect
-        '
-        Me.checkDisposConect.Checked = False
-        Me.checkDisposConect.Location = New System.Drawing.Point(15, 37)
-        Me.checkDisposConect.Name = "checkDisposConect"
-        Me.checkDisposConect.Size = New System.Drawing.Size(548, 16)
-        Me.checkDisposConect.TabIndex = 15
-        Me.checkDisposConect.Text = "Dispositivos conectados"
-        '
-        'checkAmenazasDetect
-        '
-        Me.checkAmenazasDetect.Checked = False
-        Me.checkAmenazasDetect.Location = New System.Drawing.Point(15, 15)
-        Me.checkAmenazasDetect.Name = "checkAmenazasDetect"
-        Me.checkAmenazasDetect.Size = New System.Drawing.Size(548, 16)
-        Me.checkAmenazasDetect.TabIndex = 14
-        Me.checkAmenazasDetect.Text = "Amenazas detectadas"
         '
         'tabNotify
         '
-        Me.tabNotify.BackColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
+        Me.tabNotify.BackColor = System.Drawing.Color.White
         Me.tabNotify.Controls.Add(Me.checkReprodSounds)
         Me.tabNotify.Controls.Add(Me.checkResultadoAna)
         Me.tabNotify.Controls.Add(Me.checkFilesMoveToQuar)
         Me.tabNotify.Controls.Add(Me.checkUpdatedSuccess)
         Me.tabNotify.Controls.Add(Me.checkNoUpdated)
         Me.tabNotify.Controls.Add(Me.checkAlertMess)
-        Me.tabNotify.Location = New System.Drawing.Point(4, 25)
+        Me.tabNotify.Location = New System.Drawing.Point(4, 22)
         Me.tabNotify.Name = "tabNotify"
-        Me.tabNotify.Size = New System.Drawing.Size(583, 286)
+        Me.tabNotify.Padding = New System.Windows.Forms.Padding(10)
+        Me.tabNotify.Size = New System.Drawing.Size(453, 282)
         Me.tabNotify.TabIndex = 4
         Me.tabNotify.Text = "Notificación"
         '
-        'checkReprodSounds
+        'tabRegistry
         '
-        Me.checkReprodSounds.Checked = False
-        Me.checkReprodSounds.Location = New System.Drawing.Point(15, 125)
-        Me.checkReprodSounds.Name = "checkReprodSounds"
-        Me.checkReprodSounds.Size = New System.Drawing.Size(548, 16)
-        Me.checkReprodSounds.TabIndex = 22
-        Me.checkReprodSounds.Text = "Reproducir alertas sonoras"
+        Me.tabRegistry.BackColor = System.Drawing.Color.White
+        Me.tabRegistry.Controls.Add(Me.checkSucesos)
+        Me.tabRegistry.Controls.Add(Me.checkExplorePC)
+        Me.tabRegistry.Controls.Add(Me.checkDisposConect)
+        Me.tabRegistry.Controls.Add(Me.checkAmenazasDetect)
+        Me.tabRegistry.Location = New System.Drawing.Point(4, 22)
+        Me.tabRegistry.Name = "tabRegistry"
+        Me.tabRegistry.Padding = New System.Windows.Forms.Padding(10)
+        Me.tabRegistry.Size = New System.Drawing.Size(453, 282)
+        Me.tabRegistry.TabIndex = 3
+        Me.tabRegistry.Text = "Registro"
         '
-        'checkResultadoAna
+        'tabGeneral
         '
-        Me.checkResultadoAna.Checked = False
-        Me.checkResultadoAna.Location = New System.Drawing.Point(15, 103)
-        Me.checkResultadoAna.Name = "checkResultadoAna"
-        Me.checkResultadoAna.Size = New System.Drawing.Size(548, 16)
-        Me.checkResultadoAna.TabIndex = 21
-        Me.checkResultadoAna.Text = "Resultado de análisis"
+        Me.tabGeneral.BackColor = System.Drawing.Color.White
+        Me.tabGeneral.Controls.Add(Me.numRegSizeQuar)
+        Me.tabGeneral.Controls.Add(Me.Label7)
+        Me.tabGeneral.Controls.Add(Me.Label3)
+        Me.tabGeneral.Controls.Add(Me.Label1)
+        Me.tabGeneral.Controls.Add(Me.comboDetectFilesSuspect)
+        Me.tabGeneral.Controls.Add(Me.comboDetectMalware)
+        Me.tabGeneral.Controls.Add(Me.checkCopyLastUpdate)
+        Me.tabGeneral.Controls.Add(Me.checkFindNewsUpdates)
+        Me.tabGeneral.Controls.Add(Me.checkShowFFHidden)
+        Me.tabGeneral.Controls.Add(Me.checkCreateProtHDD)
+        Me.tabGeneral.Controls.Add(Me.checkCreateProtUSB)
+        Me.tabGeneral.Controls.Add(Me.checkOpenDevice)
+        Me.tabGeneral.Controls.Add(Me.checkStartSystem)
+        Me.tabGeneral.Controls.Add(Me.Label6)
+        Me.tabGeneral.Controls.Add(Me.Label5)
+        Me.tabGeneral.Location = New System.Drawing.Point(4, 22)
+        Me.tabGeneral.Name = "tabGeneral"
+        Me.tabGeneral.Padding = New System.Windows.Forms.Padding(10)
+        Me.tabGeneral.Size = New System.Drawing.Size(453, 282)
+        Me.tabGeneral.TabIndex = 0
+        Me.tabGeneral.Text = "General"
         '
-        'checkFilesMoveToQuar
+        'Label6
         '
-        Me.checkFilesMoveToQuar.Checked = False
-        Me.checkFilesMoveToQuar.Location = New System.Drawing.Point(15, 81)
-        Me.checkFilesMoveToQuar.Name = "checkFilesMoveToQuar"
-        Me.checkFilesMoveToQuar.Size = New System.Drawing.Size(548, 16)
-        Me.checkFilesMoveToQuar.TabIndex = 20
-        Me.checkFilesMoveToQuar.Text = "Archivos movidos a cuarentena"
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.Location = New System.Drawing.Point(13, 182)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(125, 13)
+        Me.Label6.TabIndex = 13
+        Me.Label6.Text = "Al detectar una amenaza"
         '
-        'checkUpdatedSuccess
+        'Label5
         '
-        Me.checkUpdatedSuccess.Checked = False
-        Me.checkUpdatedSuccess.Location = New System.Drawing.Point(15, 59)
-        Me.checkUpdatedSuccess.Name = "checkUpdatedSuccess"
-        Me.checkUpdatedSuccess.Size = New System.Drawing.Size(548, 16)
-        Me.checkUpdatedSuccess.TabIndex = 19
-        Me.checkUpdatedSuccess.Text = "Antivirus actualizado con exito"
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Location = New System.Drawing.Point(13, 209)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(179, 13)
+        Me.Label5.TabIndex = 9
+        Me.Label5.Text = "Detección de archivos sospechosos"
         '
-        'checkNoUpdated
+        'TabControl1
         '
-        Me.checkNoUpdated.Checked = False
-        Me.checkNoUpdated.Location = New System.Drawing.Point(15, 37)
-        Me.checkNoUpdated.Name = "checkNoUpdated"
-        Me.checkNoUpdated.Size = New System.Drawing.Size(548, 16)
-        Me.checkNoUpdated.TabIndex = 18
-        Me.checkNoUpdated.Text = "Antivirus desactualizado"
+        Me.TabControl1.Controls.Add(Me.tabGeneral)
+        Me.TabControl1.Controls.Add(Me.tabRegistry)
+        Me.TabControl1.Controls.Add(Me.tabNotify)
+        Me.TabControl1.Location = New System.Drawing.Point(12, 12)
+        Me.TabControl1.Name = "TabControl1"
+        Me.TabControl1.SelectedIndex = 0
+        Me.TabControl1.Size = New System.Drawing.Size(461, 308)
+        Me.TabControl1.TabIndex = 4
+        '
+        'btnCancel
+        '
+        Me.btnCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnCancel.Location = New System.Drawing.Point(394, 326)
+        Me.btnCancel.Name = "btnCancel"
+        Me.btnCancel.Size = New System.Drawing.Size(75, 23)
+        Me.btnCancel.TabIndex = 5
+        Me.btnCancel.Text = "Cancelar"
+        Me.btnCancel.UseVisualStyleBackColor = True
+        '
+        'btnAccept
+        '
+        Me.btnAccept.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnAccept.Location = New System.Drawing.Point(313, 326)
+        Me.btnAccept.Name = "btnAccept"
+        Me.btnAccept.Size = New System.Drawing.Size(75, 23)
+        Me.btnAccept.TabIndex = 6
+        Me.btnAccept.Text = "Aceptar"
+        Me.btnAccept.UseVisualStyleBackColor = True
+        '
+        'checkStartSystem
+        '
+        Me.checkStartSystem.AutoSize = True
+        Me.checkStartSystem.Location = New System.Drawing.Point(13, 13)
+        Me.checkStartSystem.Name = "checkStartSystem"
+        Me.checkStartSystem.Size = New System.Drawing.Size(124, 17)
+        Me.checkStartSystem.TabIndex = 22
+        Me.checkStartSystem.Text = "Iniciar con el sistema"
+        Me.checkStartSystem.UseVisualStyleBackColor = True
+        '
+        'checkOpenDevice
+        '
+        Me.checkOpenDevice.AutoSize = True
+        Me.checkOpenDevice.Location = New System.Drawing.Point(13, 36)
+        Me.checkOpenDevice.Name = "checkOpenDevice"
+        Me.checkOpenDevice.Size = New System.Drawing.Size(200, 17)
+        Me.checkOpenDevice.TabIndex = 23
+        Me.checkOpenDevice.Text = "Abrir dispositivos luego de analizarlos"
+        Me.checkOpenDevice.UseVisualStyleBackColor = True
+        '
+        'checkCreateProtUSB
+        '
+        Me.checkCreateProtUSB.AutoSize = True
+        Me.checkCreateProtUSB.Location = New System.Drawing.Point(13, 59)
+        Me.checkCreateProtUSB.Name = "checkCreateProtUSB"
+        Me.checkCreateProtUSB.Size = New System.Drawing.Size(190, 17)
+        Me.checkCreateProtUSB.TabIndex = 24
+        Me.checkCreateProtUSB.Text = "Crear protección en unidades USB"
+        Me.checkCreateProtUSB.UseVisualStyleBackColor = True
+        '
+        'checkCreateProtHDD
+        '
+        Me.checkCreateProtHDD.AutoSize = True
+        Me.checkCreateProtHDD.Location = New System.Drawing.Point(13, 82)
+        Me.checkCreateProtHDD.Name = "checkCreateProtHDD"
+        Me.checkCreateProtHDD.Size = New System.Drawing.Size(192, 17)
+        Me.checkCreateProtHDD.TabIndex = 25
+        Me.checkCreateProtHDD.Text = "Crear protección en unidades HDD"
+        Me.checkCreateProtHDD.UseVisualStyleBackColor = True
+        '
+        'checkShowFFHidden
+        '
+        Me.checkShowFFHidden.AutoSize = True
+        Me.checkShowFFHidden.Location = New System.Drawing.Point(13, 105)
+        Me.checkShowFFHidden.Name = "checkShowFFHidden"
+        Me.checkShowFFHidden.Size = New System.Drawing.Size(281, 17)
+        Me.checkShowFFHidden.TabIndex = 26
+        Me.checkShowFFHidden.Text = "Mostrar archivos y carpetas ocultas en los dispositivos"
+        Me.checkShowFFHidden.UseVisualStyleBackColor = True
+        '
+        'checkFindNewsUpdates
+        '
+        Me.checkFindNewsUpdates.AutoSize = True
+        Me.checkFindNewsUpdates.Location = New System.Drawing.Point(13, 151)
+        Me.checkFindNewsUpdates.Name = "checkFindNewsUpdates"
+        Me.checkFindNewsUpdates.Size = New System.Drawing.Size(261, 17)
+        Me.checkFindNewsUpdates.TabIndex = 27
+        Me.checkFindNewsUpdates.Text = "Buscar nuevas actualizaciones en los dispositivos"
+        Me.checkFindNewsUpdates.UseVisualStyleBackColor = True
+        '
+        'checkCopyLastUpdate
+        '
+        Me.checkCopyLastUpdate.AutoSize = True
+        Me.checkCopyLastUpdate.Location = New System.Drawing.Point(13, 128)
+        Me.checkCopyLastUpdate.Name = "checkCopyLastUpdate"
+        Me.checkCopyLastUpdate.Size = New System.Drawing.Size(419, 17)
+        Me.checkCopyLastUpdate.TabIndex = 28
+        Me.checkCopyLastUpdate.Text = "Copiar la última actualización a los dispositivos externos que se conecten a este" & _
+    " PC"
+        Me.checkCopyLastUpdate.UseVisualStyleBackColor = True
+        '
+        'comboDetectMalware
+        '
+        Me.comboDetectMalware.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboDetectMalware.FormattingEnabled = True
+        Me.comboDetectMalware.Items.AddRange(New Object() {"Preguntar al usuario", "Mover a cuarentena"})
+        Me.comboDetectMalware.Location = New System.Drawing.Point(285, 174)
+        Me.comboDetectMalware.Name = "comboDetectMalware"
+        Me.comboDetectMalware.Size = New System.Drawing.Size(121, 21)
+        Me.comboDetectMalware.TabIndex = 29
+        '
+        'comboDetectFilesSuspect
+        '
+        Me.comboDetectFilesSuspect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboDetectFilesSuspect.FormattingEnabled = True
+        Me.comboDetectFilesSuspect.Items.AddRange(New Object() {"Bajo", "Normal", "Alto"})
+        Me.comboDetectFilesSuspect.Location = New System.Drawing.Point(285, 201)
+        Me.comboDetectFilesSuspect.Name = "comboDetectFilesSuspect"
+        Me.comboDetectFilesSuspect.Size = New System.Drawing.Size(121, 21)
+        Me.comboDetectFilesSuspect.TabIndex = 30
+        '
+        'checkAmenazasDetect
+        '
+        Me.checkAmenazasDetect.AutoSize = True
+        Me.checkAmenazasDetect.Location = New System.Drawing.Point(13, 13)
+        Me.checkAmenazasDetect.Name = "checkAmenazasDetect"
+        Me.checkAmenazasDetect.Size = New System.Drawing.Size(131, 17)
+        Me.checkAmenazasDetect.TabIndex = 23
+        Me.checkAmenazasDetect.Text = "Amenazas detectadas"
+        Me.checkAmenazasDetect.UseVisualStyleBackColor = True
+        '
+        'checkDisposConect
+        '
+        Me.checkDisposConect.AutoSize = True
+        Me.checkDisposConect.Location = New System.Drawing.Point(13, 36)
+        Me.checkDisposConect.Name = "checkDisposConect"
+        Me.checkDisposConect.Size = New System.Drawing.Size(141, 17)
+        Me.checkDisposConect.TabIndex = 24
+        Me.checkDisposConect.Text = "Dispositivos conectados"
+        Me.checkDisposConect.UseVisualStyleBackColor = True
+        '
+        'checkExplorePC
+        '
+        Me.checkExplorePC.AutoSize = True
+        Me.checkExplorePC.Location = New System.Drawing.Point(13, 59)
+        Me.checkExplorePC.Name = "checkExplorePC"
+        Me.checkExplorePC.Size = New System.Drawing.Size(133, 17)
+        Me.checkExplorePC.TabIndex = 25
+        Me.checkExplorePC.Text = "Exploración del equipo"
+        Me.checkExplorePC.UseVisualStyleBackColor = True
+        '
+        'checkSucesos
+        '
+        Me.checkSucesos.AutoSize = True
+        Me.checkSucesos.Location = New System.Drawing.Point(13, 82)
+        Me.checkSucesos.Name = "checkSucesos"
+        Me.checkSucesos.Size = New System.Drawing.Size(67, 17)
+        Me.checkSucesos.TabIndex = 26
+        Me.checkSucesos.Text = "Sucesos"
+        Me.checkSucesos.UseVisualStyleBackColor = True
         '
         'checkAlertMess
         '
-        Me.checkAlertMess.Checked = False
-        Me.checkAlertMess.Location = New System.Drawing.Point(15, 15)
+        Me.checkAlertMess.AutoSize = True
+        Me.checkAlertMess.Location = New System.Drawing.Point(13, 13)
         Me.checkAlertMess.Name = "checkAlertMess"
-        Me.checkAlertMess.Size = New System.Drawing.Size(548, 16)
-        Me.checkAlertMess.TabIndex = 17
+        Me.checkAlertMess.Size = New System.Drawing.Size(170, 17)
+        Me.checkAlertMess.TabIndex = 23
         Me.checkAlertMess.Text = "Alertas y mensajes importantes"
+        Me.checkAlertMess.UseVisualStyleBackColor = True
+        '
+        'checkNoUpdated
+        '
+        Me.checkNoUpdated.AutoSize = True
+        Me.checkNoUpdated.Location = New System.Drawing.Point(13, 36)
+        Me.checkNoUpdated.Name = "checkNoUpdated"
+        Me.checkNoUpdated.Size = New System.Drawing.Size(140, 17)
+        Me.checkNoUpdated.TabIndex = 24
+        Me.checkNoUpdated.Text = "Antivirus desactualizado"
+        Me.checkNoUpdated.UseVisualStyleBackColor = True
+        '
+        'checkUpdatedSuccess
+        '
+        Me.checkUpdatedSuccess.AutoSize = True
+        Me.checkUpdatedSuccess.Location = New System.Drawing.Point(13, 59)
+        Me.checkUpdatedSuccess.Name = "checkUpdatedSuccess"
+        Me.checkUpdatedSuccess.Size = New System.Drawing.Size(169, 17)
+        Me.checkUpdatedSuccess.TabIndex = 25
+        Me.checkUpdatedSuccess.Text = "Antivirus actualizado con exito"
+        Me.checkUpdatedSuccess.UseVisualStyleBackColor = True
+        '
+        'checkFilesMoveToQuar
+        '
+        Me.checkFilesMoveToQuar.AutoSize = True
+        Me.checkFilesMoveToQuar.Location = New System.Drawing.Point(13, 82)
+        Me.checkFilesMoveToQuar.Name = "checkFilesMoveToQuar"
+        Me.checkFilesMoveToQuar.Size = New System.Drawing.Size(175, 17)
+        Me.checkFilesMoveToQuar.TabIndex = 26
+        Me.checkFilesMoveToQuar.Text = "Archivos movidos a cuarentena"
+        Me.checkFilesMoveToQuar.UseVisualStyleBackColor = True
+        '
+        'checkResultadoAna
+        '
+        Me.checkResultadoAna.AutoSize = True
+        Me.checkResultadoAna.Location = New System.Drawing.Point(13, 105)
+        Me.checkResultadoAna.Name = "checkResultadoAna"
+        Me.checkResultadoAna.Size = New System.Drawing.Size(126, 17)
+        Me.checkResultadoAna.TabIndex = 27
+        Me.checkResultadoAna.Text = "Resultado de análisis"
+        Me.checkResultadoAna.UseVisualStyleBackColor = True
+        '
+        'checkReprodSounds
+        '
+        Me.checkReprodSounds.AutoSize = True
+        Me.checkReprodSounds.Location = New System.Drawing.Point(13, 128)
+        Me.checkReprodSounds.Name = "checkReprodSounds"
+        Me.checkReprodSounds.Size = New System.Drawing.Size(152, 17)
+        Me.checkReprodSounds.TabIndex = 28
+        Me.checkReprodSounds.Text = "Reproducir alertas sonoras"
+        Me.checkReprodSounds.UseVisualStyleBackColor = True
+        '
+        'numRegSizeQuar
+        '
+        Me.numRegSizeQuar.Location = New System.Drawing.Point(285, 228)
+        Me.numRegSizeQuar.Name = "numRegSizeQuar"
+        Me.numRegSizeQuar.Size = New System.Drawing.Size(121, 20)
+        Me.numRegSizeQuar.TabIndex = 34
+        Me.numRegSizeQuar.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.Location = New System.Drawing.Point(282, 251)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(97, 13)
+        Me.Label7.TabIndex = 33
+        Me.Label7.Text = "0 - no borrar nunca"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(412, 235)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(22, 13)
+        Me.Label3.TabIndex = 32
+        Me.Label3.Text = "Mb"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(13, 235)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(266, 13)
+        Me.Label1.TabIndex = 31
+        Me.Label1.Text = "Eliminar archivos de la cuarentena cuando sobrepasen"
         '
         'FormSettings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(615, 415)
-        Me.Controls.Add(Me.MysticTheme1)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.ClientSize = New System.Drawing.Size(484, 361)
+        Me.Controls.Add(Me.btnAccept)
+        Me.Controls.Add(Me.btnCancel)
+        Me.Controls.Add(Me.TabControl1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "FormSettings"
+        Me.ShowIcon = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "FormSettings"
+        Me.Text = "Ajustes"
         Me.TransparencyKey = System.Drawing.Color.Fuchsia
-        Me.MysticTheme1.ResumeLayout(False)
-        Me.ThirteenTabControl1.ResumeLayout(False)
-        Me.tabGeneral.ResumeLayout(False)
-        Me.tabGeneral.PerformLayout()
+        Me.tabNotify.ResumeLayout(False)
+        Me.tabNotify.PerformLayout()
         Me.tabRegistry.ResumeLayout(False)
         Me.tabRegistry.PerformLayout()
-        Me.tabNotify.ResumeLayout(False)
+        Me.tabGeneral.ResumeLayout(False)
+        Me.tabGeneral.PerformLayout()
+        Me.TabControl1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents MysticTheme1 As DarkTheme
-    Friend WithEvents MysticClose1 As DarkClose
-    Friend WithEvents btnCancelar As DarkButton
-    Friend WithEvents btnAceptar As DarkButton
-    Friend WithEvents ThirteenTabControl1 As DarkTabControl
-    Friend WithEvents tabGeneral As System.Windows.Forms.TabPage
-    Friend WithEvents checkStartSystem As DarkCheckBox
-    Friend WithEvents tabRegistry As System.Windows.Forms.TabPage
     Friend WithEvents tabNotify As System.Windows.Forms.TabPage
-    Friend WithEvents comboDetectFilesSuspect As DarkComboBox
-    Friend WithEvents Label5 As System.Windows.Forms.Label
-    Friend WithEvents checkCreateProtUSB As DarkCheckBox
-    Friend WithEvents checkOpenDevice As DarkCheckBox
-    Friend WithEvents comboDetectMalware As DarkComboBox
+    Friend WithEvents tabRegistry As System.Windows.Forms.TabPage
+    Friend WithEvents tabGeneral As System.Windows.Forms.TabPage
     Friend WithEvents Label6 As System.Windows.Forms.Label
-    Friend WithEvents checkShowFFHidden As DarkCheckBox
-    Friend WithEvents checkCreateProtHDD As DarkCheckBox
-    Friend WithEvents checkFindNewsUpdates As DarkCheckBox
-    Friend WithEvents checkCopyLastUpdate As DarkCheckBox
-    Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents numRegSizeQuar As DarkTextBox
-    Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents checkSucesos As DarkCheckBox
-    Friend WithEvents checkExplorePC As DarkCheckBox
-    Friend WithEvents checkDisposConect As DarkCheckBox
-    Friend WithEvents checkAmenazasDetect As DarkCheckBox
-    Friend WithEvents checkReprodSounds As DarkCheckBox
-    Friend WithEvents checkResultadoAna As DarkCheckBox
-    Friend WithEvents checkFilesMoveToQuar As DarkCheckBox
-    Friend WithEvents checkUpdatedSuccess As DarkCheckBox
-    Friend WithEvents checkNoUpdated As DarkCheckBox
-    Friend WithEvents checkAlertMess As DarkCheckBox
+    Friend WithEvents Label5 As System.Windows.Forms.Label
+    Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
+    Friend WithEvents btnCancel As System.Windows.Forms.Button
+    Friend WithEvents btnAccept As System.Windows.Forms.Button
+    Friend WithEvents checkOpenDevice As System.Windows.Forms.CheckBox
+    Friend WithEvents checkStartSystem As System.Windows.Forms.CheckBox
+    Friend WithEvents checkShowFFHidden As System.Windows.Forms.CheckBox
+    Friend WithEvents checkCreateProtHDD As System.Windows.Forms.CheckBox
+    Friend WithEvents checkCreateProtUSB As System.Windows.Forms.CheckBox
+    Friend WithEvents comboDetectFilesSuspect As System.Windows.Forms.ComboBox
+    Friend WithEvents comboDetectMalware As System.Windows.Forms.ComboBox
+    Friend WithEvents checkCopyLastUpdate As System.Windows.Forms.CheckBox
+    Friend WithEvents checkFindNewsUpdates As System.Windows.Forms.CheckBox
+    Friend WithEvents checkReprodSounds As System.Windows.Forms.CheckBox
+    Friend WithEvents checkResultadoAna As System.Windows.Forms.CheckBox
+    Friend WithEvents checkFilesMoveToQuar As System.Windows.Forms.CheckBox
+    Friend WithEvents checkUpdatedSuccess As System.Windows.Forms.CheckBox
+    Friend WithEvents checkNoUpdated As System.Windows.Forms.CheckBox
+    Friend WithEvents checkAlertMess As System.Windows.Forms.CheckBox
+    Friend WithEvents checkSucesos As System.Windows.Forms.CheckBox
+    Friend WithEvents checkExplorePC As System.Windows.Forms.CheckBox
+    Friend WithEvents checkDisposConect As System.Windows.Forms.CheckBox
+    Friend WithEvents checkAmenazasDetect As System.Windows.Forms.CheckBox
+    Friend WithEvents numRegSizeQuar As System.Windows.Forms.TextBox
     Friend WithEvents Label7 As System.Windows.Forms.Label
+    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents Label1 As System.Windows.Forms.Label
 End Class

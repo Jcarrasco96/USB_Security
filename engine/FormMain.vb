@@ -12,12 +12,15 @@ Public Class FormMain
     Public tScan As TypeScan
 
     Private Sub FileScanner_DoWork(sender As Object, e As DoWorkEventArgs) Handles FileScanner.DoWork
-        On Error Resume Next
+        'On Error Resume Next
 
         SendMyMessage(WM_SCAN_START)
 
         Dim Files As New List(Of String)
         FilesDetected = New List(Of Virus)
+
+        Options = New ScanOptions
+        EngineScan = New EngineScan(path.Substring(0, 3), Options)
 
         Select Case tScan
             Case TypeScan.FULL_SCAN ' analizar todo el sistema
@@ -64,8 +67,6 @@ Public Class FormMain
 
         End Select
 
-        'MysticTheme1.Invalidate()
-
         ShowAll()
 
         If tScan = TypeScan.FILE_SCAN Then
@@ -77,6 +78,8 @@ Public Class FormMain
             For Each file As String In Files
                 ScanFile(file)
                 progressTotal.Value += 1
+
+                lblPercent.Text = Int(progressTotal.Value * 100 / Files.Count) & "%"
                 If FileScanner.CancellationPending = True Then Exit For
             Next
 
@@ -160,9 +163,6 @@ Public Class FormMain
 
         ShowAll(False)
 
-        Options = New ScanOptions
-        EngineScan = New EngineScan(Options)
-
         If FileScanner.IsBusy = False Then
             FileScanner.RunWorkerAsync()
         Else
@@ -197,6 +197,7 @@ Public Class FormMain
         labelPath.Visible = show
         labelSize.Visible = show
         labelDetect.Visible = show
+        'lblPercent.Visible = show
         'progressTotal.Visible = show
         labelLoading.Visible = Not show
     End Sub

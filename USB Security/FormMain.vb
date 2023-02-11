@@ -4,10 +4,9 @@ Imports vblibusb
 
 Public Class FormMain
 
-    Dim thread As Threading.Thread
+    'Dim thread As Threading.Thread
 
     Private PROTECTION_ENABLED = True
-    Private HASHES = 0
 
     Protected Overrides Sub WndProc(ByRef m As Message)
         Select Case m.Msg
@@ -45,11 +44,11 @@ Public Class FormMain
                             Case WM_UPDATE_NOUPDATE
                                 Notificar("Este archivo no posee una actualización compatible con esta versión de " & AppNameSpace, "Actualización incompatible", ToolTipIcon.Error)
                             Case WM_SCAN_START
-                                thread = New Threading.Thread(AddressOf ChangeNotifyIcon)
-                                thread.Start()
+                                'thread = New Threading.Thread(AddressOf ChangeNotifyIcon)
+                                'thread.Start()
                             Case WM_SCAN_STOP
-                                thread.Abort()
-                                notify.Icon = My.Resources.icon
+                                'thread.Abort()
+                                'notify.Icon = My.Resources.icon
                             Case Else
                                 MsgBox(m.LParam)
                         End Select
@@ -74,8 +73,6 @@ Public Class FormMain
         notify.Text = AppNameSpace
         notify.Icon = My.Resources.icon
 
-        LoadVirusHashes.RunWorkerAsync()
-
         UpdateStatusProtection()
     End Sub
 
@@ -86,27 +83,17 @@ Public Class FormMain
         End If
     End Sub
 
-    Private Sub LoadVirusHashes_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles LoadVirusHashes.DoWork
-        UpdateStatusProtection()
-        HASHES = DecryptMalwares().Count
-    End Sub
-
-    Private Sub LoadVirusHashes_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles LoadVirusHashes.RunWorkerCompleted
-        UpdateStatusProtection()
-        notify.Text = AppNameSpace & vbCrLf & "Definiciones: " & HASHES
-    End Sub
-
 #Region "MENU"
     Private Sub MnuUpdate_Click(sender As Object, e As EventArgs) Handles mnuUpdate.Click
         UpdateBases()
     End Sub
 
     Private Sub MnuExit_Click(sender As Object, e As EventArgs) Handles mnuExit.Click
-        Try
-            thread.Abort()
-        Catch ex As Exception
+        'Try
+        '    thread.Abort()
+        'Catch ex As Exception
 
-        End Try
+        'End Try
         Dispose()
     End Sub
 
@@ -181,9 +168,7 @@ Public Class FormMain
 #End Region
 
     Private Sub UpdateStatusProtection()
-        If LoadVirusHashes.IsBusy Then
-            SetState("CARGANDO COMPONENTES", StyleProtection.WARNING)
-        ElseIf PROTECTION_ENABLED = False Then
+        If PROTECTION_ENABLED = False Then
             SetState("NO PROTEGIDO", StyleProtection.DANGER)
         Else
             SetState("EQUIPO PROTEGIDO", StyleProtection.SUCCESS)
@@ -235,7 +220,7 @@ Public Class FormMain
             .CheckFileExists = True,
             .Title = "Seleccione un archivo de actualización de USB Security"
         }
-        If ofd.ShowDialog() = Windows.Forms.DialogResult.OK Then
+        If ofd.ShowDialog() = DialogResult.OK Then
             ShellEngine("update """ & ofd.FileName & """")
         End If
     End Sub

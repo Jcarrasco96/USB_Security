@@ -52,46 +52,34 @@ Public Module LogicUSB
         Return sBuilder.ToString.ToUpper
     End Function
 
-    ' Retorna el hash MD5 de un archivo
-    ' Parametro: t: Ruta hasta el archivo
-    ' Retorna: getMD5FileHash: MD5, formato: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, X={0,F}
-    Public Function GetMd5(Path As String) As String
-        'On Error Resume Next
-        Dim Md5 As New MD5CryptoServiceProvider
-        Dim sBuilder As New StringBuilder
-        Dim F As New FileStream(Path, FileMode.Open, FileAccess.Read, FileShare.Read, 8192)
-
-        If F Is Nothing Then Return ""
-
-        Md5.ComputeHash(F)
-
-        For Each HashByte As Byte In Md5.Hash
-            sBuilder.Append(String.Format("{0:X2}", HashByte))
-        Next
-
-        F.Close()
-        Return sBuilder.ToString.ToLower
-    End Function
-
-    ' Retorna el hash MD5 de un archivo
-    ' Parametro: t: Ruta hasta el archivo
-    ' Retorna: getMD5FileHash: MD5, formato: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, X={0,F}
-    Public Function GetSha256(Path As String) As String
-        'On Error Resume Next
-        Dim sha256 As New SHA256Managed
-        Dim F As New FileStream(Path, FileMode.Open, FileAccess.Read, FileShare.Read, 8192)
-        sha256.ComputeHash(F)
-
+    Public Function HashMe(path As String, hashType As HashType) As String
+        Dim F As New FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read, 8192)
         Dim sBuilder As New StringBuilder
 
-        For Each HashByte As Byte In sha256.Hash
-            sBuilder.Append(String.Format("{0:X2}", HashByte))
-        Next
+        Dim hash
+
+        Select Case hashType
+            Case HashType.MD5
+                hash = New MD5CryptoServiceProvider
+            Case Else
+                hash = New SHA256Managed
+        End Select
+
+        hash.ComputeHash(F)
 
         F.Close()
 
+        For Each HashByte As Byte In hash.Hash
+            sBuilder.Append(String.Format("{0:X2}", HashByte))
+        Next
+
         Return sBuilder.ToString.ToLower
     End Function
+
+    Public Enum HashType
+        MD5
+        SHA256
+    End Enum
 
     ' Generar un serial pasando como parametro el formato (ejemplo de formato: CCCC-CCCC o NNCCL-LLNLC)
     ' C: Cualquiera (numero o letra)
@@ -125,7 +113,6 @@ Public Module LogicUSB
         Return ret
     End Function
 
-    ' Verifica que un cadena te texto sea nombre de algun proceso, retorna el ID
     Public Function IsProcess(proceso As String) As Integer
         Dim processList() As Process = Process.GetProcesses
 
@@ -160,26 +147,23 @@ Public Module LogicUSB
         Dim date1 As String() = dat1.Split("-")
         Dim date2 As String() = dat2.Split("-")
 
-        Dim y1 As Integer = date1(0)
-        Dim y2 As Integer = date2(0)
-        Dim m1 As Integer = date1(1)
-        Dim m2 As Integer = date2(1)
-        Dim d1 As Integer = date1(2)
-        Dim d2 As Integer = date2(2)
-
-        If y1 > y2 Then
+        If date1(0) > date2(0) Then
             Return True
-        ElseIf y1 = y2 Then
-            If m1 > m2 Then
-                Return True
-            ElseIf m1 = m2 Then
-                Return d1 > d2
-            Else
-                Return False
-            End If
-        Else
+        End If
+
+        If date1(0) < date2(0) Then
             Return False
         End If
+
+        If date1(1) > date2(1) Then
+            Return True
+        End If
+
+        If date1(1) < date2(1) Then
+            Return False
+        End If
+
+        Return date1(2) > date2(2)
     End Function
 
     ' Retorna la direccion original (en caso que exista) de un acceso directo
@@ -246,7 +230,6 @@ Danger:
 Safe:
     End Function
 
-    ' To Get The Shortcut Byte Of A File Sample 5Mb 10GB
     Public Function GetBytes(value As Decimal) As String
         Dim V As Decimal = value
         Dim T1 As Integer = 0
@@ -268,7 +251,7 @@ Safe:
             F.AddRange(Directory.GetFiles(path, "*.*", SearchOption.TopDirectoryOnly))
         Catch ex As Exception
             Debug.WriteLine("-----GetFilesRoot-----" & ex.Message)
-            LogError("-----GetFilesRoot-----" & ex.Message & vbCrLf)
+            LogError("LogicUSB::GetFiles" & vbCrLf & "-----GetFilesRoot-----" & ex.Message & vbCrLf)
         End Try
 
         For Each strDir As String In Directory.GetDirectories(path, "*.*", SearchOption.TopDirectoryOnly)
@@ -278,54 +261,54 @@ Safe:
                 Next
             Catch ex As Exception
                 Debug.WriteLine("-----GetFiles-----" & ex.Message)
-                LogError("-----GetFiles-----" & ex.Message & vbCrLf)
+                LogError("LogicUSB::GetFiles" & vbCrLf & "-----GetFiles-----" & ex.Message & vbCrLf)
             End Try
         Next
 
         Return F
     End Function
 
-    Public Function DecryptMalwares() As Dictionary(Of String, String)
+    Public Function DecryptMalwares(letter As String) As Dictionary(Of String, String)
         Dim DICT_MALWARE As New Dictionary(Of String, String)
 
-        DecryptFile(DirDef & "security00.sec", DirCache & "security00.cache")
+        'DecryptFile(DirDef & "security" & letter & ".data", DirCache & "security00.cache")
 
-        Dim file As New TextFieldParser(DirCache & "security00.cache")
+        Dim file As New TextFieldParser(DirDef & "security" & letter & "MD5.data")
         Dim fields As String()
         file.SetDelimiters("*")
         While Not file.EndOfData
             fields = file.ReadFields()
-            DICT_MALWARE.Add(fields(0), fields(1))
+            DICT_MALWARE.Add(fields(0).ToLower, fields(1))
         End While
         file.Close()
 
         Try
-            DeleteFile(DirCache & "security00.cache")
+            'DeleteFile(DirCache & "security00.cache")
         Catch ex As Exception
-            LogError("-----ERROR-----" & vbCrLf & ex.Message & ex.StackTrace)
+            LogError("LogicUSB::DecryptMalwares" & vbCrLf & "-----ERROR-----" & vbCrLf & ex.Message & ex.StackTrace)
         End Try
 
         Return DICT_MALWARE
     End Function
 
-    Public Function DecryptMalwaresSha() As Dictionary(Of String, String)
+    Public Function DecryptMalwaresSha(letter As Char) As Dictionary(Of String, String)
         Dim DICT_MALWARE_SHA As New Dictionary(Of String, String)
 
-        DecryptFile(DirDef & "security01.sec", DirCache & "security01.cache")
+        'DecryptFile(DirDef & "security.sec", DirCache & "security01.cache")
 
-        Dim file As New TextFieldParser(DirCache & "security01.cache")
+        Dim file As New TextFieldParser(DirDef & "security" & letter & "SHA256.data")
         Dim fields As String()
         file.SetDelimiters("*")
         While Not file.EndOfData
             fields = file.ReadFields()
-            DICT_MALWARE_SHA.Add(fields(0), fields(1))
+            DICT_MALWARE_SHA.Add(fields(0).ToLower, fields(1))
         End While
         file.Close()
 
         Try
             DeleteFile(DirCache & "security01.cache")
         Catch ex As Exception
-            LogError("-----ERROR-----" & vbCrLf & ex.Message & ex.StackTrace)
+            LogError("LogicUSB::DecryptMalwaresSha" & vbCrLf & "-----ERROR-----" & vbCrLf & ex.Message & ex.StackTrace)
         End Try
 
         Return DICT_MALWARE_SHA

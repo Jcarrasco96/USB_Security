@@ -1,15 +1,6 @@
 ﻿Public Class FormSettings
 
-    Private Sub MysticClose1_Click(sender As Object, e As EventArgs) Handles MysticClose1.Click
-        Dispose()
-    End Sub
-
-    Private Sub BtnCancelar_Click(sender As Object, e As EventArgs) Handles btnCancelar.Click
-        Dispose()
-    End Sub
-
-    Private Sub BtnAceptar_Click(sender As Object, e As EventArgs) Handles btnAceptar.Click
-        SaveSettings()
+    Private Sub MysticClose1_Click(sender As Object, e As EventArgs)
         Dispose()
     End Sub
 
@@ -71,6 +62,15 @@
         RegisterOnStartup(checkStartSystem.Checked)
 
         opt.saveSettings()
+    End Sub
+
+    Private Sub btnAccept_Click(sender As Object, e As EventArgs) Handles btnAccept.Click
+        SaveSettings()
+        Dispose()
+    End Sub
+
+    Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
+        Dispose()
     End Sub
 
 End Class

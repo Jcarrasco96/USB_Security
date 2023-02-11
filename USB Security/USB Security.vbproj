@@ -149,6 +149,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="PanelRounded.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Quarantine.vb" />
     <Compile Include="StyleProtection.vb" />
     <Compile Include="FormMain.vb">

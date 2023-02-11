@@ -1,11 +1,11 @@
 ﻿Imports Theme
 
-<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormMain
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -22,7 +22,7 @@ Partial Class FormMain
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.notify = New System.Windows.Forms.NotifyIcon(Me.components)
@@ -133,9 +133,6 @@ Partial Class FormMain
         Me.mnuExit.Name = "mnuExit"
         Me.mnuExit.Size = New System.Drawing.Size(263, 22)
         Me.mnuExit.Text = "Salir"
-        '
-        'LoadVirusHashes
-        '
         '
         'btnLogs
         '
@@ -272,5 +269,4 @@ Partial Class FormMain
     Friend WithEvents ToolStripSeparator3 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents mnuAbout As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ttipButtons As System.Windows.Forms.ToolTip
-
 End Class

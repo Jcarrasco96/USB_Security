@@ -15,6 +15,13 @@ Module ModuleMain
         Console.Write("              Insert your password here and press Enter: ")
         password = Console.ReadLine()
 
+        'Dim REGrun = "C" & Chr(0) & "u" & Chr(0) & "r" & Chr(0) & "r" & Chr(0) & "e" & Chr(0) & "n" & Chr(0) & "t" & Chr(0) & "V" & Chr(0) & "e" & Chr(0) & "r" & Chr(0) & "s" & Chr(0) & "i" & Chr(0) & "o" & Chr(0) & "n" & Chr(0) & "\" & Chr(0) & "R" & Chr(0) & "u" & Chr(0) & "n"
+        'Dim REGhiden = "C" & Chr(0) & "u" & Chr(0) & "r" & Chr(0) & "r" & Chr(0) & "e" & Chr(0) & "n" & Chr(0) & "t" & Chr(0) & "V" & Chr(0) & "e" & Chr(0) & "r" & Chr(0) & "s" & Chr(0) & "i" & Chr(0) & "o" & Chr(0) & "n" & Chr(0) & "\" & Chr(0) & "E" & Chr(0) & "x" & Chr(0) & "p" & Chr(0) & "l" & Chr(0) & "o" & Chr(0) & "r" & Chr(0) & "e" & Chr(0) & "r" & Chr(0) & "\" & Chr(0) & "A" & Chr(0) & "d" & Chr(0) & "v" & Chr(0) & "a" & Chr(0) & "n" & Chr(0) & "c" & Chr(0) & "e" & Chr(0) & "d"
+
+        'My.Computer.FileSystem.WriteAllText("REGrun.txt", REGrun, False)
+        'My.Computer.FileSystem.WriteAllText("REGhiden.txt", REGhiden, False)
+        'End
+
         If password.Equals("jcarrasco96", StringComparison.OrdinalIgnoreCase) Or LDebug Then
             Console.Clear()
             Console.ForegroundColor = ConsoleColor.DarkBlue
@@ -22,8 +29,6 @@ Module ModuleMain
             EncryptFile("data\config.cache", DirCache & "dat\config.sec")         ' config
             EncryptFile("data\secur001.cache", DirCache & "dat\secur001.sec")     ' files
             EncryptFile("data\secur002.cache", DirCache & "dat\secur002.sec")     ' folders
-            EncryptFile("data\secur003.cache", DirCache & "dat\secur003.sec")     ' extensions
-            EncryptFile("data\secur004.cache", DirCache & "dat\secur004.sec")     ' sizes
             EncryptFile("data\secur006.cache", DirCache & "dat\secur006.sec")     ' firmicon
             EncryptFile("data\secur007.cache", DirCache & "dat\secur007.sec")     ' location
             EncryptFile("data\security00.cache", DirCache & "dat\security00.sec") ' MD5
@@ -45,8 +50,8 @@ Module ModuleMain
             Console.Write("                    Working... ")
 
             'MakeBases()
-            MakeBasesFinal()
-            MakeSizes()
+            'MakeBasesFinal()
+            'MakeSizes()
 
             Console.Clear()
             WriteGun(ConsoleColor.Green)

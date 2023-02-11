@@ -26,15 +26,16 @@ Partial Class FormMain
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMain))
         Me.FileScanner = New System.ComponentModel.BackgroundWorker()
-        Me.MysticTheme1 = New DarkTheme()
+        Me.MysticTheme1 = New Theme.DarkTheme()
         Me.labelLoading = New System.Windows.Forms.Label()
         Me.labelDetect = New System.Windows.Forms.Label()
-        Me.MysticClose1 = New DarkClose()
-        Me.progressTotal = New DarkProgressBar()
+        Me.MysticClose1 = New Theme.DarkClose()
+        Me.progressTotal = New Theme.DarkProgressBar()
         Me.picDrive = New System.Windows.Forms.PictureBox()
         Me.labelSize = New System.Windows.Forms.Label()
         Me.labelPath = New System.Windows.Forms.Label()
         Me.labelName = New System.Windows.Forms.Label()
+        Me.lblPercent = New System.Windows.Forms.Label()
         Me.MysticTheme1.SuspendLayout()
         CType(Me.picDrive, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -46,6 +47,7 @@ Partial Class FormMain
         '
         'MysticTheme1
         '
+        Me.MysticTheme1.Controls.Add(Me.lblPercent)
         Me.MysticTheme1.Controls.Add(Me.labelLoading)
         Me.MysticTheme1.Controls.Add(Me.labelDetect)
         Me.MysticTheme1.Controls.Add(Me.MysticClose1)
@@ -102,9 +104,9 @@ Partial Class FormMain
         '
         Me.progressTotal.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.progressTotal.Location = New System.Drawing.Point(12, 113)
+        Me.progressTotal.Location = New System.Drawing.Point(69, 113)
         Me.progressTotal.Name = "progressTotal"
-        Me.progressTotal.Size = New System.Drawing.Size(350, 10)
+        Me.progressTotal.Size = New System.Drawing.Size(294, 13)
         Me.progressTotal.TabIndex = 10
         '
         'picDrive
@@ -155,6 +157,20 @@ Partial Class FormMain
         Me.labelName.TabIndex = 1
         Me.labelName.Text = "Nombre:"
         '
+        'lblPercent
+        '
+        Me.lblPercent.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblPercent.AutoEllipsis = True
+        Me.lblPercent.BackColor = System.Drawing.Color.Transparent
+        Me.lblPercent.ForeColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(189, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.lblPercent.Location = New System.Drawing.Point(12, 113)
+        Me.lblPercent.Name = "lblPercent"
+        Me.lblPercent.Size = New System.Drawing.Size(48, 13)
+        Me.lblPercent.TabIndex = 14
+        Me.lblPercent.Text = "0%"
+        Me.lblPercent.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
         'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -182,4 +198,5 @@ Partial Class FormMain
     Friend WithEvents MysticClose1 As DarkClose
     Friend WithEvents labelDetect As System.Windows.Forms.Label
     Friend WithEvents labelLoading As Label
+    Friend WithEvents lblPercent As Label
 End Class

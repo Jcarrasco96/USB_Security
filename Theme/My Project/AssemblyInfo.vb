@@ -8,11 +8,11 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("Theme")> 
-<Assembly: AssemblyDescription("")> 
+<Assembly: AssemblyTitle("Theme")>
+<Assembly: AssemblyDescription("USB Security Theme Lib")>
 <Assembly: AssemblyCompany("")> 
-<Assembly: AssemblyProduct("Theme")> 
-<Assembly: AssemblyCopyright("Copyright ©  2022")> 
+<Assembly: AssemblyProduct("Theme")>
+<Assembly: AssemblyCopyright("Copyright © Jcarrasco96 2022")>
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>

@@ -334,16 +334,6 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Busca un recurso adaptado de tipo System.Byte[].
-        '''</summary>
-        Friend ReadOnly Property config1() As Byte()
-            Get
-                Dim obj As Object = ResourceManager.GetObject("config1", resourceCulture)
-                Return CType(obj,Byte())
-            End Get
-        End Property
-        
-        '''<summary>
         '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
         Friend ReadOnly Property ic_logs() As System.Drawing.Bitmap
@@ -430,66 +420,6 @@ Namespace My.Resources
             Get
                 Dim obj As Object = ResourceManager.GetObject("icon_warn", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Busca un recurso adaptado de tipo System.Byte[].
-        '''</summary>
-        Friend ReadOnly Property secur001() As Byte()
-            Get
-                Dim obj As Object = ResourceManager.GetObject("secur001", resourceCulture)
-                Return CType(obj,Byte())
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Busca un recurso adaptado de tipo System.Byte[].
-        '''</summary>
-        Friend ReadOnly Property secur002() As Byte()
-            Get
-                Dim obj As Object = ResourceManager.GetObject("secur002", resourceCulture)
-                Return CType(obj,Byte())
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Busca un recurso adaptado de tipo System.Byte[].
-        '''</summary>
-        Friend ReadOnly Property secur006() As Byte()
-            Get
-                Dim obj As Object = ResourceManager.GetObject("secur006", resourceCulture)
-                Return CType(obj,Byte())
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Busca un recurso adaptado de tipo System.Byte[].
-        '''</summary>
-        Friend ReadOnly Property secur007() As Byte()
-            Get
-                Dim obj As Object = ResourceManager.GetObject("secur007", resourceCulture)
-                Return CType(obj,Byte())
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Busca un recurso adaptado de tipo System.Byte[].
-        '''</summary>
-        Friend ReadOnly Property security00() As Byte()
-            Get
-                Dim obj As Object = ResourceManager.GetObject("security00", resourceCulture)
-                Return CType(obj,Byte())
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Busca un recurso adaptado de tipo System.Byte[].
-        '''</summary>
-        Friend ReadOnly Property security01() As Byte()
-            Get
-                Dim obj As Object = ResourceManager.GetObject("security01", resourceCulture)
-                Return CType(obj,Byte())
             End Get
         End Property
     End Module

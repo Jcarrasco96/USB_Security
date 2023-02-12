@@ -40,15 +40,16 @@ Module Helper
         If Not My.Computer.FileSystem.GetDirectoryInfo(DirQuar).Exists Then My.Computer.FileSystem.CreateDirectory(DirQuar)
         If Not My.Computer.FileSystem.GetDirectoryInfo(DirSound).Exists Then My.Computer.FileSystem.CreateDirectory(DirSound)
         ' Copiar la base de datos, en caso de faltar algun archivo
-        If Not My.Computer.FileSystem.GetFileInfo(DirDef & "config.sec").Exists Then My.Computer.FileSystem.WriteAllBytes(DirDef & "config.sec", My.Resources.config1, False)
-        If Not My.Computer.FileSystem.GetFileInfo(DirDef & "secur001.sec").Exists Then My.Computer.FileSystem.WriteAllBytes(DirDef & "secur001.sec", My.Resources.secur001, False)
-        If Not My.Computer.FileSystem.GetFileInfo(DirDef & "secur002.sec").Exists Then My.Computer.FileSystem.WriteAllBytes(DirDef & "secur002.sec", My.Resources.secur002, False)
+        ' TODO
+        'If Not My.Computer.FileSystem.GetFileInfo(DirDef & "config.sec").Exists Then My.Computer.FileSystem.WriteAllBytes(DirDef & "config.sec", My.Resources.config1, False)
+        'If Not My.Computer.FileSystem.GetFileInfo(DirDef & "secur001.sec").Exists Then My.Computer.FileSystem.WriteAllBytes(DirDef & "secur001.sec", My.Resources.secur001, False)
+        'If Not My.Computer.FileSystem.GetFileInfo(DirDef & "secur002.sec").Exists Then My.Computer.FileSystem.WriteAllBytes(DirDef & "secur002.sec", My.Resources.secur002, False)
         'If Not My.Computer.FileSystem.GetFileInfo(DirDef & "secur003.sec").Exists Then My.Computer.FileSystem.WriteAllBytes(DirDef & "secur003.sec", My.Resources.secur003, False)
         'If Not My.Computer.FileSystem.GetFileInfo(DirDef & "secur004.sec").Exists Then My.Computer.FileSystem.WriteAllBytes(DirDef & "secur004.sec", My.Resources.secur004, False)
-        If Not My.Computer.FileSystem.GetFileInfo(DirDef & "secur006.sec").Exists Then My.Computer.FileSystem.WriteAllBytes(DirDef & "secur006.sec", My.Resources.secur006, False)
-        If Not My.Computer.FileSystem.GetFileInfo(DirDef & "secur007.sec").Exists Then My.Computer.FileSystem.WriteAllBytes(DirDef & "secur007.sec", My.Resources.secur007, False)
-        If Not My.Computer.FileSystem.GetFileInfo(DirDef & "security00.sec").Exists Then My.Computer.FileSystem.WriteAllBytes(DirDef & "security00.sec", My.Resources.security00, False)
-        If Not My.Computer.FileSystem.GetFileInfo(DirDef & "security01.sec").Exists Then My.Computer.FileSystem.WriteAllBytes(DirDef & "security01.sec", My.Resources.security01, False)
+        'If Not My.Computer.FileSystem.GetFileInfo(DirDef & "secur006.sec").Exists Then My.Computer.FileSystem.WriteAllBytes(DirDef & "secur006.sec", My.Resources.secur006, False)
+        'If Not My.Computer.FileSystem.GetFileInfo(DirDef & "secur007.sec").Exists Then My.Computer.FileSystem.WriteAllBytes(DirDef & "secur007.sec", My.Resources.secur007, False)
+        'If Not My.Computer.FileSystem.GetFileInfo(DirDef & "security00.sec").Exists Then My.Computer.FileSystem.WriteAllBytes(DirDef & "security00.sec", My.Resources.security00, False)
+        'If Not My.Computer.FileSystem.GetFileInfo(DirDef & "security01.sec").Exists Then My.Computer.FileSystem.WriteAllBytes(DirDef & "security01.sec", My.Resources.security01, False)
 
         ' Copiar el archivo de configuracion, si no existe
         If Not My.Computer.FileSystem.GetFileInfo(DirProject & "config.ini").Exists Then

@@ -8,8 +8,8 @@ Imports System.Runtime.InteropServices
 
 ' Revisar los valores de los atributos del ensamblado
 
-<Assembly: AssemblyTitle("update")> 
-<Assembly: AssemblyDescription("")> 
+<Assembly: AssemblyTitle("update")>
+<Assembly: AssemblyDescription("USB Security Update")>
 <Assembly: AssemblyCompany("")> 
 <Assembly: AssemblyProduct("update")> 
 <Assembly: AssemblyCopyright("Copyright © Jcarrasco96 2020")> 

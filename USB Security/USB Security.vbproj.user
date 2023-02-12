@@ -15,6 +15,6 @@
     <RemoteDebugEnabled>false</RemoteDebugEnabled>
   </PropertyGroup>
   <PropertyGroup>
-    <EnableSecurityDebugging>false</EnableSecurityDebugging>
+    <EnableSecurityDebugging>true</EnableSecurityDebugging>
   </PropertyGroup>
 </Project>

@@ -6,7 +6,9 @@ Public Class DarkTheme : Inherits ContainerControl
     Private _Down As Boolean = False
     Private ReadOnly _Header As Integer = 36
     Private _Point As Point
+
     Public Property Movible As Boolean = False
+    Public Property Image As Image
 
     Protected Overrides Sub OnMouseUp(e As MouseEventArgs)
         MyBase.OnMouseUp(e)
@@ -58,6 +60,11 @@ Public Class DarkTheme : Inherits ContainerControl
             .LineAlignment = StringAlignment.Center
         }
         G.DrawString(Text, New Font("Segoe UI", 12), New SolidBrush(Color.FromArgb(33, 189, 255)), New RectangleF(5, 0, Width, _Header), _StringF)
+
+        If Not IsNothing(Image) Then
+            G.DrawImage(Image, 0, Height - Image.Height, Image.Width, Image.Height)
+        End If
+
     End Sub
 
 End Class

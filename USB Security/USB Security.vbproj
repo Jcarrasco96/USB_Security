@@ -222,6 +222,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\main_img.png" />
     <None Include="Resources\8-3.fw.png" />
     <None Include="Resources\8-2.fw.png" />
     <None Include="Resources\8-1.fw.png" />

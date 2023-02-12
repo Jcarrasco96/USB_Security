@@ -184,6 +184,7 @@ Partial Class FormMain
         Me.MysticTheme1.Controls.Add(Me.PictureBox1)
         Me.MysticTheme1.Controls.Add(Me.MysticClose1)
         Me.MysticTheme1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.MysticTheme1.Image = Global.USB_Security.My.Resources.Resources.main_img
         Me.MysticTheme1.Location = New System.Drawing.Point(0, 0)
         Me.MysticTheme1.Movible = False
         Me.MysticTheme1.Name = "MysticTheme1"
@@ -199,7 +200,7 @@ Partial Class FormMain
         Me.labelInfo.Location = New System.Drawing.Point(12, 260)
         Me.labelInfo.Margin = New System.Windows.Forms.Padding(3)
         Me.labelInfo.Name = "labelInfo"
-        Me.labelInfo.Size = New System.Drawing.Size(226, 70)
+        Me.labelInfo.Size = New System.Drawing.Size(226, 74)
         Me.labelInfo.TabIndex = 6
         Me.labelInfo.Text = "Cargando..."
         Me.labelInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter

@@ -13,8 +13,7 @@ Public Class FormLogs
     End Sub
 
     Private Sub MysticButton3_Click(sender As Object, e As EventArgs) Handles MysticButton3.Click
-        Dim item As Integer = ThirteenTabControl1.SelectedIndex
-        If item = 0 Then
+        If ThirteenTabControl1.SelectedIndex = 0 Then
             LoadMalware()
         Else
             LoadEngine()
@@ -22,8 +21,7 @@ Public Class FormLogs
     End Sub
 
     Private Sub MysticButton1_Click(sender As Object, e As EventArgs) Handles MysticButton1.Click
-        Dim item As Integer = ThirteenTabControl1.SelectedIndex
-        If item = 0 Then
+        If ThirteenTabControl1.SelectedIndex = 0 Then
             If My.Computer.FileSystem.FileExists(DirProject & "log_malware.log") Then My.Computer.FileSystem.DeleteFile(DirProject & "log_malware.log", UIOption.OnlyErrorDialogs, RecycleOption.DeletePermanently)
             LoadMalware()
         Else
@@ -68,7 +66,7 @@ Public Class FormLogs
 
         listViewMalwares.Items.Clear()
         listViewMalwares.Columns.Clear()
-        listViewMalwares.Columns.Add("Fecha", 140, HorizontalAlignment.Left)
+        listViewMalwares.Columns.Add("Fecha", 120, HorizontalAlignment.Left)
         listViewMalwares.Columns.Add("Usuario", 100, HorizontalAlignment.Left)
         listViewMalwares.Columns.Add("Nombre", 90, HorizontalAlignment.Left)
         listViewMalwares.Columns.Add("Ubicación", 270, HorizontalAlignment.Left)

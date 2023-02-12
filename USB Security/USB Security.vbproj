@@ -215,18 +215,9 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-    <None Include="Resources\secur001.sec" />
-    <None Include="Resources\secur002.sec" />
-    <None Include="Resources\secur003.sec" />
-    <None Include="Resources\secur004.sec" />
-    <None Include="Resources\secur006.sec" />
-    <None Include="Resources\secur007.sec" />
-    <None Include="Resources\security00.sec" />
-    <None Include="Resources\security01.sec" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\config.ini" />
-    <None Include="Resources\config.sec" />
     <None Include="Resources\icon_success.png" />
   </ItemGroup>
   <ItemGroup>

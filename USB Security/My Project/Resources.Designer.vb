@@ -336,9 +336,39 @@ Namespace My.Resources
         '''<summary>
         '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property ic_about() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("ic_about", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property ic_logs() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("ic_logs", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property ic_malware() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("ic_malware", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property ic_quar() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("ic_quar", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

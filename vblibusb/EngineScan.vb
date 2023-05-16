@@ -2,8 +2,52 @@
 
 Public Class EngineScan
 
-    Private ReadOnly arrCache As ArrayList
-    Private ReadOnly options As ScanOptions
+    Public Sub Free()
+        arrCache = Nothing
+        options = Nothing
+
+        ARR_FILENAME = Nothing
+        ARR_FOLDERNAME = Nothing
+        ARR_SEC06 = Nothing
+        ARR_SEC07 = Nothing
+
+        DICT_MALWARE_0 = Nothing
+        DICT_MALWARE_1 = Nothing
+        DICT_MALWARE_2 = Nothing
+        DICT_MALWARE_3 = Nothing
+        DICT_MALWARE_4 = Nothing
+        DICT_MALWARE_5 = Nothing
+        DICT_MALWARE_6 = Nothing
+        DICT_MALWARE_7 = Nothing
+        DICT_MALWARE_8 = Nothing
+        DICT_MALWARE_9 = Nothing
+        DICT_MALWARE_A = Nothing
+        DICT_MALWARE_B = Nothing
+        DICT_MALWARE_C = Nothing
+        DICT_MALWARE_D = Nothing
+        DICT_MALWARE_E = Nothing
+        DICT_MALWARE_F = Nothing
+
+        DICT_MALWARE_SHA_0 = Nothing
+        DICT_MALWARE_SHA_1 = Nothing
+        DICT_MALWARE_SHA_2 = Nothing
+        DICT_MALWARE_SHA_3 = Nothing
+        DICT_MALWARE_SHA_4 = Nothing
+        DICT_MALWARE_SHA_5 = Nothing
+        DICT_MALWARE_SHA_6 = Nothing
+        DICT_MALWARE_SHA_7 = Nothing
+        DICT_MALWARE_SHA_8 = Nothing
+        DICT_MALWARE_SHA_9 = Nothing
+        DICT_MALWARE_SHA_A = Nothing
+        DICT_MALWARE_SHA_B = Nothing
+        DICT_MALWARE_SHA_C = Nothing
+        DICT_MALWARE_SHA_D = Nothing
+        DICT_MALWARE_SHA_E = Nothing
+        DICT_MALWARE_SHA_F = Nothing
+    End Sub
+
+    Private arrCache As ArrayList
+    Private options As ScanOptions
 
     Public ARR_FILENAME As ArrayList
     Public ARR_FOLDERNAME As ArrayList

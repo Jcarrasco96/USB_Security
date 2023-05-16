@@ -17,7 +17,7 @@ Public Class DarkProgressBar : Inherits ProgressBar
         Dim _Progress As Integer = 0
 
         Try
-            _Progress = CInt(Value / Maximum * Width)
+            _Progress = Value / Maximum * Width
         Catch ex As Exception
 
         End Try

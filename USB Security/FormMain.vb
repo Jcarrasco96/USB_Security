@@ -99,12 +99,14 @@ Public Class FormMain
 
     Private Sub MnuSettings_Click(sender As Object, e As EventArgs) Handles mnuSettings.Click
         Hide()
-        FormSettings.Show()
+        FormMain2.Show()
+        FormMain2.ShowSettings()
     End Sub
 
     Private Sub MnuQuarantine_Click(sender As Object, e As EventArgs) Handles mnuQuarantine.Click
         Hide()
-        FormQuarantine.Show()
+        FormMain2.Show()
+        FormMain2.ShowQuarantine()
     End Sub
 
     Private Sub MnuEnableProt_Click(sender As Object, e As EventArgs) Handles mnuEnableProt.Click
@@ -134,11 +136,15 @@ Public Class FormMain
     End Sub
 
     Private Sub MnuQuickScan_Click(sender As Object, e As EventArgs) Handles mnuQuickScan.Click
-        ScanPC(False)
+        'ScanPC(False)
+
+        FormMain2.Show()
+        FormMain2.ShowFastScan()
     End Sub
 
     Private Sub MnuAbout_Click(sender As Object, e As EventArgs) Handles mnuAbout.Click
-        FormAbout.ShowDialog()
+        FormMain2.Show()
+        FormMain2.ShowAbout()
     End Sub
 #End Region
 
@@ -149,17 +155,22 @@ Public Class FormMain
 
     Private Sub BtnSettings_Click(sender As Object, e As EventArgs) Handles btnSettings.Click
         Hide()
-        FormSettings.Show()
+        FormMain2.Show()
+        FormMain2.ShowSettings()
     End Sub
 
     Private Sub BtnScan_Click(sender As Object, e As EventArgs) Handles btnScan.Click
         Hide()
-        ScanPC(False)
+        'ScanPC(False)
+
+        FormMain2.Show()
+        FormMain2.ShowFastScan()
     End Sub
 
     Private Sub BtnLogs_Click(sender As Object, e As EventArgs) Handles btnLogs.Click
         Hide()
-        FormLogs.Show()
+        FormMain2.Show()
+        FormMain2.ShowLogs()
     End Sub
 
     Private Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click

@@ -36,7 +36,7 @@ Public Class DarkButton : Inherits MyControl
         G.FillRectangle(New SolidBrush(Color.FromArgb(44, 51, 62)), New Rectangle(Width - 1, Height - 2, 1, 1))
         G.FillRectangle(New SolidBrush(Color.FromArgb(44, 51, 62)), New Rectangle(Width - 2, Height - 1, 1, 1))
 
-        If Text = vbNullString Then
+        If Text = vbNullString And Not IsNothing(BackgroundImage) Then
             G.DrawImage(BackgroundImage, New Rectangle(2, 2, Width - 4, Height - 4))
         Else
             Dim _StringF As New StringFormat With {

@@ -4,6 +4,7 @@ Public Class DarkTabControl : Inherits TabControl
 
     Private ReadOnly AccentColor As Color = Color.FromArgb(33, 189, 255)
     Private ReadOnly MainColor As Color = Color.FromArgb(35, 35, 35)
+    Public Property TabTextColor As Color = Color.Black
 
     Sub New()
         MyBase.New()
@@ -14,13 +15,11 @@ Public Class DarkTabControl : Inherits TabControl
         DoubleBuffered = True
 
         BackColor = Color.FromArgb(250, 50, 50)
-        ForeColor = Color.Black
     End Sub
 
     Protected Overrides Sub OnPaint(e As PaintEventArgs)
-        Dim B As New Bitmap(Width, Height)
-        Dim G As Graphics = Graphics.FromImage(B)
         MyBase.OnPaint(e)
+        Dim G As Graphics = e.Graphics
 
         Try : SelectedTab.BackColor = MainColor : Catch : End Try
         G.Clear(Color.FromArgb(44, 51, 62))
@@ -34,7 +33,7 @@ Public Class DarkTabControl : Inherits TabControl
             If Not i = SelectedIndex Then
                 Dim TabRect As New Rectangle(GetTabRect(i).X, GetTabRect(i).Y, GetTabRect(i).Width, GetTabRect(i).Height)
                 G.FillRectangle(New SolidBrush(MainColor), TabRect)
-                G.DrawString(TabPages(i).Text, New Font("Segoe UI", 9.75F), New SolidBrush(ForeColor), TabRect, sf)
+                G.DrawString(TabPages(i).Text, New Font("Segoe UI", 9.75F), New SolidBrush(TabTextColor), TabRect, sf)
             End If
         Next
 
@@ -43,11 +42,9 @@ Public Class DarkTabControl : Inherits TabControl
         If Not SelectedIndex = -1 Then
             Dim TabRect As New Rectangle(GetTabRect(SelectedIndex).X - 2, GetTabRect(SelectedIndex).Y, GetTabRect(SelectedIndex).Width + 4, GetTabRect(SelectedIndex).Height)
             G.FillRectangle(New SolidBrush(AccentColor), TabRect)
-            G.DrawString(TabPages(SelectedIndex).Text, New Font("Segoe UI", 9.75F), New SolidBrush(ForeColor), TabRect, sf)
+            G.DrawString(TabPages(SelectedIndex).Text, New Font("Segoe UI", 9.75F), New SolidBrush(TabTextColor), TabRect, sf)
         End If
 
-        e.Graphics.DrawImage(B, New Point(0, 0))
-        G.Dispose() : B.Dispose()
     End Sub
 
 End Class

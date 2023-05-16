@@ -1,10 +1,6 @@
-﻿Public Class FormSettings
+﻿Public Class ControlSettings
 
-    Private Sub MysticClose1_Click(sender As Object, e As EventArgs)
-        Dispose()
-    End Sub
-
-    Private Sub FormSettings_Load(sender As Object, e As EventArgs) Handles Me.Load
+    Private Sub ControlSettings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadSettings()
     End Sub
 
@@ -66,11 +62,11 @@
 
     Private Sub btnAccept_Click(sender As Object, e As EventArgs) Handles btnAccept.Click
         SaveSettings()
-        Dispose()
+        MsgBox("Ajustes guardados correctamente.")
     End Sub
 
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
-        Dispose()
+        LoadSettings()
     End Sub
 
 End Class

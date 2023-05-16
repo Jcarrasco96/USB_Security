@@ -2,6 +2,8 @@
 
 Public Class PanelRounded : Inherits Panel
 
+    Public Property Diameter As Integer = 10
+
     Protected Overrides Sub OnCreateControl()
         MyBase.OnCreateControl()
         Invalidate()
@@ -12,23 +14,21 @@ Public Class PanelRounded : Inherits Panel
         Dim G = e.Graphics
         G.Clear(Color.FromArgb(44, 51, 62))
 
-        RoundedRectangle(G, New Rectangle(0, 0, Width, Height), 20)
-    End Sub
+        Dim r = New Rectangle(0, 0, Width, Height)
 
-    Public Sub RoundedRectangle(ByVal objGraphics As Graphics, ByVal r As Rectangle, ByVal d As Integer)
         Dim path As New GraphicsPath
 
-        path.AddLine(r.Left + d, r.Top, r.Right - d, r.Top)
-        path.AddArc(Rectangle.FromLTRB(r.Right - d, r.Top, r.Right, r.Top + d), -90, 90)
-        path.AddLine(r.Right, r.Top + d, r.Right, r.Bottom - d)
-        path.AddArc(Rectangle.FromLTRB(r.Right - d, r.Bottom - d, r.Right, r.Bottom), 0, 90)
-        path.AddLine(r.Right - d, r.Bottom, r.Left + d, r.Bottom)
-        path.AddArc(Rectangle.FromLTRB(r.Left, r.Bottom - d, r.Left + d, r.Bottom), 90, 90)
-        path.AddLine(r.Left, r.Bottom - d, r.Left, r.Top + d)
-        path.AddArc(Rectangle.FromLTRB(r.Left, r.Top, r.Left + d, r.Top + d), 180, 90)
+        path.AddLine(r.Left + Diameter, r.Top, r.Right - Diameter, r.Top)
+        path.AddArc(Rectangle.FromLTRB(r.Right - Diameter, r.Top, r.Right, r.Top + Diameter), -90, 90)
+        path.AddLine(r.Right, r.Top + Diameter, r.Right, r.Bottom - Diameter)
+        path.AddArc(Rectangle.FromLTRB(r.Right - Diameter, r.Bottom - Diameter, r.Right, r.Bottom), 0, 90)
+        path.AddLine(r.Right - Diameter, r.Bottom, r.Left + Diameter, r.Bottom)
+        path.AddArc(Rectangle.FromLTRB(r.Left, r.Bottom - Diameter, r.Left + Diameter, r.Bottom), 90, 90)
+        path.AddLine(r.Left, r.Bottom - Diameter, r.Left, r.Top + Diameter)
+        path.AddArc(Rectangle.FromLTRB(r.Left, r.Top, r.Left + Diameter, r.Top + Diameter), 180, 90)
         path.CloseFigure()
 
-        objGraphics.FillPath(New SolidBrush(Color.FromArgb(28, 28, 28)), path)
+        G.FillPath(New SolidBrush(Color.FromArgb(29, 36, 44)), path)
     End Sub
 
 End Class

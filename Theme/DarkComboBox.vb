@@ -30,28 +30,6 @@ Public Class DarkComboBox : Inherits ComboBox
         End Set
     End Property
 
-    Sub ReplaceItem(sender As Object, e As DrawItemEventArgs) Handles Me.DrawItem
-        e.DrawBackground()
-        Try
-            If (e.State And DrawItemState.Selected) = DrawItemState.Selected Then
-                e.Graphics.FillRectangle(New SolidBrush(_AccentColor), e.Bounds)
-            Else
-                e.Graphics.FillRectangle(New SolidBrush(Color.FromArgb(35, 35, 35)), e.Bounds)
-            End If
-            e.Graphics.DrawString(GetItemText(Items(e.Index)), e.Font, Brushes.White, e.Bounds)
-        Catch
-        End Try
-    End Sub
-
-    Protected Sub DrawTriangle(Clr As Color, FirstPoint As Point, SecondPoint As Point, ThirdPoint As Point, G As Graphics)
-        Dim points As New List(Of Point) From {
-            FirstPoint,
-            SecondPoint,
-            ThirdPoint
-        }
-        G.FillPolygon(New SolidBrush(Clr), points.ToArray())
-    End Sub
-
     Sub New()
         MyBase.New()
         SetStyle(ControlStyles.AllPaintingInWmPaint, True)
@@ -70,8 +48,7 @@ Public Class DarkComboBox : Inherits ComboBox
     End Sub
 
     Protected Overrides Sub OnPaint(e As PaintEventArgs)
-        Dim B As New Bitmap(Width, Height)
-        Dim G As Graphics = Graphics.FromImage(B)
+        Dim G As Graphics = e.Graphics
 
         G.SmoothingMode = SmoothingMode.HighQuality
 
@@ -86,9 +63,6 @@ Public Class DarkComboBox : Inherits ComboBox
         Catch
 
         End Try
-
-        e.Graphics.DrawImage(B.Clone(), 0, 0)
-        G.Dispose() : B.Dispose()
     End Sub
 
 End Class

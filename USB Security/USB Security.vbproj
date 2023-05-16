@@ -114,36 +114,48 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="ControlAbout.Designer.vb">
+      <DependentUpon>ControlAbout.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ControlAbout.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlFastScan.Designer.vb">
+      <DependentUpon>ControlFastScan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ControlFastScan.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlLogs.Designer.vb">
+      <DependentUpon>ControlLogs.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ControlLogs.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlMalware.Designer.vb">
+      <DependentUpon>ControlMalware.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ControlMalware.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlQuarantine.Designer.vb">
+      <DependentUpon>ControlQuarantine.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ControlQuarantine.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlSettings.Designer.vb">
+      <DependentUpon>ControlSettings.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ControlSettings.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Device.vb" />
     <Compile Include="FastScanClass.vb" />
-    <Compile Include="FormAbout.Designer.vb">
-      <DependentUpon>FormAbout.vb</DependentUpon>
+    <Compile Include="FormMain2.Designer.vb">
+      <DependentUpon>FormMain2.vb</DependentUpon>
     </Compile>
-    <Compile Include="FormAbout.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormFastScan.Designer.vb">
-      <DependentUpon>FormFastScan.vb</DependentUpon>
-    </Compile>
-    <Compile Include="FormFastScan.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormLogs.Designer.vb">
-      <DependentUpon>FormLogs.vb</DependentUpon>
-    </Compile>
-    <Compile Include="FormLogs.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormQuarantine.Designer.vb">
-      <DependentUpon>FormQuarantine.vb</DependentUpon>
-    </Compile>
-    <Compile Include="FormQuarantine.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormSettings.Designer.vb">
-      <DependentUpon>FormSettings.vb</DependentUpon>
-    </Compile>
-    <Compile Include="FormSettings.vb">
+    <Compile Include="FormMain2.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Helper.vb" />
@@ -178,23 +190,29 @@
     <Compile Include="WinRegistry.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="FormAbout.resx">
-      <DependentUpon>FormAbout.vb</DependentUpon>
+    <EmbeddedResource Include="ControlAbout.resx">
+      <DependentUpon>ControlAbout.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormFastScan.resx">
-      <DependentUpon>FormFastScan.vb</DependentUpon>
+    <EmbeddedResource Include="ControlFastScan.resx">
+      <DependentUpon>ControlFastScan.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormLogs.resx">
-      <DependentUpon>FormLogs.vb</DependentUpon>
+    <EmbeddedResource Include="ControlLogs.resx">
+      <DependentUpon>ControlLogs.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlMalware.resx">
+      <DependentUpon>ControlMalware.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlQuarantine.resx">
+      <DependentUpon>ControlQuarantine.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlSettings.resx">
+      <DependentUpon>ControlSettings.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormQuarantine.resx">
-      <DependentUpon>FormQuarantine.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormSettings.resx">
-      <DependentUpon>FormSettings.vb</DependentUpon>
+    <EmbeddedResource Include="FormMain2.resx">
+      <DependentUpon>FormMain2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -222,6 +240,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\ic_about.png" />
+    <None Include="Resources\ic_malware.png" />
+    <None Include="Resources\ic_quar.png" />
     <None Include="Resources\main_img.png" />
     <None Include="Resources\8-3.fw.png" />
     <None Include="Resources\8-2.fw.png" />

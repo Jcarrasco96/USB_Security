@@ -2,7 +2,7 @@
 Imports vblibusb.Encrypter
 Imports vblibusb.LogicUSB
 
-Public Class FormQuarantine
+Public Class ControlQuarantine
 
     Private FilesQuar As List(Of Quarantine)
     Private SizeQuar As Integer
@@ -60,11 +60,7 @@ Public Class FormQuarantine
         btnRestore.Enabled = FilesQuar.Count <> 0
         btnDelete.Enabled = FilesQuar.Count <> 0
         btnClear.Enabled = FilesQuar.Count <> 0
-        
-    End Sub
 
-    Private Sub MysticClose1_Click(sender As Object, e As EventArgs) Handles MysticClose1.Click
-        Dispose()
     End Sub
 
     Private Sub BtnRestore_Click(sender As Object, e As EventArgs) Handles btnRestore.Click
